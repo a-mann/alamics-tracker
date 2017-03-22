@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1,user-scalable=no" name="viewport">
+    <meta name="format-detection" content="telephone=no">
+    <title>Title</title>
+
+</head>
+<body>
+<p id="foo" style="max-width: 600px;">Кроме того, в современном стандарте JavaScript существует встроенная функция Array#indexOf, которая работает именно таким образом. Имеет смысл ей воспользоваться, если браузер ее поддерживает.</p>
+
+<script>
+    let d = document.getElementById('foo');
+    let y = d.innerHTML;
+//    console.log(y);
+//    y  = y.replace(/\n/g,"<br>").replace(/\r/g,"");
+//    d.innerHTML = y;
+    console.log(y.indexOf('\\n'));
+
+
+</script>
+</body>
+</html>
