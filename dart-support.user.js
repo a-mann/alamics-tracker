@@ -437,7 +437,7 @@ console.info('start userscript');
                     let comment = getCommentFromRow(row);
                     let strings = comment.innerHTML.split('<br>');
 
-                    console.log(strings);
+                    //console.log(strings);
 
                     strings = strings.map(function (str) {
                         return str.trim();
