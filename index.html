@@ -5,20 +5,1731 @@
     <meta content="width=device-width, initial-scale=1,user-scalable=no" name="viewport">
     <meta name="format-detection" content="telephone=no">
     <title>Title</title>
+    <link rel="stylesheet" href="https://support.alamics.ru/css/style.css">
+    <style>
+        .onoff-opt {
+            margin: 0 6px 0 10px
+        }
 
+        .none {
+            display: none !important
+        }
+
+        .none.view {
+            display: block !important
+        }
+
+        .ch_addr {
+            margin: 10px 10px 10px 0;
+            vertical-align: top
+        }
+
+        .totop > input {
+            margin: 10px 0 0
+        }
+
+        .label_head {
+            display: block;
+            margin: 0 0 20px
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: '';
+            display: table;
+            clear: both
+        }
+
+        .alist {
+            float: right
+        }
+
+        .alist p {
+            margin: 0 0 10px;
+            line-height: 1;
+            text-align: right
+        }
+
+        .bar-wrap {
+            padding: 8px 15px;
+            background: #2d2d2d
+        }
+
+        #custom-project-list > li {
+            width: 20%;
+            float: left;
+            cursor: pointer
+        }
+
+        #custom-workers-list > li {
+            width: 20%;
+            float: left;
+            cursor: pointer
+        }
+
+        #custom-project-list > li:first-child {
+            display: none
+        }
+
+        .user-list > li {
+            line-height: 1.5
+        }
+
+        .selected {
+            color: green
+        }
+
+        #settings-btn {
+            margin: 0 0 20px 0
+        }
+
+        #settings-box {
+            display: none;
+            margin: 20px 0;
+            padding: 20px 0;
+            outline: 1px solid #414141
+        }
+
+        #settings-box.is-open {
+            display: block
+        }
+
+        .user-title {
+            color: #000;
+            margin: 0 0 .6em;
+            font-size: 20px;
+            padding: 0
+        }
+
+        .regular-link {
+            color: #0054b9
+        }
+
+        .time-list p {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .time-list > p > span:first-child {
+            padding-right: 1em;
+            cursor: pointer;
+        }
+
+        :root .time-list-total {
+            margin-top: 1em;
+            border-top: 1px solid;
+        }
+
+        .comment-collapsed {
+            /*max-height: 70px;*/
+            overflow: hidden !important;
+        }
+
+        .long-comment {
+            width: 100% !important;
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .btn-collapse {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .btn-collapse-all {
+            position: fixed;
+            top: 10;
+            right: 10;
+        }
+
+        :root .dates-list {
+            width: 150px;
+            display: inline-block;
+            margin: 0 20px 0 0
+        }
+
+        .user-toolbar {
+            margin: 20px 0;
+            padding: 20px 10px;
+            border-top: 1px solid rgba(0, 0, 0, .7);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .user-toolbar__item {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, .6);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .6)
+        }
+
+        :root .user-toolbar-title {
+            margin: 0 0 1em;
+            padding: 0;
+            color: #000;
+        }
+
+        :root #comments-tbl .comment-wrap {
+            font-size: 14px;
+            width: 100% !important;
+            /*max-width: 800px;*/
+            overflow: hidden;
+        }
+
+        :root #comments-tbl h1 {
+            font-size: 120%;
+            font-weight: 400;
+            margin: 0 0 .4em;
+            color: inherit;
+        }
+
+        :root #comments-tbl blockquote {
+            padding: 10px 20px;
+            margin: 0 0 20px;
+            border-left: 5px solid #ccc;
+        }
+
+        :root #comments-tbl blockquote p {
+            margin: 0;
+        }
+
+        :root #comments-tbl ul {
+            padding-left: .6em;
+            list-style-position: inside;
+        }
+
+        /*camments design*/
+
+        #comments-tbl{ padding: 0 3em; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr{ display: block; } .b-comment{ width: 100%; margin: 1em 0; display: flex; flex-flow: column wrap; position: relative; outline: 1px solid; } .b-comment__row{ padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row*/ .b-comment__row_0{ box-shadow: 0 1px 2px #ccc; } .task-status{ padding: 0 .5em 0 2em; } .id-checkbox{ position: absolute; visibility: hidden; z-index: -1; } /*//2 row*/ .comment-info > span{ display: inline-block; vertical-align: top; } .comment-author{ padding-right: 2em; position: relative; } .comment-author:after{ content: '\2192'; position: relative; left: 1em; } /*//3 row*/ .b-comment__row_2 { box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc; } /*//4 row*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; } /*//5 row*/ .b-comment__row_3 + .b-comment__row_4 { box-shadow: 0 -1px 2px #ccc; } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 30px; line-height: 30px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; }
+
+    </style>
 </head>
 <body>
-<p id="foo" style="max-width: 600px;">Кроме того, в современном стандарте JavaScript существует встроенная функция Array#indexOf, которая работает именно таким образом. Имеет смысл ей воспользоваться, если браузер ее поддерживает.</p>
+<form action="" name="theForm" method="POST" enctype="multipart/form-data" id="main-content">
+    <table id="comments-tbl" width="100%" cellspacing="0" cellpadding="0">
+        <!--<tr>
+            <td class="problems_head" width="1%">&nbsp;</td>
+            <td class="problems_head" width="1%">&nbsp;</td>
+            <td class="problems_head" width="1%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td class="problems_head" width="9%">Дата</td>
+            <td class="problems_head" width="11%">Автор</td>
+            <td class="problems_head" width="36%">Комментарий</td>
+            <td class="problems_head" width="11%">Исполнитель</td>
+            <td class="problems_head" width="8%">Срок исполнения работ</td>
+            <td class="problems_head" width="8%">Приоритет</td>
+            <td class="problems_head" width="7%">Статус</td>
+            <td class="problems_head" width="5%">Время затр./план.</td>
+            <td class="problems_head" width="1%">&nbsp;</td>
+            <td class="problems_head" width="0"></td>
+        </tr>-->
 
-<script>
-    let d = document.getElementById('foo');
-    let y = d.innerHTML;
-//    console.log(y);
-//    y  = y.replace(/\n/g,"<br>").replace(/\r/g,"");
-//    d.innerHTML = y;
-    console.log(y.indexOf('\\n'));
+        <tr>
+            <td class="problems_2"><input name="checkbox_3618887" id="checkbox_3618887" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3618887">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Харламова Вера Валерьевна <vvh@alamics.ru>" title="Отправлено
+Автору: Харламова Вера Валерьевна <vvh@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3618887" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx"
+                                                                                        title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+            </td>
+            <td class="problems_2">17.02.2017 15:42</td>
+            <td class="problems_2">Харламова Вера Валерьевна</td>
+            <td class="problems_2">
+
+                <div class="long-comment comment-collapsed">
+                    <button type="button" class="btn-collapse foo-collapse is-close">Развернуть</button>
+                    <div style="width:460px" class="comment-wrap">
+                        Оценка верстки.<br><br>Алексей Манн:
+                        <br>1 день
+                        <br>Макет нарисован под экран шириной 1200px.
+                        <br>В первом блоке есть фоновое изображение - ноутбук у правого края. Если экран больше 1200px - кусок ноутбука повисает в воздухе? Будет картинка
+                        большего размера чтобы на широких экранах ноут был виден целиком?
+                        <br>
+                        <br>на верстку не забудьте заводить новую задачу
+                        <br>С названием задачи в виде "Название проекта_краткая суть задачи_Верстка"
+                        <br>Кроме этого, обязательно у задачи должен стоять тег "Работы: верстка"
+                        <br></div>
+                </div>
+            </td>
+            <td class="problems_2">Харламова Вера Валерьевна</td>
+            <td class="problems_2">&nbsp;</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Новая
+            </td>
+            <td class="problems_2">5/2000</td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3618887"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3621796" id="checkbox_3621796" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3621796">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Харламова Вера Валерьевна <vvh@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Харламова Вера Валерьевна <vvh@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3621796" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">06.03.2017 14:04</td>
+            <td class="problems_1">Харламова Вера Валерьевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">Согласовали верстку по этому лендингу, возьмите в работу, пожалуйста.
+                    <br>Срок - до 9 марта.
+                    <br></div>
+            </td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">&nbsp;</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">30/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3621796"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3621796"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3621805" id="checkbox_3621805" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3621805">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" width="16px" height="16px"><br>
+                <a href="#3621805" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">06.03.2017 14:39</td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">
+
+                <div class="comment-collapsed long-comment">
+                    <button type="button" class="btn-collapse foo-collapse is-close">Развернуть</button>
+                    <div style="width:460px" class="comment-wrap">Нужно сверстать страницу вебинаров
+                        <br>\\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\PNG\webstore-webinars_14.png
+                        <br>адаптив
+                        <br>\\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\Responsive\PNG\
+                        <br>webstore-webinars_768_01.png
+                        <br>webstore-webinars_480_01.png
+                        <br>webstore-webinars_320_01.png
+                        <br>ты спрашивал.
+                        <br>Макет нарисован под экран шириной 1200px.
+                        <br>В первом блоке есть фоновое изображение - ноутбук у правого края. Если экран больше 1200px - кусок ноутбука повисает в воздухе? Будет картинка
+                        большего размера чтобы на широких экранах ноут был виден целиком?
+                        <br>будет, дорисуем - отдам
+
+                        <br><br></div>
+                </div>
+            </td>
+            <td class="problems_2">Манн Алексей Александрович</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">10/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3621805"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3621805"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3621823" id="checkbox_3621823" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3621823">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" width="16px" height="16px"><br>
+                <a href="#3621823" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">06.03.2017 15:21</td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">Уточнение
+                    <br>не надо верстать блок проходящего в данный момент вебинара
+                    <br>сделать его таким же как блоки выше
+                    <br><a href="http://prntscr.com/egm2xp" class="regular-link">http://prntscr.com/egm2xp</a>
+                    <br></div>
+            </td>
+            <td class="problems_1">Манн Алексей Александрович</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">5/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3621823"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3621823"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3622181" id="checkbox_3622181" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3622181">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3622181" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">07.03.2017 18:49</td>
+            <td class="problems_2">Манн Алексей Александрович</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">Макет
+                    <br>\\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\html\
+                    <br></div>
+            </td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">660/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3622181"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3622181"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3622215" id="checkbox_3622215" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3622215">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" width="16px" height="16px"><br>
+                <a href="#3622215" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">09.03.2017 09:44</td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">
+
+                <div class="comment-collapsed long-comment">
+                    <button type="button" class="btn-collapse foo-collapse is-close">Развернуть</button>
+                    <div style="width:460px" class="comment-wrap">
+                        Спасибо, правки:<br><br>лого и текстовый блок прибиты к левому краю.
+                        <br><a href="http://prntscr.com/ehplfl" class="regular-link">http://prntscr.com/ehplfl</a>
+                        <br>а должны идти по центру
+                        <br><a href="http://prntscr.com/ehpm1x" class="regular-link">http://prntscr.com/ehpm1x</a>
+                        <br>у текста надо поправить интервал межстрочный
+                        <br>
+                        <hr>
+                        <a href="http://prntscr.com/ehpmjk" class="regular-link">http://prntscr.com/ehpmjk</a>
+                        <br>текст под иконками на широком экране не помещается в 2 строки
+                        <br></div>
+                </div>
+            </td>
+            <td class="problems_1">Манн Алексей Александрович</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">10/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3622215"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3622215"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3622226" id="checkbox_3622226" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3622226">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3622226" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">09.03.2017 10:20</td>
+            <td class="problems_2">Манн Алексей Александрович</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">Шапку поправил.
+                    <br>В макете текст под иконками вылазить за границы блоков чтобы поместиться в две строки.
+                    <br>Сделал в верстке так же. Но это плохое решение.
+                    <br>Обновил
+                    <br>\\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\html\
+                    <br></div>
+            </td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">20/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3622226"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3622226"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3622227" id="checkbox_3622227" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3622227">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Харламова Вера Валерьевна <vvh@alamics.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Харламова Вера Валерьевна <vvh@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3622227" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">09.03.2017 10:22</td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">
+                    \\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\html\
+
+                    <br><br></div>
+            </td>
+            <td class="problems_1">Харламова Вера Валерьевна</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">5/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3622227"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3622227"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3623775" id="checkbox_3623775" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3623775">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3623775" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">15.03.2017 12:18</td>
+            <td class="problems_2">Рочева Мария Николаевна</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">Света, добавили верстку на релиз <a href="http://moscow.dev.rt.ru/webinars" class="regular-link">http://moscow.dev.rt.ru/webinars</a>
+                    <br>кодовое слово rtk_release
+                    <br>Посмотрите, пожалуйста, можно ли сделать плавный переход с баннера на контент как на портале в белой навигационной панели?
+
+                    <br><br></div>
+            </td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">5/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3623775"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3623775"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3623781" id="checkbox_3623781" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3623781">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" width="16px" height="16px"><br>
+                <a href="#3623781" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">15.03.2017 12:25</td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">Маша имеет ввиду чтоб был не перескок, а прокрутка при нажатии на стрелку вниз
+                    <br><a href="http://spb.rt.ru/action/bonus_program" class="regular-link">http://spb.rt.ru/action/bonus_program</a>
+                    <br></div>
+            </td>
+            <td class="problems_1">Манн Алексей Александрович</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">5/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3623781"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3623781"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3624212" id="checkbox_3624212" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3624212">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3624212" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">16.03.2017 14:31</td>
+            <td class="problems_2">Манн Алексей Александрович</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">Обновил \\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\html\index.html
+                    <br>Кнопке-ссылке в шапке добавил id, и немного js внизу страницы.
+                    <br></div>
+            </td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">20/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3624212"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3624212"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3624218" id="checkbox_3624218" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3624218">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Рочева Мария Николаевна <rmn@alamics.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Рочева Мария Николаевна <rmn@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3624218" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">16.03.2017 14:53</td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">
+                    --&gt;
+
+                    <br><br></div>
+            </td>
+            <td class="problems_1">Рочева Мария Николаевна</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">5/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3624218"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3624218"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3624589" id="checkbox_3624589" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3624589">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>" title="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3624589" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">17.03.2017 13:51</td>
+            <td class="problems_2">Рочева Мария Николаевна</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">
+                    В работе.
+
+                    <br><br></div>
+            </td>
+            <td class="problems_2">Рочева Мария Николаевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">1/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3624589"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3624589"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3625432" id="checkbox_3625432" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625432">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" title="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>
+Работнику: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3625432" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">21.03.2017 16:42</td>
+            <td class="problems_1">Рочева Мария Николаевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">
+                    Света, прошу еще помочь с версткой страницы вебинаров. Нам нужно добавить к ней верстку и скрипты для проигрывания видеороликов youtube в новом окне,
+                    по аналогии с js-open-videoframe на портале.
+
+                    <br><br></div>
+            </td>
+            <td class="problems_1">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">5/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625432"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625432"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3625571" id="checkbox_3625571" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625571">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Другова Надежда Витальевна <nvdrugova@alamics.ru>" title="Отправлено
+Автору: Шевченко Светлана Евгеньевна <shevchenko-se@alamics.ru>
+Работнику: Другова Надежда Витальевна <nvdrugova@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3625571" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">22.03.2017 08:42</td>
+            <td class="problems_2">Шевченко Светлана Евгеньевна</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">
+                    --&gt;
+
+                    <br><br></div>
+            </td>
+            <td class="problems_2">Другова Надежда Витальевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">3/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625571"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625571"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3625601" id="checkbox_3625601" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625601">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Другова Надежда Витальевна <nvdrugova@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" title="Отправлено
+Автору: Другова Надежда Витальевна <nvdrugova@alamics.ru>
+Работнику: Манн Алексей Александрович <a.mann@galagodigital.ru>" width="16px" height="16px"><br>
+                <a href="#3625601" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">22.03.2017 10:24</td>
+            <td class="problems_1">Другова Надежда Витальевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">
+                    -
+
+                    <br><br></div>
+            </td>
+            <td class="problems_1">Манн Алексей Александрович</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">2/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625601"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625601"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3625705" id="checkbox_3625705" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625705">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Другова Надежда Витальевна <nvdrugova@alamics.ru>" title="Отправлено
+Автору: Манн Алексей Александрович <a.mann@galagodigital.ru>
+Работнику: Другова Надежда Витальевна <nvdrugova@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3625705" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">22.03.2017 13:03</td>
+            <td class="problems_2">Манн Алексей Александрович</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">
+                    Обновил стили.<br><br>
+                    <ul>
+                        <li>На ссылки на ютуб нужно добавить класс js-open-videoframe</li>
+                        <li>В index.html добавил js для работы с попапами</li>
+                        <li>Там же добавлены элементы с id overlay и videoframe - обертка для попапов</li>
+                    </ul>
+                    \\galago\public\Ростелеком\WebStore\Для бизнеса\Вебинары\html\
+
+                    <br><br></div>
+            </td>
+            <td class="problems_2">Другова Надежда Витальевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">60/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625705"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625705"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_1"><input name="checkbox_3625718" id="checkbox_3625718" type="checkbox"></td>
+            <td class="problems_1" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625718">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Другова Надежда Витальевна <nvdrugova@alamics.ru>
+Работнику: Рочева Мария Николаевна <rmn@alamics.ru>" title="Отправлено
+Автору: Другова Надежда Витальевна <nvdrugova@alamics.ru>
+Работнику: Рочева Мария Николаевна <rmn@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3625718" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_1">
+                &nbsp;
+            </td>
+            <td class="problems_1">22.03.2017 13:16</td>
+            <td class="problems_1">Другова Надежда Витальевна</td>
+            <td class="problems_1">
+                <div style="width:460px" class="comment-wrap">
+                    -
+
+                    <br><br></div>
+            </td>
+            <td class="problems_1">Рочева Мария Николаевна</td>
+            <td class="problems_1">09.03.2017</td>
+            <td class="problems_1">Средний</td>
+            <td class="problems_1">
+
+                Выполняется
+            </td>
+            <td class="problems_1">3/-</td>
+            <td class="problems_1">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625718"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625718"></a></td>
+        </tr>
+
+        <tr>
+            <td class="problems_2"><input name="checkbox_3625725" id="checkbox_3625725" type="checkbox"></td>
+            <td class="problems_2" style="text-align: center">
+                <a href="./?a=upd_mes&amp;id=3625725">
+                    <img src="//support.alamics.ru/images/pencil.gif" alt="Редактировать" title="Редактировать" border="0">
+                </a><br>
+                <img src="//support.alamics.ru/images/mails.gif" alt="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>" title="Отправлено
+Автору: Рочева Мария Николаевна <rmn@alamics.ru>" width="16px" height="16px"><br>
+                <a href="#3625725" style="color: #00297E; text-decoration: none">#</a>
+            </td>
+            <td class="problems_2">
+                &nbsp;
+            </td>
+            <td class="problems_2">22.03.2017 13:26</td>
+            <td class="problems_2">Рочева Мария Николаевна</td>
+            <td class="problems_2">
+                <div style="width:460px" class="comment-wrap">
+                    В работе
+
+                    <br><br></div>
+            </td>
+            <td class="problems_2">Рочева Мария Николаевна</td>
+            <td class="problems_2">09.03.2017</td>
+            <td class="problems_2">Средний</td>
+            <td class="problems_2">
+
+                Выполняется
+            </td>
+            <td class="problems_2">0/-</td>
+            <td class="problems_2">
+
+                <a href="./?a=red&amp;id=399437&amp;del=3625725"><img src="//support.alamics.ru/images/cross.gif" alt="Удалить комментарий" title="Удалить комментарий" border="0"></a>
+
+            </td>
+            <td style="vertical-align:top; width:0"><a name="3625725"></a></td>
+        </tr>
+    </table>
 
 
-</script>
+    <hr style="color:#cccccc" size="2">
+    <select class="input_field" name="tagSelect" id="tagSelect">
+        <option value="-1">-----</option>
+        <option value="42">Работы: Баннеры. Дизайн без ПО</option>
+        <option value="54">Работы: Верстка</option>
+        <option value="53">Работы: Дизайн</option>
+        <option value="43">Работы: Документация</option>
+        <option value="49">Работы: Доработка сервисов/форм</option>
+        <option value="37">Работы: Контент</option>
+        <option value="51">Работы: Конфигуратор</option>
+        <option value="52">Работы: Лэндинг</option>
+        <option value="48">Работы: Новые сервисы/формы</option>
+        <option value="44">Работы: Прочие работы</option>
+        <option value="55">Работы: Разработка</option>
+        <option value="45">Работы: Реклама</option>
+        <option value="50">Работы: Статистика и аналитика</option>
+        <option value="47">Работы: Техподдержка</option>
+        <option value="46">Работы: Хранилище тарифов</option>
+        <option value="57">Сегмент: B2B</option>
+        <option value="56">Сегмент: B2C</option>
+        <option value="58">Сегмент: B2O</option>
+        <option value="59">Сегмент: Армения</option>
+    </select>
+    &nbsp;<a href="javascript:addTag()">Добавить</a>
+    &nbsp;<font id="selectedTagsNames" style="margin-left: 10px; color: #686663;">Работы: Верстка&nbsp;<img src="//support.alamics.ru/images/cross.gif" style="cursor:pointer"
+                                                                                                            onclick="removeTag(54,&quot;Работы: Верстка&quot;)"
+                                                                                                            title="Удалить">,&nbsp;Сегмент: B2B</font>
+
+    <script type="text/javascript">
+
+        selectedTagsIds = [54, 57];
+        var selectedTagsNames = ['Работы: Верстка', 'Сегмент: B2B'];
+        parentTags = [52, 57, 43];
+
+        function updateSelectedTagsStr() {
+            var str = "";
+            for (var i = 0; i < selectedTagsIds.length; i++) {
+                if (i != 0) str += "&nbsp;";
+                str += selectedTagsNames[i]
+                if (!isParentTag(selectedTagsIds[i])) {
+                    str += "&nbsp;<img src='/images/cross.gif' style='cursor:pointer' onclick='removeTag(" + selectedTagsIds[i] + ",\"" + selectedTagsNames[i] + "\")' title='Удалить'>";
+                }
+                if (i < selectedTagsIds.length - 1) str += ",";
+            }
+            $("#selectedTagsNames").html(str);
+
+            var tagIds = "";
+            for (i = 0; i < selectedTagsIds.length; i++) {
+                tagIds += selectedTagsIds[i];
+                if (i < selectedTagsIds.length - 1) tagIds += ",";
+            }
+            $("#tagIds").val(tagIds);
+        }
+
+        function isParentTag(tag) {
+            for (var i = 0; i < parentTags.length; i++) {
+                if (parentTags[i] == tag)
+                    return true;
+            }
+            return false;
+        }
+
+        var tmpTagId;
+        var tmpTagName;
+        function removeTag(tagId, tagName) {
+            tmpTagId = tagId;
+            tmpTagName = tagName;
+            $.post("/ajax", {'action': 'removeTag', 'taskId': 399437, 'tagId': tagId}, removeTagResult);
+        }
+        removeTagResult = function (data) {
+            if (data != null) {
+                var result = eval('(' + $.trim(data) + ')');
+                if (result.error == 0) {
+                    var tmpSelectedTagsIds = [];
+                    var tmpSelectedTagsNames = [];
+                    for (var i = 0; i < selectedTagsIds.length; i++) {
+                        if (selectedTagsIds[i] != tmpTagId) tmpSelectedTagsIds.push(selectedTagsIds[i]);
+                    }
+                    for (i = 0; i < selectedTagsNames.length; i++) {
+                        if (selectedTagsNames[i] != tmpTagName) tmpSelectedTagsNames.push(selectedTagsNames[i]);
+                    }
+                    selectedTagsIds = tmpSelectedTagsIds;
+                    selectedTagsNames = tmpSelectedTagsNames;
+                    updateSelectedTagsStr();
+                    if (result.isTagChildTasks) {
+                        alert("Есть дочерние задачи, при необходимости удалите тег у них!");
+                    }
+                }
+            }
+        };
+        function addTag() {
+            var $tagSelect = $("#tagSelect");
+            var tagId = $tagSelect.val();
+            var tagName = $tagSelect.find("option:selected").html();
+            if (tagId > 0 && jQuery.inArray(tagId, selectedTagsIds) < 0) {
+                tmpTagId = tagId;
+                tmpTagName = tagName;
+                $.post("/ajax", {'action': 'addTag', 'taskId': 399437, 'tagId': tagId}, addTagResult);
+            }
+            updateSelectedTagsStr();
+        }
+        addTagResult = function (data) {
+            if (data == '1') {
+                selectedTagsIds.push(tmpTagId);
+                selectedTagsNames.push(tmpTagName);
+                updateSelectedTagsStr();
+            }
+        };
+
+        updateSelectedTagsStr();
+    </script>
+
+
+    <hr style="color:#cccccc" size="2">
+    <div class="tl"><b>Добавить комментарий</b></div>
+
+    <input name="act" id="act" value="" type="hidden">
+    <input name="checked_mes" id="checked_mes" value="" type="hidden">
+
+    <table class="theForm" width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <table width="100%">
+                    <tbody>
+                    <tr>
+                        <td class="form_text" width="15%">1. Текст *</td>
+                        <td width="85%">
+                            <button type="button" class="label_head">Вставить сохраненный текст</button>
+                            <textarea cols="85" rows="10" name="text" id="text"></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%">
+                <table class="theForm" width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td class="form_text" width="30%">2. Статус задачи *</td>
+                        <td>
+                            <table cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td colspan="2" class="form_text"><b>Выполняются</b></td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_1" value="1" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_1">Новая</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_2" value="2" checked="" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_2">Выполняется</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_9" value="9" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_9">Ожидание уточнений от заявителя</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_12" value="12" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_12">Выложить на тестирование</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_3" value="3" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_3">Тестируется</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_11" value="11" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_11">Выложить в релиз</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_13" value="13" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_13">Тестируется на релизе</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_14" value="14" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_14">Выложить в обновление</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_10" value="10" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_10">Отложено</label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form_text"><b>Выполнены</b></td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_4" value="4" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_4">Выполнено</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_5" value="5" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_5">Дубликат</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_6" value="6" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_6">Выполнить невозможно</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_7" value="7" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_7">Неактуально</label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form_text"><b>Другие</b></td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_15" value="15" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_15">Ещё не активна</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle"><input name="new_problem_status" id="new_problem_status_8" value="8" type="radio"></td>
+                                    <td class="form_text" valign="middle"><label for="new_problem_status_8">Эскалация</label></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <br>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="form_text">3. Затрачено времени *</td>
+                        <td class="form_text">
+                            <input class="input_field" name="spended_time" id="spended_time" title="Введите время в минутах" onkeyup="checkDigits(this);" value="">(мин.)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_text">4. Планируемое время</td>
+                        <td class="form_text">
+                            <input class="input_field" name="plan_time" id="plan_time" title="Введите время в минутах" onkeyup="checkDigits(this);" value="">(мин.)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </td>
+
+            <td style="border-left: 1px solid #686663" width="50%" valign="top">
+                <table class="theForm" width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td class="form_text" width="30%">Срок выполнения работ</td>
+                        <td width="70%">
+                            <input name="end_date" id="end_date" style="width:70px" value="09.03.2017" type="text">
+                            <img src="/js/stat-cal/img.gif" id="f_trigger_c" style="cursor: pointer; border: 1px solid red;" title="Календарь"
+                                 onmouseover="this.style.background='red';" onmouseout="this.style.background=''">
+                            <script type="text/javascript">Calendar.setup({
+                                inputField: "end_date",
+                                ifFormat: "%e.%m.%Y",
+                                button: "f_trigger_c",
+                                align: "Tl",
+                                singleClick: true
+                            });</script>
+                            &nbsp;<input value=" x " onclick="document.theForm.end_date.value=&quot;&quot;" type="button">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="form_text">Проект</td>
+                        <td>
+                            <select class="input_field" name="client_id" id="client_id" onchange="checkTaskType();">
+                                <option value="2">ИДК (Лайнер)</option>
+                                <option value="39" selected="">Сайты РТК</option>
+                                <option value="48">Сайты РТК - Заказчик</option>
+                                <option value="79">РТК Поддержка бренда</option>
+                                <option value="93">РТК Прочие проекты</option>
+                                <option value="101">РТК — UI/UX</option>
+                                <option value="102">Юзабилитилаб пресейл</option>
+                                <option value="105">Пресейл</option>
+                                <option value="106">Галаго</option>
+                                <option value="107">Юзабилитилаб коммерческий</option>
+                                <option value="110">РТК Урал</option>
+                                <option value="111">ГК Аламикс</option>
+                                <option value="112">Без проекта</option>
+                                <option value="113">Техподдержка</option>
+                                <option value="114">РТК Прочие проекты ДЗА</option>
+                                <option value="115">Другие заказчики</option>
+                                <option value="116">Дарт</option>
+                                <option value="117">Офис АйТи-ресурс</option>
+                                <option value="118">Юзабилитилаб</option>
+                                <option value="119">РТК Северо-Запад</option>
+                                <option value="120">Юзабилитилаб Заказчик</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_text">Приоритет</td>
+                        <td>
+                            <select class="input_field" name="priority_id" id="priority_id">
+                                <option value="1">Низкий</option>
+                                <option value="2" selected="">Средний</option>
+                                <option value="3">Высокий</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <script type="text/javascript">
+                        function changeWorkerType(value) {
+                            if (value == "internal") {
+                                $('#internal_worker').show();
+                                $('#external_worker').hide();
+                                $('#notactive_worker').hide();
+                                setWorker($('#internal_worker').val());
+                            } else if (value == "external") {
+                                $('#internal_worker').hide();
+                                $('#external_worker').show();
+                                $('#notactive_worker').hide();
+                                setWorker($('#external_worker').val());
+                            } else if (value == "notactive") {
+                                $('#internal_worker').hide();
+                                $('#external_worker').hide();
+                                $('#notactive_worker').show();
+                                setWorker($('#notactive_worker').val());
+                            }
+                        }
+                        function setWorker(val) {
+                            $('#new_user').val(val);
+                        }
+                    </script>
+                    <tr>
+                        <td class="form_text">Исполнитель</td>
+                        <td>
+
+                            <input name="new_user" id="new_user" value="marycat" type="hidden">
+                            <input name="workerType" value="internal" onclick="changeWorkerType(this.value)" checked="" type="radio">Внутренние
+                            <input name="workerType" value="external" onclick="changeWorkerType(this.value)" type="radio">Внешние
+                            <input name="workerType" value="notactive" onclick="changeWorkerType(this.value)" type="radio">Неактивные
+                            <br>
+                            <select class="input_field" name="internal_worker" id="internal_worker" onchange="setWorker(this.value)" style="display:block;">
+                                <option value="0" hidden=""> - Внутренние -</option>
+                                <option value="aytakova-uv" hidden="">Айтакова Ульяна Владимировна</option>
+                                <option value="andreev-ga" hidden="">Андреев Глеб Андреевич</option>
+                                <option value="anisimova-iv" hidden="">Анисимова Ирина Викторовна</option>
+                                <option value="antipina-aa" hidden="">Антипина Арина Александровна</option>
+                                <option value="timmy" hidden="">Антонов Тимофей Юрьевич</option>
+                                <option value="barmina-ei" hidden="">Бармина Елена Ивановна</option>
+                                <option value="barsukovsky" hidden="">Барсуковский Михаил Олегович</option>
+                                <option value="eg" hidden="">Бастраков Георгий Александрович</option>
+                                <option value="bekishev-ae" hidden="">Бекишев Андрей Евгеньевич</option>
+                                <option value="belkova" hidden="">Белькова Наталья Мунировна</option>
+                                <option value="kurkina-tv" hidden="">Бондарева Татьяна Викторовна</option>
+                                <option value="bochkov-eo" hidden="">Бочков Евгений Олегович</option>
+                                <option value="boyarinov-av" hidden="">Бояринов Александр Владимирович</option>
+                                <option value="bugleev-aa" hidden="">Буглеев Алексей Александрович</option>
+                                <option value="bykov-av" hidden="">Быков Алексей Владимирович</option>
+                                <option value="beg" hidden="">Быстров Константин Евгеньевич</option>
+                                <option value="vihreva-mi" hidden="">Вихрева Мария Игоревна</option>
+                                <option value="gven" hidden="">Власова Евгения Леонидовна</option>
+                                <option value="sveta_vl" hidden="">Власова Светлана Ивановна</option>
+                                <option value="avy" hidden="">Волкова Анастасия Юрьевна</option>
+                                <option value="grey" hidden="">Востриков Сергей Владимирович</option>
+                                <option value="grinevich-ay" hidden="">Гриневич Алексей Юрьевич</option>
+                                <option value="denisova-nv" hidden="">Денисова Надежда Владимировна</option>
+                                <option value="dolgodvorov-em" hidden="">Долгодворов Евгений Михайлович</option>
+                                <option value="drugova">Другова Надежда Витальевна</option>
+                                <option value="drugova-oi">Другова Ольга Ивановна</option>
+                                <option value="zhavoronkov-ai" hidden="">Жаворонков Антон Игоревич</option>
+                                <option value="zavyalov-ay" hidden="">Завьялов Алексей Юрьевич</option>
+                                <option value="zykova-ea" hidden="">Зыкова Елена Александровна</option>
+                                <option value="ichetovkina-ey" hidden="">Ичетовкина Екатерина Юрьевна</option>
+                                <option value="yukam">Каменских Юрий Владимирович</option>
+                                <option value="kipina" hidden="">Кипина Елена Владимировна</option>
+                                <option value="koltsov-as" hidden="">Кольцов Александр Серафимович</option>
+                                <option value="e.komissarov" hidden="">Комиссаров Евгений Юрьевич</option>
+                                <option value="komissarova-en" hidden="">Комиссарова Екатерина Николаевна</option>
+                                <option value="konovalova-ea" hidden="">Коновалова Екатерина Александровна</option>
+                                <option value="korotaev-my" hidden="">Коротаев Максим Юрьевич</option>
+                                <option value="kosyakov-ma" hidden="">Косяков Михаил Александрович</option>
+                                <option value="kotomtsev-av" hidden="">Котомцев Алексей Владимирович</option>
+                                <option value="kuznetsova-ea" hidden="">Кузнецова Елена Александровна</option>
+                                <option value="lapteva-ds" hidden="">Лаптева Дина Сергеевна</option>
+                                <option value="lab">Левина Анна Борисовна</option>
+                                <option value="lau" hidden="">Ленц Алексей Юрьевич</option>
+                                <option value="korzheva-yv" hidden="">Леонова Яна Викторовна</option>
+                                <option value="lihacheva-ay" hidden="">Лихачева Александра Юрьевна</option>
+                                <option value="loktionov-iv" hidden="">Локтионов Иван Владимирович</option>
+                                <option value="lyzhina-av" hidden="">Лыжина Александра Вячеславовна</option>
+                                <option value="maluhina-as" hidden="">Малухина Анна Сергеевна</option>
+                                <option value="patrick" hidden="">Малышевский Дмитрий Анатольевич</option>
+                                <option value="mann">Манн Алексей Александрович</option>
+                                <option value="a.melnik" hidden="">Мельник Андрей Владимирович</option>
+                                <option value="melnikov-ea" hidden="">Мельников Евгений Андреевич</option>
+                                <option value="milyusha-mv" hidden="">Милюша Михаил Владимирович</option>
+                                <option value="mitina-ki" hidden="">Митина Ксения Игоревна</option>
+                                <option value="nagiriyak-ka">Нагирияк Кирилл Андреевич</option>
+                                <option value="nev" hidden="">Нигаматзянова Екатерина Вакилевна</option>
+                                <option value="nea" hidden="">Носкова Евгения Александровна</option>
+                                <option value="yana" hidden="">Нохрина Юлия Юрьевна</option>
+                                <option value="bryzgalova-ep" hidden="">Оловянникова Евгения Павловна</option>
+                                <option value="a_net" hidden="">Осокина Анна Николаевна</option>
+                                <option value="dumka" hidden="">Плюснин Дмитрий Анатольевич</option>
+                                <option value="churyukaeva-ns" hidden="">Плюснина Наталья Сергеевна</option>
+                                <option value="podgaets-ar" hidden="">Подгаец Александр Романович</option>
+                                <option value="darkslave" hidden="">Половодов Владимир Викторович</option>
+                                <option value="ponomarev-iv">Пономарев Илья Валерьевич</option>
+                                <option value="ponomarev-le" hidden="">Пономарев Лев Евгеньевич</option>
+                                <option value="maria" hidden="">Пришвина Мария Валерьевна</option>
+                                <option value="digiart" hidden="">Реутов Артем Викторович</option>
+                                <option value="marycat" selected="">Рочева Мария Николаевна</option>
+                                <option value="bbr" hidden="">Рудаков Борис Борисович</option>
+                                <option value="marina" hidden="">Рудакова Марина Сергеевна</option>
+                                <option value="ryabinina-ea" hidden="">Рябинина Екатерина Александровна</option>
+                                <option value="z_olga" hidden="">Сарынина Ольга Викторовна</option>
+                                <option value="sgy" hidden="">Семенова Галина Юрьевна</option>
+                                <option value="sergeeva-ao" hidden="">Сергеева Анастасия Олеговна</option>
+                                <option value="olia_serg" hidden="">Сергеева Ольга Игоревна</option>
+                                <option value="seregin-ds" hidden="">Серёгин Дмитрий Сергеевич</option>
+                                <option value="smirnov-ai" hidden="">Смирнов Антон Игоревич</option>
+                                <option value="sokolova" hidden="">Соколова Наталья Владимировна</option>
+                                <option value="kosha" hidden="">Спиридонова Марина Викторовна</option>
+                                <option value="syatchihina-mv" hidden="">Сятчихина Марина Васильевна</option>
+                                <option value="teppe-ya" hidden="">Теппе Ян Андреевич</option>
+                                <option value="titova-na" hidden="">Титова Надежда Александровна</option>
+                                <option value="trifanov-aa" hidden="">Трифанов Артемий Андреевич</option>
+                                <option value="tukmachev-ni" hidden="">Тукмачев Николай Игоревич</option>
+                                <option value="futlik-dm" hidden="">Футлик Дина Мендельевна</option>
+                                <option value="vera">Харламова Вера Валерьевна</option>
+                                <option value="ak" hidden="">Хлебутин Андрей Александрович</option>
+                                <option value="demina-kv" hidden="">Хорошева Карина Владиленовна</option>
+                                <option value="chekmeneva-av" hidden="">Чекменева Александра Владимировна</option>
+                                <option value="tcherepanova" hidden="">Черепанова Татьяна Александровна</option>
+                                <option value="chernousov-gs" hidden="">Черноусов Георгий Сергеевич</option>
+                                <option value="shaydurova-ev" hidden="">Шайдурова Елена Владимировна</option>
+                                <option value="shevchenko-se">Шевченко Светлана Евгеньевна</option>
+                                <option value="shestakov-ma" hidden="">Шестаков Максим Алексеевич</option>
+                                <option value="shishkina-oy" hidden="">Шишкина Ольга Юрьевна</option>
+                                <option value="ryauzovamv" hidden="">Штин Мария Владимировна</option>
+                                <option value="smn" hidden="">Штин Михаил Николаевич</option>
+                                <option value="katerina" hidden="">Шульгина Екатерина Александровна</option>
+                                <option value="shcherbina_ea" hidden="">Щербина Екатерина Александровна</option>
+                            </select>
+                            <select class="input_field" name="external_worker" id="external_worker" onchange="setWorker(this.value)" style="display:none;">
+                                <option value="0"> - Внешние -</option>
+                                <option value="Dmitriy.Atyashev">Атяшев Дмитрий</option>
+                                <option value="Artur.Akhmetov">Ахметов Артур</option>
+                                <option value="m.kazakov">Казаков Максим</option>
+                                <option value="Evgeniya.A.Karpaeva">Карпаева Евгения Александровна</option>
+                                <option value="KrutovaYY">Крутова Юлия Юрьевна</option>
+                                <option value="Mikhail.Olnev">Ольнев Михаил</option>
+                            </select>
+                            <select class="input_field" name="notactive_worker" id="notactive_worker" onchange="setWorker(this.value)" style="display:none;">
+                                <option value="0"> - Неактивные -</option>
+                                <option value="adakimchik-vs">Адакимчик Владислав Сергеевич</option>
+                                <option value="andreev-ma">Андреев Михаил Александрович</option>
+                                <option value="auhadyeva">Аухадыева Регина Радиковна</option>
+                                <option value="balahontsev-en">Балахонцев Евгений Николаевич</option>
+                                <option value="batuev">Батуев Илья</option>
+                                <option value="batullina-nn">Батуллина Ника Николаевна</option>
+                                <option value="bav">Березина Анастасия Викторовна</option>
+                                <option value="a-lla">Бернацкая Алла Александровна</option>
+                                <option value="gorbunova-an">Горбунова Алёна Николаевна</option>
+                                <option value="gryaznov-vv">Грязнов Василий Владимирович</option>
+                                <option value="evsin-aa">Евсин Александр Александрович</option>
+                                <option value="zamorin-sv">Заморин Сергей Витальевич</option>
+                                <option value="zayakina-ev">Заякина Екатерина Владимировна</option>
+                                <option value="zykova-ea">Зыкова Елена Александровна</option>
+                                <option value="kazantsev-os">Казанцев Олег Сергеевич</option>
+                                <option value="kazantseva-ea">Казанцева Евгения Анатольевна</option>
+                                <option value="kalugin-sa">Калугин Сергей Александрович</option>
+                                <option value="ketov-an">Кетов Александр Николаевич</option>
+                                <option value="kolchanov">Колчанов Кирилл Евгеньевич</option>
+                                <option value="konstantinova-gp">Константинова Галина Павловна</option>
+                                <option value="korolevskiy-ds">Королевский Дмитрий Сергеевич</option>
+                                <option value="koshik-va">Кошик Виктория Александровна</option>
+                                <option value="tyapugina-nv">Лебедева Надежда Владимировна</option>
+                                <option value="ylobin">Лобынцев Юрий Николаевич</option>
+                                <option value="loginov">Логинов Николай Юрьевич</option>
+                                <option value="maksimovaev">Максимова Екатерина Викторовна</option>
+                                <option value="malmax">Мальцев Максим Борисович</option>
+                                <option value="mehonoshin-sa">Мехоношин Сергей Александрович</option>
+                                <option value="mav">Мокрецов Андрей Вячеславович</option>
+                                <option value="NekrasovaYO">Некрасова Юлия Олеговна</option>
+                                <option value="ignat">Никитенко Игнат Игоревич</option>
+                                <option value="ogneva-as">Огнева Анна Сергеевна</option>
+                                <option value="alla">Ожгибесова Алла Александровна</option>
+                                <option value="ozhegina-ao">Ожегина Анастасия Олеговна</option>
+                                <option value="lera">Осокина Валерия Андреевна</option>
+                                <option value="patyrbaeva">Патырбаева Анна Вадимовна</option>
+                                <option value="piloyan-ar">Пилоян Ануш Рубеновна</option>
+                                <option value="postanogova-as">Постаногова Анастасия Сергеевна</option>
+                                <option value="postonogova-an">Постоногова Анастасия Николаевна</option>
+                                <option value="sap">Пузакова Светлана Евгеньевна</option>
+                                <option value="pchelintsev-ds">Пчелинцев Денис Станиславович</option>
+                                <option value="sviridova-no">Свиридова Наталья Олеговна</option>
+                                <option value="selezneva">Селезнева Любовь Михайловна</option>
+                                <option value="soitonen-ya">Сойтонен Юлия Андреевна</option>
+                                <option value="nitra">Сученинова Анна Александровна</option>
+                                <option value="tachkin-dv">Тачкин Дмитрий Владимирович</option>
+                                <option value="tashkinov-do">Ташкинов Дмитрий Олегович</option>
+                                <option value="hisa">Хисматулина Анна Павловна</option>
+                                <option value="hramina-ks">Храмина Ксения Сергеевна</option>
+                                <option value="mamozinger">Черных Михаил Олегович</option>
+                                <option value="shadrina-ei">Шадрина Элина Игоревна</option>
+                                <option value="shutov-ta">Шутов Тимофей Александрович</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_text">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td class="form_text">
+                            Тип задачи
+                            <div id="hidden1" style="padding-left: 30px; display: none;" align="left">
+                                <br>Тип ошибки
+                                <br>Область ошибки
+                            </div>
+                            <div id="hidden3" style="padding-left: 30px; display: none;" align="left">
+                                <br>Тип консультации
+                            </div>
+                        </td>
+                        <td valign="top">
+                            <select class="input_field" name="problem_type" id="problem_type" onchange="checkTaskType();">
+                                <option value="0"> - Не выбран -</option>
+                                <option value="2">Ошибка</option>
+                                <option value="3">Пожелание</option>
+                                <option value="4">Консультация</option>
+                                <option value="5" selected="">Задание</option>
+                            </select>
+                            <div id="hidden2" style="display:none">
+                                <select class="input_field" name="error_type" id="error_type">
+                                    <option value="0">----</option>
+                                    <option value="1">Сеть</option>
+                                    <option value="2">Аппаратный</option>
+                                    <option value="3">Прикладной</option>
+                                    <option value="4">Данные</option>
+                                </select>
+                                <br>
+                                <select class="input_field" name="error_region" id="error_region">
+                                    <option value="0">----</option>
+                                    <option value="1">ЕРКЦ/ЕСПП/СГС</option>
+                                    <option value="2">ПС/ИД</option>
+                                    <option value="3">ЕСПО</option>
+                                    <option value="4">ВС</option>
+                                </select>
+                            </div>
+                            <div id="hidden4" style="display:none">
+                                <select class="input_field" name="consultation_type" id="consultation_type">
+                                    <option value="0" selected="">Не определено</option>
+                                    <option value="1">Письменная (в виде электронного письма)</option>
+                                    <option value="2">Устная (по телефону)</option>
+                                </select>
+                                <script type="text/javascript">checkTaskType();</script>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="form_text">Дополнительный E-mail для<br>отправки комментария (;)</td>
+                        <td valign="top">
+                            <input class="input_field" name="add_email" id="add_email" style="width:250px" type="text">
+                            <select class="input_field" name="add_email_worker" id="add_email_worker">
+                                <option value="">-----</option>
+                                <option value="aytakova-uv@galagodigital.ru">Айтакова Ульяна Владимировна</option>
+                                <option value="andreev-ga@dartit.ru">Андреев Глеб Андреевич</option>
+                                <option value="anisimova-iv@dartit.ru">Анисимова Ирина Викторовна</option>
+                                <option value="antipina-aa@uralreklama.ru">Антипина Арина Александровна</option>
+                                <option value="timmy@dartit.ru">Антонов Тимофей Юрьевич</option>
+                                <option value="barmina-ei@dartit.ru">Бармина Елена Ивановна</option>
+                                <option value="mbars@dartit.ru">Барсуковский Михаил Олегович</option>
+                                <option value="eg@dartit.ru">Бастраков Георгий Александрович</option>
+                                <option value="bekishev-ae@dartit.ru">Бекишев Андрей Евгеньевич</option>
+                                <option value="belkova@dartit.ru">Белькова Наталья Мунировна</option>
+                                <option value="kurkina-tv@dartit.ru">Бондарева Татьяна Викторовна</option>
+                                <option value="bochkov-eo@dartit.ru">Бочков Евгений Олегович</option>
+                                <option value="boyarinov-av@dartit.ru">Бояринов Александр Владимирович</option>
+                                <option value="bugleev-aa@dartit.ru">Буглеев Алексей Александрович</option>
+                                <option value="bykov-av@dartit.ru">Быков Алексей Владимирович</option>
+                                <option value="beg@dartit.ru">Быстров Константин Евгеньевич</option>
+                                <option value="vihreva-mi@alamics.ru">Вихрева Мария Игоревна</option>
+                                <option value="vel@alamics.ru">Власова Евгения Леонидовна</option>
+                                <option value="sveta_vl@galagodigital.ru">Власова Светлана Ивановна</option>
+                                <option value="avy@galagodigital.ru">Волкова Анастасия Юрьевна</option>
+                                <option value="grey@galagodigital.ru">Востриков Сергей Владимирович</option>
+                                <option value="gaj@alamics.ru">Гриневич Алексей Юрьевич</option>
+                                <option value="vlada@dartit.ru">Демина Владислава Николаевна</option>
+                                <option value="denisova-nv@dartit.ru">Денисова Надежда Владимировна</option>
+                                <option value="dolgodvorov-em@dartit.ru">Долгодворов Евгений Михайлович</option>
+                                <option value="nvdrugova@alamics.ru">Другова Надежда Витальевна</option>
+                                <option value="oid@galagodigital.ru">Другова Ольга Ивановна</option>
+                                <option value="dundin-aa@dartit.ru">Дундин Алексей Анатольевич</option>
+                                <option value="zhavoronkov-ai@alamics.ru">Жаворонков Антон Игоревич</option>
+                                <option value="zavyalov-ay@dartit.ru">Завьялов Алексей Юрьевич</option>
+                                <option value="zinkovskaya-ye@dartit.ru">Зиньковская Юлия Евгеньевна</option>
+                                <option value="zea@alamics.ru">Зыкова Елена Александровна</option>
+                                <option value="iej@alamics.ru">Ичетовкина Екатерина Юрьевна</option>
+                                <option value="yukam@dartit.ru">Каменских Юрий Владимирович</option>
+                                <option value="kipina@dartit.ru">Кипина Елена Владимировна</option>
+                                <option value="koltsov-as@dartit.ru">Кольцов Александр Серафимович</option>
+                                <option value="e.komissarov@dartit.ru">Комиссаров Евгений Юрьевич</option>
+                                <option value="e.komissarova@alamics.ru">Комиссарова Екатерина Николаевна</option>
+                                <option value="konovalova-ea@dartit.ru">Коновалова Екатерина Александровна</option>
+                                <option value="korotaev-my@dartit.ru">Коротаев Максим Юрьевич</option>
+                                <option value="mak@alamics.ru">Косяков Михаил Александрович</option>
+                                <option value="kotomtsev-av@dartit.ru">Котомцев Алексей Владимирович</option>
+                                <option value="kea@alamics.ru">Кузнецова Елена Александровна</option>
+                                <option value="lapteva-ds@dartit.ru">Лаптева Дина Сергеевна</option>
+                                <option value="lab@alamics.ru">Левина Анна Борисовна</option>
+                                <option value="lau@dartit.ru">Ленц Алексей Юрьевич</option>
+                                <option value="kyv@alamics.ru">Леонова Яна Викторовна</option>
+                                <option value="limonova-ya@alamics.ru">Лимонова Юлия Анатольевна</option>
+                                <option value="lihacheva-ay@dartit.ru">Лихачева Александра Юрьевна</option>
+                                <option value="loktionov-iv@dartit.ru">Локтионов Иван Владимирович</option>
+                                <option value="avl@alamics.ru">Лыжина Александра Вячеславовна</option>
+                                <option value="asm@alamics.ru">Малухина Анна Сергеевна</option>
+                                <option value="patrick@dartit.ru">Малышевский Дмитрий Анатольевич</option>
+                                <option value="a.mann@galagodigital.ru">Манн Алексей Александрович</option>
+                                <option value="a.melnik@galagodigital.ru">Мельник Андрей Владимирович</option>
+                                <option value="melnikov-ea@dartit.ru">Мельников Евгений Андреевич</option>
+                                <option value="milyusha-mv@dartit.ru">Милюша Михаил Владимирович</option>
+                                <option value="mitina-ki@alamics.ru">Митина Ксения Игоревна</option>
+                                <option value="mohin@dartit.ru">Мохин Дмитрий Владиславович</option>
+                                <option value="nagiriyak-ka@galagodigital.ru">Нагирияк Кирилл Андреевич</option>
+                                <option value="nev@alamics.ru">Нигаматзянова Екатерина Вакилевна</option>
+                                <option value="nea@dartit.ru">Носкова Евгения Александровна</option>
+                                <option value="julia.nohrina@alamics.ru">Нохрина Юлия Юрьевна</option>
+                                <option value="olovyannikova-ep@alamics.ru">Оловянникова Евгения Павловна</option>
+                                <option value="a_net@galagodigital.ru">Осокина Анна Николаевна</option>
+                                <option value="dumka@dartit.ru">Плюснин Дмитрий Анатольевич</option>
+                                <option value="plyusnina-ns@dartit.ru">Плюснина Наталья Сергеевна</option>
+                                <option value="podgaets-ar@dartit.ru">Подгаец Александр Романович</option>
+                                <option value="darkslave@dartit.ru">Половодов Владимир Викторович</option>
+                                <option value="ponomarev-iv@galagodigital.ru">Пономарев Илья Валерьевич</option>
+                                <option value="ponomarev-le@dartit.ru">Пономарев Лев Евгеньевич</option>
+                                <option value="nata@alamics.ru">Починова Наталья Викторовна</option>
+                                <option value="maria@dartit.ru">Пришвина Мария Валерьевна</option>
+                                <option value="digiart@galagodigital.ru">Реутов Артем Викторович</option>
+                                <option value="rmn@alamics.ru">Рочева Мария Николаевна</option>
+                                <option value="bbr@dartit.ru">Рудаков Борис Борисович</option>
+                                <option value="rm@alamics.ru">Рудакова Марина Сергеевна</option>
+                                <option value="ryabinina-ea@dartit.ru">Рябинина Екатерина Александровна</option>
+                                <option value="z_olga@dartit.ru">Сарынина Ольга Викторовна</option>
+                                <option value="sgy@alamics.ru">Семенова Галина Юрьевна</option>
+                                <option value="sergeeva-ao@dartit.ru">Сергеева Анастасия Олеговна</option>
+                                <option value="olia_serg@dartit.ru">Сергеева Ольга Игоревна</option>
+                                <option value="seregin-ds@dartit.ru">Серёгин Дмитрий Сергеевич</option>
+                                <option value="smirnov-ai@alamics.ru">Смирнов Антон Игоревич</option>
+                                <option value="Natalya.Sokolova@alamics.ru">Соколова Наталья Владимировна</option>
+                                <option value="mvs@alamics.ru">Спиридонова Марина Викторовна</option>
+                                <option value="sel@alamics.ru">Степучева Евгения Леонидовна</option>
+                                <option value="syatchihina-mv@galagodigital.ru">Сятчихина Марина Васильевна</option>
+                                <option value="teppe-ya@dartit.ru">Теппе Ян Андреевич</option>
+                                <option value="titova-na@alamics.ru">Титова Надежда Александровна</option>
+                                <option value="trifanov-aa@dartit.ru">Трифанов Артемий Андреевич</option>
+                                <option value="tukmachev-ni@dartit.ru">Тукмачев Николай Игоревич</option>
+                                <option value="futlik-dm@dartit.ru">Футлик Дина Мендельевна</option>
+                                <option value="vvh@alamics.ru">Харламова Вера Валерьевна</option>
+                                <option value="ak@dartit.ru">Хлебутин Андрей Александрович</option>
+                                <option value="holkina@dartit.ru">Холкина Анна Игоревна</option>
+                                <option value="karina@dartit.ru">Хорошева Карина Владиленовна</option>
+                                <option value="chekmeneva-av@dartit.ru">Чекменева Александра Владимировна</option>
+                                <option value="tac@alamics.ru">Черепанова Татьяна Александровна</option>
+                                <option value="chernousov-gs@alamics.ru">Черноусов Георгий Сергеевич</option>
+                                <option value="shev@alamics.ru">Шайдурова Елена Владимировна</option>
+                                <option value="shevchenko-se@alamics.ru">Шевченко Светлана Евгеньевна</option>
+                                <option value="shestakov-ma@dartit.ru">Шестаков Максим Алексеевич</option>
+                                <option value="shishkina-oy@dartit.ru">Шишкина Ольга Юрьевна</option>
+                                <option value="smv@alamics.ru">Штин Мария Владимировна</option>
+                                <option value="mikhail.shtin@alamics.ru">Штин Михаил Николаевич</option>
+                                <option value="katerina@dartit.ru">Шульгина Екатерина Александровна</option>
+                                <option value="shcherbina_ea@dartit.ru">Щербина Екатерина Александровна</option>
+                                <option value="jusupova@alamics.ru">Юсупова Джамиля Фаатовна</option>
+                                <option value="yaroshenko-aa@alamics.ru">Ярошенко Алеся Александровна</option>
+                            </select>
+                            <a href="javascript:void(0)" onclick="userToAddEmail()"><img src="//support.alamics.ru/images/plus.gif" alt="Добавить" title="Добавить"></a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="form_text">
+                            <nobr>Прикрепить файлы</nobr>
+                            <br>
+                            <nobr>* размер всех файлов до 3 мб</nobr>
+                        </td>
+                        <td>
+                            <div id="FileInputs">
+                                <input id="fileInput0" name="fileInput0" class="fileInput" type="file">
+                            </div>
+                            <a href="javascript:addFileInput('FileInputs')" style="font-size:11px;color:#686663">Добавить еще</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <input id="getEmailAddressesButton" onclick="getEmailAddresses();" value="Узнать, кому отправятся письма" type="button">
+    <input name="submitButton" onclick="doAct();doSubmit();" value="Сохранить" type="button">
+    <button type="button" class="btn-collapse-all is-close">Развернуть все</button>
+</form>
+<script src="test.js"></script>
 </body>
 </html>
