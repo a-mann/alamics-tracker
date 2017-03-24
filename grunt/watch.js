@@ -2,11 +2,13 @@
 
 module.exports = function (grunt) {
     return {
-        s: {
-            files: ['<%= paths.jsparts %>*.js'],
+        js: {
+            files: ['./*.js', '<%= paths.jsparts %>*.js'],
             tasks: [
-                'concat:userscript',
-                'uglify:userscript',
+                'copy',
+                'include-file',
+                //'uglify:userscript',
+                'commands'
             ],
             options: {
                 spawn: false

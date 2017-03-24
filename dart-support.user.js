@@ -111,867 +111,894 @@ console.info('start userscript');
             }
         }
 
-        addPageElems();
 
-        // добавление на страницу новой задачи блока настроек пользователя
-        modules.userSettings = function () {
-            //добавление/удаление выбранных проектов в пользовательском списке
-            //сохранение в localStorage и скрыть показать в select на странице
-            let $content_cell = document.querySelector('form[name="theForm"]');
 
-            //создание блока в котором будут все элементы управления настройками
-            let $user_settings_box = document.createElement('div');
-            $user_settings_box.id = 'settings-box';
-            $content_cell.insertBefore($user_settings_box, $content_cell.firstChild);
 
-            //создание кнопки показать/скрыть пользовательские настройки
-            let $settings_btn = document.createElement('button');
-            $settings_btn.innerHTML = 'Показать/скрыть пользовательские настройки';
-            $settings_btn.id = 'settings-btn';
-            $settings_btn.type = 'button';
+/* Begin: js-parts\userSettings.js */
 
-            $settings_btn.addEventListener('click', function () {
-                $user_settings_box.classList.toggle('is-open');
-            });
 
-            $content_cell.insertBefore($settings_btn, $content_cell.firstChild);
+// добавление на страницу новой задачи блока настроек пользователя
 
-            //создание кастомного списка проектов
-            //id`s array
-            function createTaskListHTML() {
-                let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
+modules.userSettings = function () {
+    'use strict';
+    //добавление/удаление выбранных проектов в пользовательском списке
+    //сохранение в localStorage и скрыть показать в select на странице
+    let $content_cell = document.querySelector('form[name="theForm"]');
 
-                if (params_user_projects === null) {
-                    params_user_projects = [];
-                }
+    //создание блока в котором будут все элементы управления настройками
+    let $user_settings_box = document.createElement('div');
+    $user_settings_box.id = 'settings-box';
+    $content_cell.insertBefore($user_settings_box, $content_cell.firstChild);
 
-                const PROJECTS_LIST_PARAMS = {
-                    'id': 'custom-project-list',
-                    'title': 'Собственный список проектов',
-                    'source': 'project_id',
-                    'storage': params_user_projects,
-                    'storage_name': 'params_user_projects'
-                };
+    //создание кнопки показать/скрыть пользовательские настройки
+    let $settings_btn = document.createElement('button');
+    $settings_btn.innerHTML = 'Показать/скрыть пользовательские настройки';
+    $settings_btn.id = 'settings-btn';
+    $settings_btn.type = 'button';
 
-                let $custom_projects_list = createInsertWorkersProjectsLists(PROJECTS_LIST_PARAMS);
+    $settings_btn.addEventListener('click', function () {
+        $user_settings_box.classList.toggle('is-open');
+    });
 
-                $user_settings_box.insertBefore($custom_projects_list, $user_settings_box.firstChild);
+    $content_cell.insertBefore($settings_btn, $content_cell.firstChild);
 
-                highlightSelected($custom_projects_list, params_user_projects);
-            }
+    //создание кастомного списка проектов
+    //id`s array
+    function createTaskListHTML() {
+        let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
 
-            //создание кастомного списка исполнителей
-            //id`s array
-            function createWorkersListHTML() {
-                let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
+        if (params_user_projects === null) {
+            params_user_projects = [];
+        }
 
-                if (params_user_workers === null) {
-                    params_user_workers = [];
-                }
-
-                const WORKERS_LIST_PARAMS = {
-                    'id': 'custom-workers-list',
-                    'title': 'Собственный список исполнителей',
-                    'source': 'internal_worker',
-                    'storage': params_user_workers,
-                    'storage_name': 'params_user_workers'
-                };
-
-                let $custom_workers_list = createInsertWorkersProjectsLists(WORKERS_LIST_PARAMS);
-
-                $user_settings_box.insertBefore($custom_workers_list, $user_settings_box.firstChild);
-
-                highlightSelected($custom_workers_list, params_user_workers);
-            }
-
-            // подсветка сохраненных в настройках элементов списка
-            function highlightSelected(list, settings) {
-                if (!settings.length) {
-                    console.log('no');
-                    return false;
-                }
-
-                let node;
-
-                Object.keys(list.childNodes).forEach(function (key) {
-                    node = list.childNodes[key];
-                    if (settings.indexOf(node.dataset.id) >= 0) {
-                        node.classList.add('selected');
-                    }
-                });
-            }
-
-            createTaskListHTML();
-            createWorkersListHTML();
+        const PROJECTS_LIST_PARAMS = {
+            'id': 'custom-project-list',
+            'title': 'Собственный список проектов',
+            'source': 'project_id',
+            'storage': params_user_projects,
+            'storage_name': 'params_user_projects'
         };
 
-        //изменение элементов на странице задачи
-        //в соответсвии с настройками пользователя
-        modules.elemsModification = function () {
-            let dart_workers_list = document.getElementById('internal_worker');
+        let $custom_projects_list = createInsertWorkersProjectsLists(PROJECTS_LIST_PARAMS);
 
-            //сравниваем список проектов с сохраненным в настройках
-            //проекты которых нет в настройка скрываем
-            this.modifyProjectList = function () {
-                let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
+        $user_settings_box.insertBefore($custom_projects_list, $user_settings_box.firstChild);
 
-                if (params_user_projects === null || !params_user_projects.length) {
-                    console.info('Нет собственного списка проектов');
-                    return false;
-                }
+        highlightSelected($custom_projects_list, params_user_projects);
+    }
 
-                let dart_projects_list = document.getElementById('project_id') || document.getElementById('client_id');
-                let options = dart_projects_list.options;
+    //создание кастомного списка исполнителей
+    //id`s array
+    function createWorkersListHTML() {
+        let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
 
-                modifySelectOptionsList(options, params_user_projects);
-            };
+        if (params_user_workers === null) {
+            params_user_workers = [];
+        }
 
-            //сравниваем список исполнителей с сохраненным в настройках
-            //исполнителей которых нет в настройка скрываем
-            this.modifyWorkersList = function () {
-
-                let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
-
-                if (params_user_workers === null) {
-                    console.info('Нет собственного списка сотрудников');
-                    params_user_workers = [];
-                }
-
-                //let dart_workers_list = document.getElementById('internal_worker');
-
-                let options = dart_workers_list.options; //список всех сотрудников из селекта на странице
-
-                //если пользовательский список сотрудников не пуст
-                //и если в задаче участвует сотрудник которого нет в списке оставляю его открытым
-                if (params_user_workers.length) {
-                    //получаю список всех участников задачи
-                    let task_workers = getAllWorkers();
-                    let task_workers_id = [];
-
-                    //сравнение списков, если работника нет в списке из настроек пользователя - добавляю
-                    //сначала нужно получить соответсвие имя сотрудника -> option.value т.е. логин сотрудника на англицком
-                    for (let i = 0; i < options.length; i++) {
-                        let if_find = findInArray(task_workers, options[i].text);
-
-                        if (if_find > -1) {
-                            task_workers_id.push(options[i].value)
-                        }
-                    }
-
-                    //затем сравнить со списком из настроек
-                    //и добавить работника если его нет в списке
-                    for (let i = 0; i < task_workers_id.length; i++) {
-                        let if_find = findInArray(params_user_workers, task_workers_id[i]);
-
-                        if (if_find < 0) {
-                            params_user_workers.push(task_workers_id[i]);
-                            //console.info('В список добавлен '+ task_workers[i]);
-                        }
-                    }
-
-                    modifySelectOptionsList(options, params_user_workers);
-                }
-            };
-
-            //в списке исполнителей отмечаю selected работника оставившего последний комментрий в задаче
-            this.setSelectedInWorkersList = function () {
-                var last_row = getAllCommentsRows();
-                last_row = last_row[last_row.length - 1];
-                var last_worker = last_row.children[4].textContent;
-
-                for (var i = 0; i < dart_workers_list.options.length; i++) {
-                    if (last_worker === dart_workers_list.options[i].text) {
-                        dart_workers_list.options[i].setAttribute('selected', '');
-                        //fireEvent нужен чтобы вызвать повешенную на событие функцию
-                        //в которой добавляется работник в список для рассылки с задачи
-                        var evt = document.createEvent('HTMLEvents');
-                        evt.initEvent('change', false, true);
-                        dart_workers_list.dispatchEvent(evt);
-                    }
-                }
-
-            };
-
-            if (document.getElementById('internal_worker')) {
-                this.modifyWorkersList();
-                this.setSelectedInWorkersList();
-            }
-
-            if (document.getElementById('project_id') || document.getElementById('client_id')) {
-                this.modifyProjectList();
-            }
+        const WORKERS_LIST_PARAMS = {
+            'id': 'custom-workers-list',
+            'title': 'Собственный список исполнителей',
+            'source': 'internal_worker',
+            'storage': params_user_workers,
+            'storage_name': 'params_user_workers'
         };
 
-        //поиск ссылок в тексте комментариев и оборачивание их в <a>
-        //сворачивание длинных комментариев, добавление кнопки Свренуть.развернуть все
-        modules.modyfiComments = function () {
+        let $custom_workers_list = createInsertWorkersProjectsLists(WORKERS_LIST_PARAMS);
 
-            function replaceURLWithHTMLLinks(text) {
-                const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-                return text.replace(exp, '<a href="$1" class="regular-link">$1</a>');
+        $user_settings_box.insertBefore($custom_workers_list, $user_settings_box.firstChild);
+
+        highlightSelected($custom_workers_list, params_user_workers);
+    }
+
+    // подсветка сохраненных в настройках элементов списка
+    function highlightSelected(list, settings) {
+        if (!settings.length) {
+            console.log('no');
+            return false;
+        }
+
+        let node;
+
+        Object.keys(list.childNodes).forEach(function (key) {
+            node = list.childNodes[key];
+            if (settings.indexOf(node.dataset.id) >= 0) {
+                node.classList.add('selected');
             }
+        });
+    }
 
-            let $content_cell = document.getElementById('main-content');
-            let div, txt;
-            let rows = getAllCommentsRows();
-            let collapse_btn;
-            let collapse_btns = [];
+    createTaskListHTML();
+    createWorkersListHTML();
+};
+/* End: js-parts\userSettings.js */
+/* Begin: js-parts\elemsModification.js */
 
-            addjs('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js', function () {
-                goMarkdown(rows);
-            });
 
-            // for (let i = 0; i < rows.length; i++) {
-            //     div = getCommentFromRow(rows[i]);
-            //     txt = replaceURLWithHTMLLinks(div.innerHTML);
-            //     div.innerHTML = txt;
-            //     collapse_btn = addCollapseButton(div);
-            //
-            //     if (collapse_btn) {
-            //         collapse_btn.addEventListener('click', function (e) {
-            //             collapseComment(this);
-            //             e.preventDefault();
-            //         });
-            //         collapse_btns.push(collapse_btn);
-            //     }
-            // }
+//изменение элементов на странице задачи
+//в соответсвии с настройками пользователя
+modules.elemsModification = function () {
+    'use strict';
+    let dart_workers_list = document.getElementById('internal_worker');
 
-            //добавить кнопку свернуть/развернуть все каменты
-            // if (!!document.querySelector('.comment-collapsed')) {
-            //     collapse_btn = document.createElement('BUTTON');
-            //     collapse_btn.type = 'button';
-            //     collapse_btn.tabindex = '-1';
-            //     collapse_btn.innerHTML = 'Развернуть все';
-            //     collapse_btn.classList.add('btn-collapse-all', 'is-close');
-            //     collapse_btn.addEventListener('click', function (e) {
-            //         collapseAllComment(this);
-            //         e.preventDefault();
-            //     });
-            //     $content_cell.appendChild(collapse_btn);
-            // }
+    //сравниваем список проектов с сохраненным в настройках
+    //проекты которых нет в настройка скрываем
+    this.modifyProjectList = function () {
+        let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
 
-            //добавить кнопку свернуть/развернуть к каменту
-            function addCollapseButton(el) {
-                let collapse_btn;
+        if (params_user_projects === null || !params_user_projects.length) {
+            console.info('Нет собственного списка проектов');
+            return false;
+        }
 
-                if (el.offsetHeight > 200) {
-                    let wrap = document.createElement('DIV');
-                    wrap.classList.add('comment-collapsed', 'long-comment');
+        let dart_projects_list = document.getElementById('project_id') || document.getElementById('client_id');
+        let options = dart_projects_list.options;
 
-                    collapse_btn = document.createElement('BUTTON');
-                    collapse_btn.type = 'button';
-                    collapse_btn.tabindex = '-1';
-                    collapse_btn.innerHTML = 'Развернуть';
-                    collapse_btn.classList.add('btn-collapse', 'foo-collapse', 'is-close');
-                    el.parentNode.appendChild(wrap);
-                    wrap.appendChild(collapse_btn);
-                    wrap.appendChild(el);
-                }
+        modifySelectOptionsList(options, params_user_projects);
+    };
 
-                return collapse_btn;
-            }
+    //сравниваем список исполнителей с сохраненным в настройках
+    //исполнителей которых нет в настройка скрываем
+    this.modifyWorkersList = function () {
 
-            function collapseComment(el, state) {
+        let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
 
-                //el - node || nodeList
-                //state - string || check contains class is-close
-                state = state || el.classList.contains('is-close');
+        if (params_user_workers === null) {
+            console.info('Нет собственного списка сотрудников');
+            params_user_workers = [];
+        }
 
-                if (Array.isArray(el)) {
+        //let dart_workers_list = document.getElementById('internal_worker');
 
-                    for (let i = 0; i < el.length; i++) {
-                        if (state === 'expand') {
-                            setExpand(el[i]);
-                            continue;
-                        }
-                        setCollapse(el[i]);
-                    }
-                } else {
-                    if (state) {
-                        setExpand(el);
-                    } else {
-                        setCollapse(el);
-                    }
-                }
+        let options = dart_workers_list.options; //список всех сотрудников из селекта на странице
 
-                function setExpand(el) {
-                    el.classList.remove('is-close');
-                    el.innerHTML = 'Свернуть';
-                    el.parentNode.classList.remove('comment-collapsed');
-                }
+        //если пользовательский список сотрудников не пуст
+        //и если в задаче участвует сотрудник которого нет в списке оставляю его открытым
+        if (params_user_workers.length) {
+            //получаю список всех участников задачи
+            let task_workers = getAllWorkers();
+            let task_workers_id = [];
 
-                function setCollapse(el) {
-                    el.classList.add('is-close');
-                    el.innerHTML = 'Развернуть';
-                    el.parentNode.classList.add('comment-collapsed')
+            //сравнение списков, если работника нет в списке из настроек пользователя - добавляю
+            //сначала нужно получить соответсвие имя сотрудника -> option.value т.е. логин сотрудника на англицком
+            for (let i = 0; i < options.length; i++) {
+                let if_find = findInArray(task_workers, options[i].text);
+
+                if (if_find > -1) {
+                    task_workers_id.push(options[i].value)
                 }
             }
 
-            function collapseAllComment(btn) {
-                if (btn.classList.contains('is-close')) {
-                    btn.classList.remove('is-close');
-                    btn.innerHTML = 'Свернуть все';
+            //затем сравнить со списком из настроек
+            //и добавить работника если его нет в списке
+            for (let i = 0; i < task_workers_id.length; i++) {
+                let if_find = findInArray(params_user_workers, task_workers_id[i]);
 
-                    collapseComment(collapse_btns, 'expand');
-
-                } else {
-                    btn.classList.add('is-close');
-                    btn.innerHTML = 'Развернуть все';
-
-                    collapseComment(collapse_btns, 'collapse');
+                if (if_find < 0) {
+                    params_user_workers.push(task_workers_id[i]);
+                    //console.info('В список добавлен '+ task_workers[i]);
                 }
             }
 
-            //парсер markdown
-            function goMarkdown(rows) {
+            modifySelectOptionsList(options, params_user_workers);
+        }
+    };
 
-                let md = w.markdownit();
-                md.options.html = true;
-                md.options.linkify = true;
-                md.options.typographer = true;
-                //md.options.breaks = true;
+    //в списке исполнителей отмечаю selected работника оставившего последний комментрий в задаче
+    this.setSelectedInWorkersList = function () {
+        var last_row = getAllCommentsRows();
+        last_row = last_row[last_row.length - 1];
+        var last_worker = last_row.children[4].textContent;
 
-                rows.map(function (row) {
-                    addMarkdown(row, md)
-                });
+        for (var i = 0; i < dart_workers_list.options.length; i++) {
+            if (last_worker === dart_workers_list.options[i].text) {
+                dart_workers_list.options[i].setAttribute('selected', '');
+                //fireEvent нужен чтобы вызвать повешенную на событие функцию
+                //в которой добавляется работник в список для рассылки с задачи
+                var evt = document.createEvent('HTMLEvents');
+                evt.initEvent('change', false, true);
+                dart_workers_list.dispatchEvent(evt);
+            }
+        }
 
-                function addMarkdown(row, md) {
-                    let comment = getCommentFromRow(row);
-                    let blocks = comment.innerHTML.split('<br><br>');
+    };
 
-                    blocks = blocks.map(function (item) {
-                        if (item.indexOf('<br>') > -1) {
-                            item = item.split('<br>');
-                            item = item.map(function (str) {
-                                return str.trim();
-                            });
+    if (document.getElementById('internal_worker')) {
+        this.modifyWorkersList();
+        this.setSelectedInWorkersList();
+    }
 
-                            item = concatElemsToString(item, '*');
-                            item = concatElemsToString(item, '&');
+    if (document.getElementById('project_id') || document.getElementById('client_id')) {
+        this.modifyProjectList();
+    }
+};/* End: js-parts\elemsModification.js */
+/* Begin: js-parts\modyfiComments.js */
 
-                            item = item.map(function (str) {
-                                return renderMdString(str, md)
-                            });
 
-                            item = item.join('');
-                        } else {
-                            item.trim();
-                            //+'<br>' нужно чтобы было похоже на исходное форматирование
-                            item = renderMdString(item, md)+'<br>';
-                        }
+//поиск ссылок в тексте комментариев и оборачивание их в <a>
+//сворачивание длинных комментариев, добавление кнопки Свренуть.развернуть все
+modules.modyfiComments = function () {
+    'use strict';
+    function replaceURLWithHTMLLinks(text) {
+        const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        return text.replace(exp, '<a href="$1" class="regular-link">$1</a>');
+    }
 
-                        return item;
+    let $content_cell = document.getElementById('main-content');
+    let div, txt;
+    let rows = getAllCommentsRows();
+    let collapse_btn;
+    let collapse_btns = [];
+
+    addjs('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js', function () {
+        goMarkdown(rows);
+    });
+
+    // for (let i = 0; i < rows.length; i++) {
+    //     div = getCommentFromRow(rows[i]);
+    //     txt = replaceURLWithHTMLLinks(div.innerHTML);
+    //     div.innerHTML = txt;
+    //     collapse_btn = addCollapseButton(div);
+    //
+    //     if (collapse_btn) {
+    //         collapse_btn.addEventListener('click', function (e) {
+    //             collapseComment(this);
+    //             e.preventDefault();
+    //         });
+    //         collapse_btns.push(collapse_btn);
+    //     }
+    // }
+
+    //добавить кнопку свернуть/развернуть все каменты
+    // if (!!document.querySelector('.comment-collapsed')) {
+    //     collapse_btn = document.createElement('BUTTON');
+    //     collapse_btn.type = 'button';
+    //     collapse_btn.tabindex = '-1';
+    //     collapse_btn.innerHTML = 'Развернуть все';
+    //     collapse_btn.classList.add('btn-collapse-all', 'is-close');
+    //     collapse_btn.addEventListener('click', function (e) {
+    //         collapseAllComment(this);
+    //         e.preventDefault();
+    //     });
+    //     $content_cell.appendChild(collapse_btn);
+    // }
+
+    //добавить кнопку свернуть/развернуть к каменту
+    function addCollapseButton(el) {
+        let collapse_btn;
+
+        if (el.offsetHeight > 200) {
+            let wrap = document.createElement('DIV');
+            wrap.classList.add('comment-collapsed', 'long-comment');
+
+            collapse_btn = document.createElement('BUTTON');
+            collapse_btn.type = 'button';
+            collapse_btn.tabindex = '-1';
+            collapse_btn.innerHTML = 'Развернуть';
+            collapse_btn.classList.add('btn-collapse', 'foo-collapse', 'is-close');
+            el.parentNode.appendChild(wrap);
+            wrap.appendChild(collapse_btn);
+            wrap.appendChild(el);
+        }
+
+        return collapse_btn;
+    }
+
+    function collapseComment(el, state) {
+
+        //el - node || nodeList
+        //state - string || check contains class is-close
+        state = state || el.classList.contains('is-close');
+
+        if (Array.isArray(el)) {
+
+            for (let i = 0; i < el.length; i++) {
+                if (state === 'expand') {
+                    setExpand(el[i]);
+                    continue;
+                }
+                setCollapse(el[i]);
+            }
+        } else {
+            if (state) {
+                setExpand(el);
+            } else {
+                setCollapse(el);
+            }
+        }
+
+        function setExpand(el) {
+            el.classList.remove('is-close');
+            el.innerHTML = 'Свернуть';
+            el.parentNode.classList.remove('comment-collapsed');
+        }
+
+        function setCollapse(el) {
+            el.classList.add('is-close');
+            el.innerHTML = 'Развернуть';
+            el.parentNode.classList.add('comment-collapsed')
+        }
+    }
+
+    function collapseAllComment(btn) {
+        if (btn.classList.contains('is-close')) {
+            btn.classList.remove('is-close');
+            btn.innerHTML = 'Свернуть все';
+
+            collapseComment(collapse_btns, 'expand');
+
+        } else {
+            btn.classList.add('is-close');
+            btn.innerHTML = 'Развернуть все';
+
+            collapseComment(collapse_btns, 'collapse');
+        }
+    }
+
+    //парсер markdown
+    function goMarkdown(rows) {
+
+        let md = w.markdownit();
+        md.options.html = true;
+        md.options.linkify = true;
+        md.options.typographer = true;
+        //md.options.breaks = true;
+
+        rows.map(function (row) {
+            addMarkdown(row, md)
+        });
+
+        function addMarkdown(row, md) {
+            let comment = getCommentFromRow(row);
+            let blocks = comment.innerHTML.split('<br><br>');
+
+            blocks = blocks.map(function (item) {
+                if (item.indexOf('<br>') > -1) {
+                    item = item.split('<br>');
+                    item = item.map(function (str) {
+                        return str.trim();
                     });
 
-                    //очистка пустых строк
-                    //string = string.replace(/^\s+|\s+$/g, '');
+                    item = concatElemsToString(item, '*');
+                    item = concatElemsToString(item, '&');
 
-                    comment.innerHTML = blocks.join('');
+                    item = item.map(function (str) {
+                        return renderMdString(str, md)
+                    });
+
+                    item = item.join('');
+                } else {
+                    item.trim();
+                    //+'<br>' нужно чтобы было похоже на исходное форматирование
+                    item = renderMdString(item, md)+'<br>';
                 }
 
-                function renderMdString(str,md) {
-                    let mdc = ['#', '*', '-', '>'];
-
-                    if (mdc.indexOf(str.charAt(0)) > -1) {
-                        str = md.render(str);
-                    }else{
-                        //+'<br>' нужно чтобы было похоже на исходное форматирование
-                        str = str+'<br>';
-                    }
-
-                    return str;
-                }
-            }
-
-            //поиск и объединение в одну строку элементов массива
-            //начинающихся с символа *
-            //для создания списка ul>li в markdown
-            function concatElemsToString(arr, symbol) {
-                let next;
-                let strings = [];
-                let newlist = '';
-
-                for (let i = 0; i < arr.length; i++) {
-                    next = i + 1;
-
-                    if (arr[i].charAt(0) === symbol && arr[next] && arr[next].charAt(0) === symbol) {
-                        newlist += preformatString(arr[i], symbol);
-                    } else if (!arr[next] || arr[next].charAt(0) !== symbol) {
-                        newlist += preformatString(arr[i], symbol);
-                        strings.push(newlist);
-                        newlist = '';
-                    } else {
-                        strings.push(arr[i]);
-                        // strings.push(preformatString(arr[i]));
-                    }
-                }
-
-                return strings;
-            }
-
-            //обработка строк перед форматированием в markdown
-            function replaceHtmlGtToSymbol(text) {
-                let find = '&gt;';
-                let re = new RegExp(find, 'g');
-                return text.replace(re, '>');
-            }
-
-            function preformatString(str, symbol = '|') {
-
-                let space = '';
-                //для списка надо с новой строки
-                switch (symbol) {
-                    case '*':
-                        space = '\n';
-                        break;
-                    //а в цитате - в одну строку
-                    case '&':
-                        space = ' ';
-                        str = replaceHtmlGtToSymbol(str);
-                        break;
-                    default:
-                        console.log(symbol);
-                        //console.log((str.match(/\n/g)||[]).length);
-                        //str = str.replace(/\n/g, '<br>');
-                        //console.log(str);
-                        str = '<p>' + str + '</p>'
-                }
-
-                return str + space;
-            }
-        };
-
-        //подсчет общего времени в задаче для каждого исполнителя
-        modules.countWorkerTime = function () {
-            var $input_box = document.getElementById('user-toolbar');
-            var rows = getAllCommentsRows();
-            var workers = getAllWorkers();
-            var dates_collection = [];
-            var date_str;
-
-            for (var i = 0; i < rows.length; i++) {
-                date_str = rows[i].children[3].textContent;
-                date_str = date_str.split(' ');
-                dates_collection.push(createISODate(date_str[0]));
-            }
-
-            var dates_arr = eliminateDuplicates(dates_collection);
-
-            var createDatesList = function (input_box, dates) {
-
-                function createList(css_id, css_class) {
-                    var list = document.createElement('SELECT');
-                    list.setAttribute('id', css_id);
-                    list.classList.add(css_class);
-                    return list;
-                }
-
-                var box = document.createElement('DIV');
-                box.classList.add('user-toolbar__item');
-
-                var start_list = createList('date-start-list', 'dates-list');
-
-                var end_list = createList('date-end-list', 'dates-list');
-
-                var btn = document.createElement('BUTTON');
-                btn.setAttribute('type', 'button');
-                btn.textContent = 'Посчитать';
-
-                var option, cln_option, listdate;
-
-                for (var i = 0; i < dates.length; i++) {
-                    listdate = dateFormatter(parseInt(dates[i], 10));
-                    option = document.createElement('OPTION');
-                    option.setAttribute('value', dates[i]);
-                    option.innerHTML = listdate.toLocaleString('ru');
-                    cln_option = option.cloneNode(true);
-                    start_list.appendChild(option);
-                    end_list.appendChild(cln_option);
-                }
-                box.appendChild(start_list);
-                box.appendChild(end_list);
-                box.appendChild(btn);
-
-                var title = document.createElement('H3');
-                title.textContent = 'За выбранный период';
-                title.classList.add('user-toolbar-title');
-                box.insertBefore(title, box.firstChild);
-
-                input_box.insertBefore(box, input_box.lastChild);
-
-                return {
-                    'box': box,
-                    'start_list': start_list,
-                    'end_list': end_list,
-                    'btn': btn
-                }
-            };
-
-            var timelist = createTimeList(workers, rows);
-
-            var $timelist = createTimeListView(timelist);
-
-            $timelist.classList.add('user-toolbar__item');
-
-            //добавляем строку с общим временм всех сотрудников
-            //третий параметр true - ставит класс-маркер выбранных работников
-            insertTotalTime($timelist, timelist, true);
-
-            // добавляем клик по строке для подсчета времени выбранных работников
-            $timelist.addEventListener('click', function (e) {
-                countSelectedWorkersTime(this, e);
+                return item;
             });
 
-            var $title = document.createElement('H3');
-            $title.textContent = 'Вся задача';
-            $title.classList.add('user-toolbar-title');
-            $timelist.insertBefore($title, $timelist.firstChild);
-            $timelist.classList.add('user-toolbar__item');
+            //очистка пустых строк
+            //string = string.replace(/^\s+|\s+$/g, '');
 
-            var date_lists = createDatesList($input_box, dates_arr);
+            comment.innerHTML = blocks.join('');
+        }
 
-            // добавляю селекты с датами - подсчет времени за выбранный период
-            findTimeInDatesRange(date_lists, workers, rows);
+        function renderMdString(str,md) {
+            let mdc = ['#', '*', '-', '>'];
 
-            $input_box.insertBefore($timelist, $input_box.lastChild);
+            if (mdc.indexOf(str.charAt(0)) > -1) {
+                str = md.render(str);
+            }else{
+                //+'<br>' нужно чтобы было похоже на исходное форматирование
+                str = str+'<br>';
+            }
 
-            //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
-        };
+            return str;
+        }
+    }
 
-        //калькулятор в поле ввода затраченного времени
-        modules.calculateElapsedTime = function () {
-            var timeElapsedField = document.getElementById('spended_time');
+    //поиск и объединение в одну строку элементов массива
+    //начинающихся с символа *
+    //для создания списка ul>li в markdown
+    function concatElemsToString(arr, symbol) {
+        let next;
+        let strings = [];
+        let newlist = '';
 
-            // Удаление обработчика нажатия клавиш для поля 'spended_time'
-            timeElapsedField.onkeyup = null;
+        for (let i = 0; i < arr.length; i++) {
+            next = i + 1;
 
-            // Добавление события для вычисления затраченного времени для поля 'spended_time'
-            timeElapsedField.addEventListener('change', function () {
-                var cur_value = this.value;
+            if (arr[i].charAt(0) === symbol && arr[next] && arr[next].charAt(0) === symbol) {
+                newlist += preformatString(arr[i], symbol);
+            } else if (!arr[next] || arr[next].charAt(0) !== symbol) {
+                newlist += preformatString(arr[i], symbol);
+                strings.push(newlist);
+                newlist = '';
+            } else {
+                strings.push(arr[i]);
+                // strings.push(preformatString(arr[i]));
+            }
+        }
 
-                try {
-                    cur_value = eval(cur_value);
-                } catch (e) {
-                    alert("Ошибка вычисления затраченного времени. Используйте числа и знаки «+», «-», «*», «/» и скобки");
+        return strings;
+    }
 
+    //обработка строк перед форматированием в markdown
+    function replaceHtmlGtToSymbol(text) {
+        let find = '&gt;';
+        let re = new RegExp(find, 'g');
+        return text.replace(re, '>');
+    }
+
+    function preformatString(str, symbol = '|') {
+
+        let space = '';
+        //для списка надо с новой строки
+        switch (symbol) {
+            case '*':
+                space = '\n';
+                break;
+            //а в цитате - в одну строку
+            case '&':
+                space = ' ';
+                str = replaceHtmlGtToSymbol(str);
+                break;
+            default:
+                console.log(symbol);
+                //console.log((str.match(/\n/g)||[]).length);
+                //str = str.replace(/\n/g, '<br>');
+                //console.log(str);
+                str = '<p>' + str + '</p>'
+        }
+
+        return str + space;
+    }
+};/* End: js-parts\modyfiComments.js */
+/* Begin: js-parts\countWorkerTime.js */
+
+
+//подсчет общего времени в задаче для каждого исполнителя
+modules.countWorkerTime = function () {
+    'use strict';
+    var $input_box = document.getElementById('user-toolbar');
+    var rows = getAllCommentsRows();
+    var workers = getAllWorkers();
+    var dates_collection = [];
+    var date_str;
+
+    for (var i = 0; i < rows.length; i++) {
+        date_str = rows[i].children[3].textContent;
+        date_str = date_str.split(' ');
+        dates_collection.push(createISODate(date_str[0]));
+    }
+
+    var dates_arr = eliminateDuplicates(dates_collection);
+
+    var createDatesList = function (input_box, dates) {
+
+        function createList(css_id, css_class) {
+            var list = document.createElement('SELECT');
+            list.setAttribute('id', css_id);
+            list.classList.add(css_class);
+            return list;
+        }
+
+        var box = document.createElement('DIV');
+        box.classList.add('user-toolbar__item');
+
+        var start_list = createList('date-start-list', 'dates-list');
+
+        var end_list = createList('date-end-list', 'dates-list');
+
+        var btn = document.createElement('BUTTON');
+        btn.setAttribute('type', 'button');
+        btn.textContent = 'Посчитать';
+
+        var option, cln_option, listdate;
+
+        for (var i = 0; i < dates.length; i++) {
+            listdate = dateFormatter(parseInt(dates[i], 10));
+            option = document.createElement('OPTION');
+            option.setAttribute('value', dates[i]);
+            option.innerHTML = listdate.toLocaleString('ru');
+            cln_option = option.cloneNode(true);
+            start_list.appendChild(option);
+            end_list.appendChild(cln_option);
+        }
+        box.appendChild(start_list);
+        box.appendChild(end_list);
+        box.appendChild(btn);
+
+        var title = document.createElement('H3');
+        title.textContent = 'За выбранный период';
+        title.classList.add('user-toolbar-title');
+        box.insertBefore(title, box.firstChild);
+
+        input_box.insertBefore(box, input_box.lastChild);
+
+        return {
+            'box': box,
+            'start_list': start_list,
+            'end_list': end_list,
+            'btn': btn
+        }
+    };
+
+    var timelist = createTimeList(workers, rows);
+
+    var $timelist = createTimeListView(timelist);
+
+    $timelist.classList.add('user-toolbar__item');
+
+    //добавляем строку с общим временм всех сотрудников
+    //третий параметр true - ставит класс-маркер выбранных работников
+    insertTotalTime($timelist, timelist, true);
+
+    // добавляем клик по строке для подсчета времени выбранных работников
+    $timelist.addEventListener('click', function (e) {
+        countSelectedWorkersTime(this, e);
+    });
+
+    var $title = document.createElement('H3');
+    $title.textContent = 'Вся задача';
+    $title.classList.add('user-toolbar-title');
+    $timelist.insertBefore($title, $timelist.firstChild);
+    $timelist.classList.add('user-toolbar__item');
+
+    var date_lists = createDatesList($input_box, dates_arr);
+
+    // добавляю селекты с датами - подсчет времени за выбранный период
+    findTimeInDatesRange(date_lists, workers, rows);
+
+    $input_box.insertBefore($timelist, $input_box.lastChild);
+
+    //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
+};/* End: js-parts\countWorkerTime.js */
+/* Begin: js-parts\calculateElapsedTime.js */
+
+
+//калькулятор в поле ввода затраченного времени
+modules.calculateElapsedTime = function () {
+    'use strict';
+    var timeElapsedField = document.getElementById('spended_time');
+
+    // Удаление обработчика нажатия клавиш для поля 'spended_time'
+    timeElapsedField.onkeyup = null;
+
+    // Добавление события для вычисления затраченного времени для поля 'spended_time'
+    timeElapsedField.addEventListener('change', function () {
+        var cur_value = this.value;
+
+        try {
+            cur_value = eval(cur_value);
+        } catch (e) {
+            alert("Ошибка вычисления затраченного времени. Используйте числа и знаки «+», «-», «*», «/» и скобки");
+
+            cur_value = null;
+        } finally {
+            if ((cur_value !== null) && (!isNaN(cur_value))) {
+
+                cur_value = Math.round(cur_value);
+
+                if (cur_value <= 0) {
+                    alert("Отрицательное или нулевое значение времени");
                     cur_value = null;
-                } finally {
-                    if ((cur_value !== null) && (!isNaN(cur_value))) {
+                }
+            }
+            this.value = cur_value;
+            minToDays(cur_value);
+        }
+    });
+};/* End: js-parts\calculateElapsedTime.js */
+/* Begin: js-parts\saveNewComment.js */
 
-                        cur_value = Math.round(cur_value);
 
-                        if (cur_value <= 0) {
-                            alert("Отрицательное или нулевое значение времени");
-                            cur_value = null;
-                        }
+//Сохранение комментария в localStorage
+//на случай внезапного звершения сессии
+modules.saveNewComment = function () {
+    'use strict';
+    var $field = document.getElementById('text');
+
+    var query = window.location.search.substring(1);
+    var task_id = query.split("=")[2];
+
+    //добавлю кнопку для вставки сохраненного текста
+    var btn = document.createElement('BUTTON');
+    btn.setAttribute('type', 'button');
+    btn.classList.add('label_head');
+    btn.innerHTML = 'Вставить сохраненный текст';
+    btn.classList.add('none'); //по умолчанию скрыта
+    $field.parentNode.insertBefore(btn, $field);
+
+    //если есть сохраненный текст - показать кнопку
+    showPasteBtn(btn, task_id);
+
+    //вставить текст по клику
+    btn.addEventListener('click', function (e) {
+        $field.value = localStorage.getItem('task' + task_id);
+        e.preventDefault();
+    });
+
+    //Сохранить текст из поля при наборе или потере фокуса
+    $field.addEventListener('keyup', saveTaskComment);
+
+    //если есть сохраненный текст - показать кнопку
+    $field.addEventListener('blur', function () {
+        showPasteBtn(btn, task_id);
+    });
+
+    function saveTaskComment() {
+        localStorage.setItem('task' + task_id, this.value);
+    }
+
+    function showPasteBtn(button, id) {
+        if (localStorage.getItem('task' + id) !== '' && localStorage.getItem('task' + id) !== null) {
+            button.classList.remove('none');
+        }
+    }
+};/* End: js-parts\saveNewComment.js */
+/* Begin: js-parts\copyPasteCommentQuote.js */
+
+
+//выделение текста в каменте и вставка оформленная как цитата для markdown
+modules.copyPasteCommentQuote = function () {
+    'use strict';
+    let rows = getAllCommentsRows();
+
+    rows.map(function (row) {
+        let camment = getCommentFromRow(row);
+
+        camment.addEventListener('mouseup', function () {
+            let selection = w.getSelection();
+            selection = selection.toString().replace(/(?:(?:\r\n|\r|\n)\s*){2}/gm, "").trim();
+            localStorage.setItem('selection',selection);
+        })
+
+    });
+
+    let editor = document.getElementById('text');
+
+    function formatAndInsetCommentQuote(elem) {
+        if(localStorage.getItem('selection')){
+            let startPos = elem.selectionStart;
+            let endPos = elem.selectionEnd;
+
+            let selection = localStorage.getItem('selection');
+            let max_characters = 60;
+
+            if(selection.length > max_characters){
+                let strings = selection.split(' ');
+
+                let substr = [];
+                let str = '';
+
+                for(let i = 0; i < strings.length; i++){
+                    str += strings[i]+' ';
+                    if(str.length >= max_characters || i === strings.length - 1){
+                        substr.push('> '+str.trim());
+                        str = '';
                     }
-                    this.value = cur_value;
-                    minToDays(cur_value);
                 }
+
+                selection = substr.join('\n');
+                selection = '\n'+selection+'\n'
+            }
+
+            //this.innerHTML = this.innerHTML + selection;
+
+            elem.value = elem.value.substring(0, startPos)
+                + selection
+                + elem.value.substring(endPos, elem.value.length);
+
+            localStorage.removeItem('selection');
+        }
+    }
+
+    runOnKeys(
+        function() {
+            if(document.activeElement === editor){
+                formatAndInsetCommentQuote(editor)
+            }
+        },
+        editor
+        ,
+        "16",
+        "17",
+        "V".charCodeAt(0)
+    );
+};/* End: js-parts\copyPasteCommentQuote.js */
+/* Begin: js-parts\cammentsDesign.js */
+
+
+//переделка внешнего вида каментов
+modules.cammentsDesign = function () {
+    'use strict';
+    createTemplate();
+
+    let tbl = document.getElementById('comments-tbl');
+    let rows = getAllCommentsRows();
+
+    rows.map(function (item) {
+        let td = Array.from(item.querySelectorAll('td'));
+
+        let block = document.getElementById('comment-template').cloneNode(true);
+        block.removeAttribute('id');
+
+        item.appendChild(block);
+
+        let rows = block.querySelectorAll('.b-comment__row');
+
+        let row1 = create1row(td);
+        rows[0].appendChild(row1);
+
+        rows[1].appendChild(create2row(td));
+        rows[2].appendChild(create3row(td));
+
+        let files = create4row(td);
+        if(!!files.length){
+            files.map(function (item) {
+                rows[3].appendChild(item);
             });
-        };
+        }else{
+            block.removeChild(rows[3]);
+        }
 
-        //Сохранение комментария в localStorage
-        //на случай внезапного звершения сессии
-        modules.saveNewComment = function () {
-            var $field = document.getElementById('text');
 
-            var query = window.location.search.substring(1);
-            var task_id = query.split("=")[2];
+        rows[4].appendChild(create5row(td));
 
-            //добавлю кнопку для вставки сохраненного текста
-            var btn = document.createElement('BUTTON');
-            btn.setAttribute('type', 'button');
-            btn.classList.add('label_head');
-            btn.innerHTML = 'Вставить сохраненный текст';
-            btn.classList.add('none'); //по умолчанию скрыта
-            $field.parentNode.insertBefore(btn, $field);
-
-            //если есть сохраненный текст - показать кнопку
-            showPasteBtn(btn, task_id);
-
-            //вставить текст по клику
-            btn.addEventListener('click', function (e) {
-                $field.value = localStorage.getItem('task' + task_id);
-                e.preventDefault();
-            });
-
-            //Сохранить текст из поля при наборе или потере фокуса
-            $field.addEventListener('keyup', saveTaskComment);
-
-            //если есть сохраненный текст - показать кнопку
-            $field.addEventListener('blur', function () {
-                showPasteBtn(btn, task_id);
-            });
-
-            function saveTaskComment() {
-                localStorage.setItem('task' + task_id, this.value);
+        td.map(function (tditem) {
+            if(tditem){
+                item.removeChild(tditem);
             }
+        });
 
-            function showPasteBtn(button, id) {
-                if (localStorage.getItem('task' + id) !== '' && localStorage.getItem('task' + id) !== null) {
-                    button.classList.remove('none');
-                }
-            }
-        };
-
-        //выделение текста в каменте и вставка оформленная как цитата для markdown
-        modules.copyPasteCommentQuote = function () {
-            let rows = getAllCommentsRows();
+        let cammentsDesignCSS = "#comments-tbl{ padding: 0 3em; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr{ display: block; } .b-comment{ width: 100%; margin: 1em 0; display: flex; flex-flow: column wrap; position: relative; outline: 1px solid; } .b-comment__row{ padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row*/ .b-comment__row_0{ box-shadow: 0 1px 2px #ccc; } .task-status{ padding: 0 .5em 0 2em; } .id-checkbox{ position: absolute; visibility: hidden; z-index: -1; } /*//2 row*/ .comment-info > span{ display: inline-block; vertical-align: top; } .comment-author{ padding-right: 2em; position: relative; } .comment-author:after{ content: ''; position: relative; left: 1em; } /*//3 row*/ .b-comment__row_2 { box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc; } /*//4 row*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; } /*//5 row*/ .b-comment__row_3 + .b-comment__row_4 { box-shadow: 0 -1px 2px #ccc; } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 30px; line-height: 30px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; }";
 
-            rows.map(function (row) {
-                let camment = getCommentFromRow(row);
-
-                camment.addEventListener('mouseup', function () {
-                    let selection = w.getSelection();
-                    selection = selection.toString().replace(/(?:(?:\r\n|\r|\n)\s*){2}/gm, "").trim();
-                    localStorage.setItem('selection',selection);
-                })
+        addcss(cammentsDesignCSS);
+    });
 
-            });
 
-            let editor = document.getElementById('text');
+    function create1row(td) {
+        let fragment = document.createDocumentFragment();
 
-            function formatAndInsetCommentQuote(elem) {
-                if(localStorage.getItem('selection')){
-                    let startPos = elem.selectionStart;
-                    let endPos = elem.selectionEnd;
+        let rowItemProto = document.createElement('div');
 
-                    let selection = localStorage.getItem('selection');
-                    let max_characters = 60;
+        let rowItem = rowItemProto.cloneNode(true);
 
-                    if(selection.length > max_characters){
-                        let strings = selection.split(' ');
+        //дата
+        rowItem.classList.add('comment-date');
+        rowItem.innerHTML = td[3].textContent;
 
-                        let substr = [];
-                        let str = '';
+        fragment.appendChild(rowItem);
 
-                        for(let i = 0; i < strings.length; i++){
-                            str += strings[i]+' ';
-                            if(str.length >= max_characters || i === strings.length - 1){
-                                substr.push('> '+str.trim());
-                                str = '';
-                            }
-                        }
+        //статус
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('task-status');
+        rowItem.innerHTML = td[9].textContent;
+        fragment.appendChild(rowItem);
 
-                        selection = substr.join('\n');
-                        selection = '\n'+selection+'\n'
-                    }
+        //id checkbox
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.appendChild(td[0].firstElementChild);
+        rowItem.classList.add('id-checkbox');
+        fragment.appendChild(rowItem);
 
-                    //this.innerHTML = this.innerHTML + selection;
+        //приоритет
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('task-rank');
+        rowItem.innerHTML = td[8].textContent + ' приоритет';
+        fragment.appendChild(rowItem);
 
-                    elem.value = elem.value.substring(0, startPos)
-                        + selection
-                        + elem.value.substring(endPos, elem.value.length);
+        //письма и ссылка
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('row-right');
 
-                    localStorage.removeItem('selection');
-                }
-            }
+        let letter = td[1].querySelectorAll('img')[1];
+        letter.classList.add('letter-addr');
+        rowItem.appendChild(letter);
 
-            runOnKeys(
-                function() {
-                    if(document.activeElement === editor){
-                        formatAndInsetCommentQuote(editor)
-                    }
-                },
-                editor
-                ,
-                "16",
-                "17",
-                "V".charCodeAt(0)
-            );
-        };
+        let link = td[1].querySelectorAll('a')[1];
+        link.classList.add('comment-link');
+        rowItem.appendChild(link);
+        fragment.appendChild(rowItem);
 
-        //переделка внешнего вида каментов
-        modules.cammentsDesign = function () {
-            createTemplate();
+        return fragment;
+    }
 
-            let tbl = document.getElementById('comments-tbl');
-            let rows = getAllCommentsRows();
+    function create2row(td) {
+        let fragment = document.createDocumentFragment();
 
-            rows.map(function (item) {
-                let td = Array.from(item.querySelectorAll('td'));
+        let rowItemProto = document.createElement('div');
 
-                let block = document.getElementById('comment-template').cloneNode(true);
-                block.removeAttribute('id');
+        let rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('comment-info');
 
-                item.appendChild(block);
+        //автор
+        let author = document.createElement('span');
+        author.classList.add('comment-author');
+        author.innerHTML = 'Автор <br>' + td[4].textContent;
+        rowItem.appendChild(author);
 
-                let rows = block.querySelectorAll('.b-comment__row');
+        //исполнитель
+        let worker = document.createElement('span');
+        worker.classList.add('comment-worker');
+        worker.innerHTML = 'Исполнитель <br>' + td[6].textContent;
+        rowItem.appendChild(worker);
 
-                let row1 = create1row(td);
-                rows[0].appendChild(row1);
+        fragment.appendChild(rowItem);
 
-                rows[1].appendChild(create2row(td));
-                rows[2].appendChild(create3row(td));
+        return fragment;
+    }
 
-                let files = create4row(td);
-                if(!!files.length){
-                    files.map(function (item) {
-                        rows[3].appendChild(item);
-                    });
-                }else{
-                    block.removeChild(rows[3]);
-                }
+    function create3row(td) {
+        //комментарий
 
+        let rowItem = document.createElement('div');
+        rowItem.classList.add('comment-body');
+        rowItem.appendChild(td[5].firstElementChild.cloneNode(true));
+        return rowItem;
+    }
 
-                rows[4].appendChild(create5row(td));
+    function create4row(td) {
+        return Array.from(td[2].querySelectorAll('a'));
+    }
 
-                td.map(function (tditem) {
-                    if(tditem){
-                        item.removeChild(tditem);
-                    }
-                });
+    function create5row(td) {
+        let fragment = document.createDocumentFragment();
 
-                let cammentsDesignCSS = "#comments-tbl{ padding: 0 3em; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr{ display: block; } .b-comment{ width: 100%; margin: 1em 0; display: flex; flex-flow: column wrap; position: relative; outline: 1px solid; } .b-comment__row{ padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row*/ .b-comment__row_0{ box-shadow: 0 1px 2px #ccc; } .task-status{ padding: 0 .5em 0 2em; } .id-checkbox{ position: absolute; visibility: hidden; z-index: -1; } /*//2 row*/ .comment-info > span{ display: inline-block; vertical-align: top; } .comment-author{ padding-right: 2em; position: relative; } .comment-author:after{ content: ''; position: relative; left: 1em; } /*//3 row*/ .b-comment__row_2 { box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc; } /*//4 row*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; } /*//5 row*/ .b-comment__row_3 + .b-comment__row_4 { box-shadow: 0 -1px 2px #ccc; } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 30px; line-height: 30px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; }";
+        let rowItemProto = document.createElement('div');
 
-                addcss(cammentsDesignCSS);
-            });
+        let rowItem = rowItemProto.cloneNode(true);
 
-
-            function create1row(td) {
-                let fragment = document.createDocumentFragment();
-
-                let rowItemProto = document.createElement('div');
-
-                let rowItem = rowItemProto.cloneNode(true);
-
-                //дата
-                rowItem.classList.add('comment-date');
-                rowItem.innerHTML = td[3].textContent;
-
-                fragment.appendChild(rowItem);
-
-                //статус
-                rowItem = rowItemProto.cloneNode(true);
-                rowItem.classList.add('task-status');
-                rowItem.innerHTML = td[9].textContent;
-                fragment.appendChild(rowItem);
-
-                //id checkbox
-                rowItem = rowItemProto.cloneNode(true);
-                rowItem.appendChild(td[0].firstElementChild);
-                rowItem.classList.add('id-checkbox');
-                fragment.appendChild(rowItem);
-
-                //приоритет
-                rowItem = rowItemProto.cloneNode(true);
-                rowItem.classList.add('task-rank');
-                rowItem.innerHTML = td[8].textContent + ' приоритет';
-                fragment.appendChild(rowItem);
-
-                //письма и ссылка
-                rowItem = rowItemProto.cloneNode(true);
-                rowItem.classList.add('row-right');
-
-                let letter = td[1].querySelectorAll('img')[1];
-                letter.classList.add('letter-addr');
-                rowItem.appendChild(letter);
-
-                let link = td[1].querySelectorAll('a')[1];
-                link.classList.add('comment-link');
-                rowItem.appendChild(link);
-                fragment.appendChild(rowItem);
-
-                return fragment;
-            }
-
-            function create2row(td) {
-                let fragment = document.createDocumentFragment();
-
-                let rowItemProto = document.createElement('div');
-
-                let rowItem = rowItemProto.cloneNode(true);
-                rowItem.classList.add('comment-info');
-
-                //автор
-                let author = document.createElement('span');
-                author.classList.add('comment-author');
-                author.innerHTML = 'Автор <br>' + td[4].textContent;
-                rowItem.appendChild(author);
-
-                //исполнитель
-                let worker = document.createElement('span');
-                worker.classList.add('comment-worker');
-                worker.innerHTML = 'Исполнитель <br>' + td[6].textContent;
-                rowItem.appendChild(worker);
-
-                fragment.appendChild(rowItem);
-
-                return fragment;
-            }
-
-            function create3row(td) {
-                //комментарий
-
-                let rowItem = document.createElement('div');
-                rowItem.classList.add('comment-body');
-                rowItem.appendChild(td[5].firstElementChild.cloneNode(true));
-                return rowItem;
-            }
-
-            function create4row(td) {
-                return Array.from(td[2].querySelectorAll('a'));
-            }
-
-            function create5row(td) {
-                let fragment = document.createDocumentFragment();
-
-                let rowItemProto = document.createElement('div');
-
-                let rowItem = rowItemProto.cloneNode(true);
-
-                //время
-                rowItem.classList.add('work-time');
-                let timeStr = td[10].textContent.split('/');
-                timeStr[0] = 'Время затр.: '+timeStr[0];
-                timeStr[1] = 'Время план.: '+timeStr[1];
-                rowItem.innerHTML = timeStr.join(' / ');
-                fragment.appendChild(rowItem);
-
-                //обертка для кнопок Удалить и Редактировать
-                let rowItemWrap = rowItemProto.cloneNode(true);
-                rowItemWrap.classList.add('row-right');
-
-                //удалить
-
-                if(td[11].firstElementChild){
-                    rowItem = rowItemProto.cloneNode(true);
-                    rowItem.classList.add('btn-del-comment');
-                    rowItem.appendChild(td[11].firstElementChild);
-                    rowItemWrap.appendChild(rowItem);
-                }
-
-                //редактировать
-                rowItem = rowItemProto.cloneNode(true);
-                rowItem.classList.add('btn-edit-comment');
-                rowItem.appendChild(td[1].firstElementChild);
-                rowItemWrap.appendChild(rowItem);
-
-                fragment.appendChild(rowItemWrap);
-
-                return fragment;
-            }
-
-
-            function createTemplate() {
-                let block = document.createElement('div');
-                block.classList.add('b-comment');
-                block.id = 'comment-template';
-
-                let blockRow;
-
-                for (let i = 0; i < 5; i++) {
-                    blockRow = document.createElement('div');
-                    blockRow.classList.add('b-comment__row', 'b-comment__row_' + i);
-                    block.appendChild(blockRow)
-                }
-
-                document.body.appendChild(block);
-
-                return block;
-            }
-        };
+        //время
+        rowItem.classList.add('work-time');
+        let timeStr = td[10].textContent.split('/');
+        timeStr[0] = 'Время затр.: '+timeStr[0];
+        timeStr[1] = 'Время план.: '+timeStr[1];
+        rowItem.innerHTML = timeStr.join(' / ');
+        fragment.appendChild(rowItem);
+
+        //обертка для кнопок Удалить и Редактировать
+        let rowItemWrap = rowItemProto.cloneNode(true);
+        rowItemWrap.classList.add('row-right');
+
+        //удалить
+
+        if(td[11].firstElementChild){
+            rowItem = rowItemProto.cloneNode(true);
+            rowItem.classList.add('btn-del-comment');
+            rowItem.appendChild(td[11].firstElementChild);
+            rowItemWrap.appendChild(rowItem);
+        }
+
+        //редактировать
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('btn-edit-comment');
+        rowItem.appendChild(td[1].firstElementChild);
+        rowItemWrap.appendChild(rowItem);
+
+        fragment.appendChild(rowItemWrap);
+
+        return fragment;
+    }
+
+
+    function createTemplate() {
+        let block = document.createElement('div');
+        block.classList.add('b-comment');
+        block.id = 'comment-template';
+
+        let blockRow;
+
+        for (let i = 0; i < 5; i++) {
+            blockRow = document.createElement('div');
+            blockRow.classList.add('b-comment__row', 'b-comment__row_' + i);
+            block.appendChild(blockRow)
+        }
+
+        document.body.appendChild(block);
+
+        return block;
+    }
+};/* End: js-parts\cammentsDesign.js */
 
         switch (action_page) {
             case 'new':
@@ -979,6 +1006,8 @@ console.info('start userscript');
                 break;
             case 'red':
             case 'user_page':
+                addPageElems();
+
                 var elemsModification = new modules.elemsModification();
                 modules.modyfiComments();
                 modules.copyPasteCommentQuote();
@@ -991,6 +1020,7 @@ console.info('start userscript');
 
                 break;
         }
+
 
         //----------
         //утилиты

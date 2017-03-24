@@ -13,25 +13,25 @@
       "sprite"
     ]
   },
-  "uglify": {
+  "task-uglify": {
     "description": "минификация js",
     "tasks": [
       "uglify"
     ]
   },
-  "concat": {
+  "task-concat": {
     "description": "склеивание js",
     "tasks": [
       "concat"
     ]
   },
-  "run-but": {
-    "description": "копирование user.js в папку профиля firefox",
+  "include-file": {
+    "description": "втавка js",
     "tasks": [
-      "commands"
+      "includes"
     ]
   },
-  "project-watch": {
+  "run-watch": {
     "description": "сборка проекта",
     "tasks": [
       "watch"

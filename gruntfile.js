@@ -14,9 +14,8 @@ module.exports = function (grunt) {
         },
         jitGrunt: {
             staticMappings: {
-                "watch": "watch.js"
-                //,
-                //"run-executables": "grunt-run-executables",
+                "watch": "watch.js",
+                "commands": "grunt-commands",
             }
         }
     });

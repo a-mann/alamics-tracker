@@ -4,7 +4,7 @@ module.exports = function(grunt){
     return {
         options: {
             compress: true,
-            mangle: false
+            mangle: true
         },
         'userscript': {
             files: {
