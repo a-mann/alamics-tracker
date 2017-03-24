@@ -1,0 +1,16 @@
+{
+  "name": "tracker-userscript",
+  "version": "1.0.0",
+  "description": "alamics task tracker user script",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-commands": "^0.1.8",
+    "grunt-contrib-uglify": "^2.2.0",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-config": "^0.19.2",
+    "time-grunt": "^1.4.0"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0"
+  }
+}

@@ -24,7 +24,20 @@ rows.map(function (item) {
 
     let files = create4row(td);
     if(!!files.length){
+        let pics = ['png','jpg','gif'];
+
         files.map(function (item) {
+
+            //let ext = item.href.split('.')[1];
+            let ext = item.href.lastIndexOf('.');
+            ext = item.href.slice(ext+1,item.href.length);
+
+            if(pics.indexOf(ext) > -1){
+                item = createImgThumb(item);
+            }else{
+                item = createDocsThumb(ext,item);
+            }
+
             rows[3].appendChild(item);
         });
     }else{
@@ -166,6 +179,21 @@ function create5row(td) {
     fragment.appendChild(rowItemWrap);
 
     return fragment;
+}
+
+function createImgThumb(item) {
+    let pic = document.createElement('img');
+    pic.src = item.getAttribute('href');
+    pic.classList.add('thumb-pic');
+    item.classList.add('img-thumb','file-thumb');
+    item.appendChild(pic);
+    return item;
+}
+
+function createDocsThumb(ext,item) {
+    item.classList.add('doc-thumb','file-thumb');
+    item.textContent = ext;
+    return item;
 }
 
 

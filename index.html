@@ -201,7 +201,180 @@
 
         /*camments design*/
 
-        #comments-tbl{ padding: 0 3em; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr{ display: block; } .b-comment{ width: 100%; margin: 1em 0; display: flex; flex-flow: column wrap; position: relative; outline: 1px solid; } .b-comment__row{ padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row*/ .b-comment__row_0{ box-shadow: 0 1px 2px #ccc; } .task-status{ padding: 0 .5em 0 2em; } .id-checkbox{ position: absolute; visibility: hidden; z-index: -1; } /*//2 row*/ .comment-info > span{ display: inline-block; vertical-align: top; } .comment-author{ padding-right: 2em; position: relative; } .comment-author:after{ content: '\2192'; position: relative; left: 1em; } /*//3 row*/ .b-comment__row_2 { box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc; } /*//4 row*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; } /*//5 row*/ .b-comment__row_3 + .b-comment__row_4 { box-shadow: 0 -1px 2px #ccc; } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 30px; line-height: 30px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; }
+        #comments-tbl {
+            padding: 0 3em;
+        }
+
+        #comments-tbl, #comments-tbl tbody, #comments-tbl tr {
+            display: block;
+        }
+
+        .b-comment {
+            width: 100%;
+            margin: 1em 0;
+            display: flex;
+            flex-flow: column wrap;
+            position: relative;
+            outline: 1px solid;
+        }
+
+        .b-comment__row {
+            padding: 1em;
+            display: flex;
+            flex-flow: row wrap;
+            position: relative;
+        }
+
+        /*//1 row*/
+        .b-comment__row_0 {
+            box-shadow: 0 1px 2px #ccc;
+        }
+
+        .task-status {
+            padding: 0 .5em 0 2em;
+        }
+
+        .id-checkbox {
+            position: absolute;
+            visibility: hidden;
+            z-index: -1;
+        }
+
+        /*//2 row*/
+        .comment-info > span {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .comment-author {
+            padding-right: 2em;
+            position: relative;
+        }
+
+        .comment-author:after {
+            content: '\2192';
+            position: relative;
+            left: 1em;
+        }
+
+        /*//3 row*/
+        .b-comment__row_2 {
+            box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc;
+        }
+
+        /*//4 row*/
+        .b-comment__row.b-comment__row_3 {
+            padding-top: 1.5em;
+            padding-bottom: 1.5em;
+            align-items: stretch;
+        }
+
+        /*//5 row*/
+        .b-comment__row_3 + .b-comment__row_4 {
+            box-shadow: 0 -1px 2px #ccc;
+        }
+
+        .b-comment__row_4 .row-right {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .btn-del-comment, .btn-edit-comment {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+        }
+
+        .btn-edit-comment {
+            width: 140px;
+            border: 1px solid #ADADAD;
+        }
+
+        .btn-del-comment:after, .btn-edit-comment:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .btn-edit-comment:after {
+            content: 'Редактировать';
+            width: 100%;
+            text-align: center;
+            background: #E1E1E1;
+        }
+
+        .btn-del-comment:after {
+            content: 'Удалить';
+            color: #ccc;
+            line-height: normal;
+            border-bottom: 1px solid;
+        }
+
+        .btn-del-comment img, .btn-edit-comment img {
+            display: none;
+        }
+
+        .btn-del-comment a, .btn-edit-comment a {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .row-right {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+        }
+
+        .row-right > * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .row-right > *:not(:last-child) {
+            margin-right: .5em;
+        }
+
+        .img-thumb img:first-child{
+            display: none;
+        }
+
+        .img-thumb{
+            width: 100px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .thumb-pic{
+            width: 100%;
+            height: auto;
+
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .doc-thumb{
+            width: 100px;
+            border: 1px solid #ccc;
+            height: 60px;
+            line-height: 58px;
+            text-align: center;
+        }
+
+        .file-thumb:not(:last-child){
+            margin-right: 1em;
+        }
+
+        .thumb-pic::after{
+            content: attr(title);
+            display: block;
+        }
 
     </style>
 </head>
@@ -236,8 +409,9 @@
                 <a href="#3618887" style="color: #00297E; text-decoration: none">#</a>
             </td>
             <td class="problems_2">
-                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx"
-                                                                                        title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+
+                <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>
             </td>
             <td class="problems_2">17.02.2017 15:42</td>
             <td class="problems_2">Харламова Вера Валерьевна</td>

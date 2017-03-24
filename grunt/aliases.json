@@ -1,0 +1,40 @@
+{
+  "default": {
+    "description": "default tasks",
+    "tasks": [
+      "concat:userscript",
+      "copy:public-js",
+      "concat:public-plugins",
+      "copy:fonts",
+      "copy:release-to-public",
+      "zetzer:main",
+      "css-processing:dev",
+      "copy:dev-utils",
+      "sprite"
+    ]
+  },
+  "uglify": {
+    "description": "минификация js",
+    "tasks": [
+      "uglify"
+    ]
+  },
+  "concat": {
+    "description": "склеивание js",
+    "tasks": [
+      "concat"
+    ]
+  },
+  "run-but": {
+    "description": "копирование user.js в папку профиля firefox",
+    "tasks": [
+      "commands"
+    ]
+  },
+  "project-watch": {
+    "description": "сборка проекта",
+    "tasks": [
+      "watch"
+    ]
+  }
+}
