@@ -34,6 +34,7 @@ modules.copyPasteCommentQuote = function () {
 
                 for(let i = 0; i < strings.length; i++){
                     str += strings[i]+' ';
+
                     if(str.length >= max_characters || i === strings.length - 1){
                         substr.push('> '+str.trim());
                         str = '';
@@ -41,10 +42,12 @@ modules.copyPasteCommentQuote = function () {
                 }
 
                 selection = substr.join('\n');
-                selection = '\n'+selection+'\n'
+
+            }else{
+                selection = '> '+selection.trim();
             }
 
-            //this.innerHTML = this.innerHTML + selection;
+            selection = '\n'+selection+'\n';
 
             elem.value = elem.value.substring(0, startPos)
                 + selection

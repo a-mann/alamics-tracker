@@ -201,21 +201,30 @@
 
         /*camments design*/
 
+        #main-content{
+            background: #FCFCFC;
+        }
+
         #comments-tbl {
-            padding: 0 3em;
+            max-width: 960px;
+            margin: 3em auto;
         }
 
         #comments-tbl, #comments-tbl tbody, #comments-tbl tr {
             display: block;
         }
 
+        #comments-tbl tr:not(:last-child){
+            margin-bottom: 2em;
+        }
+
         .b-comment {
             width: 100%;
-            margin: 1em 0;
+            font-size: 12px;
             display: flex;
             flex-flow: column wrap;
             position: relative;
-            outline: 1px solid;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
         }
 
         .b-comment__row {
@@ -225,11 +234,9 @@
             position: relative;
         }
 
-        /*//1 row*/
-        .b-comment__row_0 {
-            box-shadow: 0 1px 2px #ccc;
-        }
+        /*//1 row шапка*/
 
+        .task-rank,
         .task-status {
             padding: 0 .5em 0 2em;
         }
@@ -240,7 +247,15 @@
             z-index: -1;
         }
 
-        /*//2 row*/
+        .comment-no{
+            margin-right: 1em;
+        }
+
+        /*//2 row автор - исполнитель*/
+        .b-comment__row.b-comment__row_1{
+            padding-top: 0;
+        }
+
         .comment-info > span {
             display: inline-block;
             vertical-align: top;
@@ -252,26 +267,28 @@
         }
 
         .comment-author:after {
-            content: '\2192';
+            content: '→';
             position: relative;
             left: 1em;
         }
 
-        /*//3 row*/
+        /*//3 row текст камента*/
         .b-comment__row_2 {
-            box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc;
+            font-size: 14px;
+            border-top: 1px solid rgba(160,160,160,0.2);
+            border-bottom: 1px solid rgba(160,160,160,0.2);
         }
 
-        /*//4 row*/
+        /*//4 row файлы*/
         .b-comment__row.b-comment__row_3 {
             padding-top: 1.5em;
             padding-bottom: 1.5em;
             align-items: stretch;
         }
 
-        /*//5 row*/
+        /*//5 row подвал*/
         .b-comment__row_3 + .b-comment__row_4 {
-            box-shadow: 0 -1px 2px #ccc;
+            border-top: 1px solid rgba(160,160,160,0.2);
         }
 
         .b-comment__row_4 .row-right {
@@ -281,8 +298,8 @@
 
         .btn-del-comment, .btn-edit-comment {
             width: 100px;
-            height: 30px;
-            line-height: 30px;
+            height: 24px;
+            line-height: 24px;
             position: relative;
         }
 
@@ -338,43 +355,56 @@
             margin-right: .5em;
         }
 
+        .img-thumb{max-width: 150px;}
+
         .img-thumb img:first-child{
             display: none;
         }
 
-        .img-thumb{
-            width: 100px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #ccc;
+        .img-thumb > a{
+            display: block;
         }
+
+        .img-thumb .attach-title{ margin-top: .3em; }
 
         .thumb-pic{
             width: 100%;
-            height: auto;
-
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
+            height: calc(100% - 2em);
+            object-fit: cover;
+            border: 1px solid #ccc;
         }
 
         .doc-thumb{
-            width: 100px;
+            max-width: 150px;
             border: 1px solid #ccc;
-            height: 60px;
             line-height: 58px;
             text-align: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .doc-thumb .attach-title{
+            padding: 0 .5em;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .file-thumb{
+            /*width: 15%;*/
+            flex: 1 1 15%;
+            min-height: 70px;
+        }
+
+        .file-thumb:nth-child(n+7){
+            margin-top: 2em;
         }
 
         .file-thumb:not(:last-child){
             margin-right: 1em;
         }
 
-        .thumb-pic::after{
-            content: attr(title);
-            display: block;
-        }
+        .attach-title{max-width: 150px; text-align: center; line-height: normal; word-break: break-all; }
 
     </style>
 </head>
@@ -409,6 +439,22 @@
                 <a href="#3618887" style="color: #00297E; text-decoration: none">#</a>
             </td>
             <td class="problems_2">
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+
+                <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>
+
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+
+                <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>
+
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+
+                <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>
+
+                <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
+
+                <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>
+
                 <a href="data/attached_files/3618887/UC_LP_dlya_vebinarov_2_.docx"><img src="//support.alamics.ru/images/attach.gif" alt="UC_LP_dlya_vebinarov_2_.docx" title="UC_LP_dlya_vebinarov_2_.docx" border="0"></a>
 
                 <a href="//support.alamics.ru/data/attached_files/3625001/experimental-banner.jpg"><img src="//support.alamics.ru/images/attach.gif" alt="experimental-banner.jpg" title="experimental-banner.jpg" border="0"></a>

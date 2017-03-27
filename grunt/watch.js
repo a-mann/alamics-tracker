@@ -3,7 +3,7 @@
 module.exports = function (grunt) {
     return {
         js: {
-            files: ['./*.js', '<%= paths.jsparts %>*.js'],
+            files: ['./userscript.js', '<%= paths.jsparts %>*.js'],
             tasks: [
                 'copy',
                 'include-file',

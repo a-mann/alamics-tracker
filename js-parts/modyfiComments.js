@@ -19,20 +19,20 @@ modules.modyfiComments = function () {
         goMarkdown(rows);
     });
 
-    // for (let i = 0; i < rows.length; i++) {
-    //     div = getCommentFromRow(rows[i]);
-    //     txt = replaceURLWithHTMLLinks(div.innerHTML);
-    //     div.innerHTML = txt;
-    //     collapse_btn = addCollapseButton(div);
-    //
-    //     if (collapse_btn) {
-    //         collapse_btn.addEventListener('click', function (e) {
-    //             collapseComment(this);
-    //             e.preventDefault();
-    //         });
-    //         collapse_btns.push(collapse_btn);
-    //     }
-    // }
+    for (let i = 0; i < rows.length; i++) {
+        div = getCommentFromRow(rows[i]);
+        txt = replaceURLWithHTMLLinks(div.innerHTML);
+        div.innerHTML = txt;
+        // collapse_btn = addCollapseButton(div);
+        //
+        // if (collapse_btn) {
+        //     collapse_btn.addEventListener('click', function (e) {
+        //         collapseComment(this);
+        //         e.preventDefault();
+        //     });
+        //     collapse_btns.push(collapse_btn);
+        // }
+    }
 
     //добавить кнопку свернуть/развернуть все каменты
     // if (!!document.querySelector('.comment-collapsed')) {

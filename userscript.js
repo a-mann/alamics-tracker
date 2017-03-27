@@ -122,6 +122,9 @@ console.info('start userscript');
 //import saveNewComment.js
 //import copyPasteCommentQuote.js
 //import cammentsDesign.js
+        //вставить выделенный текст камента в текстареа
+        //оформленный как цитата для markdown
+
 
         switch (action_page) {
             case 'new':
@@ -133,11 +136,11 @@ console.info('start userscript');
 
                 var elemsModification = new modules.elemsModification();
                 modules.modyfiComments();
-                modules.copyPasteCommentQuote();
                 modules.countWorkerTime();
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
+                modules.copyPasteCommentQuote();
                 break;
             default:
 
@@ -287,6 +290,21 @@ console.info('start userscript');
                 retStr += "Что-то со временем не так :(";
             }
             return retStr;
+        }
+
+        // формирование строки с нужным окончанием в зависимости от числа
+        // например - минута, минуты, минут
+        function declOfNum(number, titles) {
+            let cases = [2, 0, 1, 1, 1, 2];
+            return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+        }
+
+        function createTimeString(time, titles) {
+            return time + ' ' + declOfNum(time, titles);
+        }
+
+        function createTimeTitleString(time, titles) {
+            return declOfNum(time, titles);
         }
 
         // создание объекта со списком сотруднков и времени каждого в задаче

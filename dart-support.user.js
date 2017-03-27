@@ -333,20 +333,20 @@ modules.modyfiComments = function () {
         goMarkdown(rows);
     });
 
-    // for (let i = 0; i < rows.length; i++) {
-    //     div = getCommentFromRow(rows[i]);
-    //     txt = replaceURLWithHTMLLinks(div.innerHTML);
-    //     div.innerHTML = txt;
-    //     collapse_btn = addCollapseButton(div);
-    //
-    //     if (collapse_btn) {
-    //         collapse_btn.addEventListener('click', function (e) {
-    //             collapseComment(this);
-    //             e.preventDefault();
-    //         });
-    //         collapse_btns.push(collapse_btn);
-    //     }
-    // }
+    for (let i = 0; i < rows.length; i++) {
+        div = getCommentFromRow(rows[i]);
+        txt = replaceURLWithHTMLLinks(div.innerHTML);
+        div.innerHTML = txt;
+        // collapse_btn = addCollapseButton(div);
+        //
+        // if (collapse_btn) {
+        //     collapse_btn.addEventListener('click', function (e) {
+        //         collapseComment(this);
+        //         e.preventDefault();
+        //     });
+        //     collapse_btns.push(collapse_btn);
+        // }
+    }
 
     //добавить кнопку свернуть/развернуть все каменты
     // if (!!document.querySelector('.comment-collapsed')) {
@@ -772,6 +772,7 @@ modules.copyPasteCommentQuote = function () {
 
                 for(let i = 0; i < strings.length; i++){
                     str += strings[i]+' ';
+
                     if(str.length >= max_characters || i === strings.length - 1){
                         substr.push('> '+str.trim());
                         str = '';
@@ -779,10 +780,12 @@ modules.copyPasteCommentQuote = function () {
                 }
 
                 selection = substr.join('\n');
-                selection = '\n'+selection+'\n'
+
+            }else{
+                selection = '> '+selection.trim();
             }
 
-            //this.innerHTML = this.innerHTML + selection;
+            selection = '\n'+selection+'\n';
 
             elem.value = elem.value.substring(0, startPos)
                 + selection
@@ -814,9 +817,12 @@ modules.cammentsDesign = function () {
     createTemplate();
 
     let tbl = document.getElementById('comments-tbl');
+
     let rows = getAllCommentsRows();
 
-    rows.map(function (item) {
+    rows[0].parentNode.removeChild(rows[0].previousElementSibling);
+
+    rows.map(function (item, i) {
         let td = Array.from(item.querySelectorAll('td'));
 
         let block = document.getElementById('comment-template').cloneNode(true);
@@ -826,7 +832,7 @@ modules.cammentsDesign = function () {
 
         let rows = block.querySelectorAll('.b-comment__row');
 
-        let row1 = create1row(td);
+        let row1 = create1row(td,i);
         rows[0].appendChild(row1);
 
         rows[1].appendChild(create2row(td));
@@ -834,13 +840,25 @@ modules.cammentsDesign = function () {
 
         let files = create4row(td);
         if(!!files.length){
+            let pics = ['png','jpg','gif'];
+
             files.map(function (item) {
+
+                //let ext = item.href.split('.')[1];
+                let ext = item.href.lastIndexOf('.');
+                ext = item.href.slice(ext+1,item.href.length);
+
+                if(pics.indexOf(ext) > -1){
+                    item = createImgThumb(item);
+                }else{
+                    item = createDocsThumb(ext,item);
+                }
+
                 rows[3].appendChild(item);
             });
         }else{
             block.removeChild(rows[3]);
         }
-
 
         rows[4].appendChild(create5row(td));
 
@@ -849,30 +867,30 @@ modules.cammentsDesign = function () {
                 item.removeChild(tditem);
             }
         });
-
-        let cammentsDesignCSS = "#comments-tbl{ padding: 0 3em; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr{ display: block; } .b-comment{ width: 100%; margin: 1em 0; display: flex; flex-flow: column wrap; position: relative; outline: 1px solid; } .b-comment__row{ padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row*/ .b-comment__row_0{ box-shadow: 0 1px 2px #ccc; } .task-status{ padding: 0 .5em 0 2em; } .id-checkbox{ position: absolute; visibility: hidden; z-index: -1; } /*//2 row*/ .comment-info > span{ display: inline-block; vertical-align: top; } .comment-author{ padding-right: 2em; position: relative; } .comment-author:after{ content: ''; position: relative; left: 1em; } /*//3 row*/ .b-comment__row_2 { box-shadow: 0 1px 2px #ccc, 0 -1px 2px #ccc; } /*//4 row*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; } /*//5 row*/ .b-comment__row_3 + .b-comment__row_4 { box-shadow: 0 -1px 2px #ccc; } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 30px; line-height: 30px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; }";
-
-        addcss(cammentsDesignCSS);
     });
 
+    let cammentsDesignCSS = "#main-content{ background: #f0f0f0; padding: 1px 0; } #comments-tbl { max-width: 720px; margin: 3em auto; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr { display: block; } #comments-tbl tr:not(:last-child){ margin-bottom: 2em; } .b-comment { width: 100%; background: #fff; font-size: 12px; display: flex; flex-flow: column wrap; position: relative; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2); } .comment-body{width: 100%;} .b-comment__row { padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row шапка*/ .task-rank, .task-status { padding: 0 .5em 0 2em; } .id-checkbox { position: absolute; visibility: hidden; z-index: -1; } .comment-no{ margin-right: 0; } /*//2 row автор - исполнитель*/ .b-comment__row.b-comment__row_1{ padding-top: 0; } .comment-info > span { display: inline-block; vertical-align: top; } .comment-author { padding-right: 2em; position: relative; } .comment-author:after { content: '→'; position: relative; left: 1em; } /*//3 row текст камента*/ .b-comment__row_2 { font-size: 14px; border-top: 1px solid rgba(160, 160, 160, 0.2); border-bottom: 1px solid rgba(160, 160, 160, 0.2); } /*//4 row файлы*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; align-items: stretch; } /*//5 row подвал*/ .b-comment__row_3 + .b-comment__row_4 { border-top: 1px solid rgba(160, 160, 160, 0.2); } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 24px; line-height: 24px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; } .img-thumb{max-width: 150px;} .img-thumb img:first-child { display: none; } .img-thumb > a { display: block; } .img-thumb .attach-title{ margin-top: .3em; } .thumb-pic { width: 100%; height: calc(100% - 2em); object-fit: cover; border: 1px solid #ccc; } .doc-thumb { max-width: 150px; border: 1px solid #ccc; line-height: 58px; text-align: center; text-decoration: none; color: inherit; } .doc-thumb .attach-title { padding: 0 .5em; word-break: break-all; position: relative; top: 50%; transform: translateY(-50%); } .file-thumb { flex: 1 1 15%; min-height: 70px; } .file-thumb:nth-child(n+7) { margin-top: 2em; } .file-thumb:not(:last-child) { margin-right: 1em; } .attach-title{max-width: 150px; text-align: center; line-height: normal; word-break: break-all; }";
 
-    function create1row(td) {
+    addcss(cammentsDesignCSS);
+
+
+    function create1row(td, rownumber) {
         let fragment = document.createDocumentFragment();
 
         let rowItemProto = document.createElement('div');
 
         let rowItem = rowItemProto.cloneNode(true);
 
+        // //номер комментария
+        // rowItem.classList.add('comment-no');
+        // rowItem.innerHTML = rownumber+')';
+        // fragment.appendChild(rowItem);
+
         //дата
+        rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-date');
         rowItem.innerHTML = td[3].textContent;
 
-        fragment.appendChild(rowItem);
-
-        //статус
-        rowItem = rowItemProto.cloneNode(true);
-        rowItem.classList.add('task-status');
-        rowItem.innerHTML = td[9].textContent;
         fragment.appendChild(rowItem);
 
         //id checkbox
@@ -881,15 +899,28 @@ modules.cammentsDesign = function () {
         rowItem.classList.add('id-checkbox');
         fragment.appendChild(rowItem);
 
-        //приоритет
+        //приоритет и срок исполнения
         rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('task-rank');
+
         rowItem.innerHTML = td[8].textContent + ' приоритет';
+
+        let deadline = td[7].textContent;
+
+        if(deadline.length > 1){
+            rowItem.innerHTML = rowItem.innerHTML + ' до '+deadline;
+        }
+
         fragment.appendChild(rowItem);
 
-        //письма и ссылка
+        //письма,ссылка,статус
         rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('row-right');
+
+        let status = rowItemProto.cloneNode(true);
+        status.textContent = td[9].textContent;
+        status.classList.add('task-status');
+        rowItem.appendChild(status);
 
         let letter = td[1].querySelectorAll('img')[1];
         letter.classList.add('letter-addr');
@@ -898,6 +929,14 @@ modules.cammentsDesign = function () {
         let link = td[1].querySelectorAll('a')[1];
         link.classList.add('comment-link');
         rowItem.appendChild(link);
+
+
+        //номер комментария
+        let no = rowItemProto.cloneNode(true);
+        no.classList.add('comment-no');
+        no.innerHTML = rownumber;
+        rowItem.appendChild(no);
+
         fragment.appendChild(rowItem);
 
         return fragment;
@@ -914,13 +953,15 @@ modules.cammentsDesign = function () {
         //автор
         let author = document.createElement('span');
         author.classList.add('comment-author');
-        author.innerHTML = 'Автор <br>' + td[4].textContent;
+        //author.innerHTML = 'Автор <br>' + td[4].textContent;
+        author.innerHTML = td[4].textContent;
         rowItem.appendChild(author);
 
         //исполнитель
         let worker = document.createElement('span');
         worker.classList.add('comment-worker');
-        worker.innerHTML = 'Исполнитель <br>' + td[6].textContent;
+        //worker.innerHTML = 'Исполнитель <br>' + td[6].textContent;
+        worker.innerHTML = td[6].textContent;
         rowItem.appendChild(worker);
 
         fragment.appendChild(rowItem);
@@ -948,12 +989,21 @@ modules.cammentsDesign = function () {
 
         let rowItem = rowItemProto.cloneNode(true);
 
-        //время
+        //время потраченное и запланированное
         rowItem.classList.add('work-time');
         let timeStr = td[10].textContent.split('/');
-        timeStr[0] = 'Время затр.: '+timeStr[0];
-        timeStr[1] = 'Время план.: '+timeStr[1];
-        rowItem.innerHTML = timeStr.join(' / ');
+
+        timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
+            ' '+
+            createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);
+
+        if (isNaN(Number(timeStr[1]))) {
+            rowItem.innerHTML = timeStr[0];
+        }else{
+            timeStr[1] = ' из запланированных '+timeStr[1];
+            rowItem.innerHTML = timeStr.join(' ');
+        }
+
         fragment.appendChild(rowItem);
 
         //обертка для кнопок Удалить и Редактировать
@@ -980,8 +1030,40 @@ modules.cammentsDesign = function () {
         return fragment;
     }
 
+    function createImgThumb(item) {
+        let wrap = document.createElement('div');
+        wrap.classList.add('img-thumb', 'file-thumb');
+
+        let pic = document.createElement('img');
+        pic.src = item.getAttribute('href');
+        pic.classList.add('thumb-pic');
+
+        //item.classList.add('img-thumb', 'file-thumb');
+        item.appendChild(pic);
+        let title = getAttachTitle(item);
+        wrap.appendChild(item);
+        wrap.appendChild(title);
+
+        return wrap;
+    }
+
+    function createDocsThumb(ext,item) {
+        item.classList.add('doc-thumb','file-thumb');
+        item.appendChild(getAttachTitle(item));
+        item.removeChild(item.firstElementChild);
+        return item;
+    }
+
+    function getAttachTitle(item) {
+        let title = item.firstElementChild.title;
+        let wrap = document.createElement('div');
+        wrap.textContent = title;
+        wrap.classList.add('attach-title');
+        return wrap;
+    }
 
     function createTemplate() {
+        let wrap = document.createElement('template');
         let block = document.createElement('div');
         block.classList.add('b-comment');
         block.id = 'comment-template';
@@ -994,11 +1076,16 @@ modules.cammentsDesign = function () {
             block.appendChild(blockRow)
         }
 
-        document.body.appendChild(block);
+        wrap.appendChild(block);
 
-        return block;
+        document.body.appendChild(wrap);
+
+        return wrap;
     }
 };/* End: js-parts\cammentsDesign.js */
+        //вставить выделенный текст камента в текстареа
+        //оформленный как цитата для markdown
+
 
         switch (action_page) {
             case 'new':
@@ -1010,11 +1097,11 @@ modules.cammentsDesign = function () {
 
                 var elemsModification = new modules.elemsModification();
                 modules.modyfiComments();
-                modules.copyPasteCommentQuote();
                 modules.countWorkerTime();
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
+                modules.copyPasteCommentQuote();
                 break;
             default:
 
@@ -1164,6 +1251,21 @@ modules.cammentsDesign = function () {
                 retStr += "Что-то со временем не так :(";
             }
             return retStr;
+        }
+
+        // формирование строки с нужным окончанием в зависимости от числа
+        // например - минута, минуты, минут
+        function declOfNum(number, titles) {
+            let cases = [2, 0, 1, 1, 1, 2];
+            return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+        }
+
+        function createTimeString(time, titles) {
+            return time + ' ' + declOfNum(time, titles);
+        }
+
+        function createTimeTitleString(time, titles) {
+            return declOfNum(time, titles);
         }
 
         // создание объекта со списком сотруднков и времени каждого в задаче
