@@ -7,6 +7,7 @@
 // @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
 // @include https://support.dartit.ru/*
 // @include https://support.alamics.ru/*
+// @CSS http://galagodesign.ru/userscript/commentsDesign.css
 // @grant unsafeWindow
 // @author mann
 // @license MIT
@@ -39,43 +40,7 @@ console.info('start userscript');
     if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
-        var custom_css = ".onoff-opt{margin: 0 6px 0 10px}";
-        custom_css += ".none{display: none !important}";
-        custom_css += ".hidden-elem{position:fixed;left:-999em;z-index: -1; visibility: hidden;}";
-        custom_css += ".none.view{display: block !important}";
-        custom_css += ".ch_addr{margin: 10px 10px 10px 0; vertical-align: top}";
-        custom_css += ".totop > input {margin: 10px 0 0}";
-        custom_css += ".label_head{display: block; margin: 0 0 20px}";
-        custom_css += ".clearfix:before, .clearfix:after { content:''; display:table; clear: both }";
-        custom_css += ".alist{float: right} .alist p{margin: 0 0 10px; line-height: 1; text-align: right}";
-        custom_css += ".bar-wrap{padding:8px 15px;background:#2d2d2d}";
-        custom_css += "#custom-project-list > li{width: 20%; float: left; cursor: pointer}";
-        custom_css += "#custom-workers-list > li{width: 20%; float: left; cursor: pointer}";
-        custom_css += "#custom-project-list > li:first-child{display:none}";
-        custom_css += ".user-list > li{line-height: 1.5}";
-        custom_css += ".selected{color: green}";
-        custom_css += "#settings-btn{margin: 0 0 20px 0}";
-        custom_css += "#settings-box{display: none; margin: 20px 0; padding: 20px 0; outline: 1px solid #414141}";
-        custom_css += "#settings-box.is-open{display: block}";
-        custom_css += ".user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}";
-        custom_css += ".regular-link{color:#0054b9}";
-        custom_css += ".time-list p{margin: 5px 0; display:flex; justify-content:space-between;}";
-        custom_css += ".time-list > p > span:first-child{padding-right: 1em; cursor: pointer;}";
-        custom_css += ":root .time-list-total{margin-top: 1em; border-top: 1px solid;}";
-        custom_css += ".comment-collapsed{max-height: 70px; overflow: hidden !important;}";
-        custom_css += ".long-comment{width: 100% !important;position: relative; padding-top: 30px;}";
-        custom_css += ".btn-collapse{position: absolute; top: 0; right: 0;}";
-        custom_css += ".btn-collapse-all{position: fixed; top: 10; right: 10;}";
-        custom_css += ":root .dates-list{width: 150px; display: inline-block; margin: 0 20px 0 0}";
-        custom_css += ".user-toolbar{margin: 20px 0; padding: 20px 10px; border-top: 1px solid rgba(0,0,0,.7); overflow: hidden; display: flex; flex-wrap: wrap;}";
-        custom_css += ".user-toolbar__item{padding: 10px 15px; background: rgba(255,255,255,.6); box-shadow: 0 1px 1px rgba(0,0,0,.6)}";
-        custom_css += ":root .user-toolbar-title{margin: 0 0 1em; padding: 0; color: #000;}";
-        custom_css += ":root #comments-tbl .comment-wrap{font-size: 14px; width:100% !important; max-width: 800px;overflow: hidden;}";
-        //markdown
-        custom_css += ":root #comments-tbl h1{font-size: 120%; font-weight: 400; margin: 0 0 .4em; color: inherit;}";
-        custom_css += ":root #comments-tbl blockquote{padding: 10px 20px;margin: 0 0 20px; border-left: 5px solid #ccc;}";
-        custom_css += ":root #comments-tbl blockquote p{margin: 0;}";
-        custom_css += ":root #comments-tbl ul{padding-left: .6em; list-style-position: inside;}";
+        var custom_css = '//cssimport userscript.css';
 
         addcss(custom_css);
 
@@ -113,18 +78,14 @@ console.info('start userscript');
         }
 
 
-
-
-//import userSettings.js
-//import elemsModification.js
-//import modyfiComments.js
-//import countWorkerTime.js
-//import calculateElapsedTime.js
-//import saveNewComment.js
-//import copyPasteCommentQuote.js
-//import cammentsDesign.js
-        //вставить выделенный текст камента в текстареа
-        //оформленный как цитата для markdown
+        //jsimport userSettings.js
+        //jsimport elemsModification.js
+        //jsimport modyfiComments.js
+        //jsimport countWorkerTime.js
+        //jsimport calculateElapsedTime.js
+        //jsimport saveNewComment.js
+        //jsimport copyPasteCommentQuote.js
+        //jsimport cammentsDesign.js
 
 
         switch (action_page) {

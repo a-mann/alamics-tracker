@@ -5,9 +5,23 @@ module.exports = function(grunt){
         js: {
             options: {
                 includePath: '<%= paths.jsparts %>',
-                includeRegexp: /^\/\/\s*import\s+['"]?([^'"]+)['"]?\s*$/,
+                includeRegexp: /^\s*\/\/\s*jsimport\s+['"]?([^'"]+)['"]?\s*$/,
                 duplicates: false,
                 debug: true
+            },
+            files: [{
+                cwd: '.',
+                src: './*.user.js',
+                dest: './',
+            }],
+        },
+        css: {
+            options: {
+                includePath: 'css-parts/',
+                includeRegexp: /\/\/\s*cssimport\s+['"]?(.*.css)/,
+                duplicates: false,
+                debug: false,
+                banner: ''
             },
             files: [{
                 cwd: '.',

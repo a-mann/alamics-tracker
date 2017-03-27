@@ -7,6 +7,7 @@
 // @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
 // @include https://support.dartit.ru/*
 // @include https://support.alamics.ru/*
+// @CSS http://galagodesign.ru/userscript/commentsDesign.css
 // @grant unsafeWindow
 // @author mann
 // @license MIT
@@ -39,43 +40,7 @@ console.info('start userscript');
     if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
-        var custom_css = ".onoff-opt{margin: 0 6px 0 10px}";
-        custom_css += ".none{display: none !important}";
-        custom_css += ".hidden-elem{position:fixed;left:-999em;z-index: -1; visibility: hidden;}";
-        custom_css += ".none.view{display: block !important}";
-        custom_css += ".ch_addr{margin: 10px 10px 10px 0; vertical-align: top}";
-        custom_css += ".totop > input {margin: 10px 0 0}";
-        custom_css += ".label_head{display: block; margin: 0 0 20px}";
-        custom_css += ".clearfix:before, .clearfix:after { content:''; display:table; clear: both }";
-        custom_css += ".alist{float: right} .alist p{margin: 0 0 10px; line-height: 1; text-align: right}";
-        custom_css += ".bar-wrap{padding:8px 15px;background:#2d2d2d}";
-        custom_css += "#custom-project-list > li{width: 20%; float: left; cursor: pointer}";
-        custom_css += "#custom-workers-list > li{width: 20%; float: left; cursor: pointer}";
-        custom_css += "#custom-project-list > li:first-child{display:none}";
-        custom_css += ".user-list > li{line-height: 1.5}";
-        custom_css += ".selected{color: green}";
-        custom_css += "#settings-btn{margin: 0 0 20px 0}";
-        custom_css += "#settings-box{display: none; margin: 20px 0; padding: 20px 0; outline: 1px solid #414141}";
-        custom_css += "#settings-box.is-open{display: block}";
-        custom_css += ".user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}";
-        custom_css += ".regular-link{color:#0054b9}";
-        custom_css += ".time-list p{margin: 5px 0; display:flex; justify-content:space-between;}";
-        custom_css += ".time-list > p > span:first-child{padding-right: 1em; cursor: pointer;}";
-        custom_css += ":root .time-list-total{margin-top: 1em; border-top: 1px solid;}";
-        custom_css += ".comment-collapsed{max-height: 70px; overflow: hidden !important;}";
-        custom_css += ".long-comment{width: 100% !important;position: relative; padding-top: 30px;}";
-        custom_css += ".btn-collapse{position: absolute; top: 0; right: 0;}";
-        custom_css += ".btn-collapse-all{position: fixed; top: 10; right: 10;}";
-        custom_css += ":root .dates-list{width: 150px; display: inline-block; margin: 0 20px 0 0}";
-        custom_css += ".user-toolbar{margin: 20px 0; padding: 20px 10px; border-top: 1px solid rgba(0,0,0,.7); overflow: hidden; display: flex; flex-wrap: wrap;}";
-        custom_css += ".user-toolbar__item{padding: 10px 15px; background: rgba(255,255,255,.6); box-shadow: 0 1px 1px rgba(0,0,0,.6)}";
-        custom_css += ":root .user-toolbar-title{margin: 0 0 1em; padding: 0; color: #000;}";
-        custom_css += ":root #comments-tbl .comment-wrap{font-size: 14px; width:100% !important; max-width: 800px;overflow: hidden;}";
-        //markdown
-        custom_css += ":root #comments-tbl h1{font-size: 120%; font-weight: 400; margin: 0 0 .4em; color: inherit;}";
-        custom_css += ":root #comments-tbl blockquote{padding: 10px 20px;margin: 0 0 20px; border-left: 5px solid #ccc;}";
-        custom_css += ":root #comments-tbl blockquote p{margin: 0;}";
-        custom_css += ":root #comments-tbl ul{padding-left: .6em; list-style-position: inside;}";
+        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list>li{line-height:1.5}.selected{color:green}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}';
 
         addcss(custom_css);
 
@@ -111,8 +76,6 @@ console.info('start userscript');
                 input_div.appendChild($user_toolbar);
             }
         }
-
-
 
 
 /* Begin: js-parts\userSettings.js */
@@ -865,7 +828,18 @@ modules.cammentsDesign = function () {
             block.removeChild(rows[3]);
         }
 
+        //cтрока скрыта
+        //rows[4].classList.add('is-hidden');
         rows[4].appendChild(create5row(td));
+
+        //становится видимой при наведении курсора на карточку камента
+        block.addEventListener('mouseenter', function () {
+            showHiddenRow(rows[4]);
+        });
+
+        block.addEventListener('mouseleave', function () {
+            hideHiddenRow(rows[4]);
+        });
 
         td.map(function (tditem) {
             if(tditem){
@@ -874,10 +848,9 @@ modules.cammentsDesign = function () {
         });
     });
 
-    let cammentsDesignCSS = "#main-content{ background: #f0f0f0; padding: 1px 0; } #comments-tbl { max-width: 720px; margin: 3em auto; } #comments-tbl, #comments-tbl tbody, #comments-tbl tr { display: block; } #comments-tbl tr:not(:last-child){ margin-bottom: 2em; } .b-comment { width: 100%; background: #fff; font-size: 12px; display: flex; flex-flow: column wrap; position: relative; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2); } .comment-body{width: 100%;} .b-comment__row { padding: 1em; display: flex; flex-flow: row wrap; position: relative; } /*//1 row шапка*/ .task-rank, .task-status { padding: 0 .5em 0 2em; } .id-checkbox { position: absolute; visibility: hidden; z-index: -1; } .comment-no{ margin-right: 0; } /*//2 row автор - исполнитель*/ .b-comment__row.b-comment__row_1{ padding-top: 0; } .comment-info > span { display: inline-block; vertical-align: top; } .comment-author { padding-right: 2em; position: relative; } .comment-author:after { content: '→'; position: relative; left: 1em; } /*//3 row текст камента*/ .b-comment__row_2 { font-size: 14px; border-top: 1px solid rgba(160, 160, 160, 0.2); border-bottom: 1px solid rgba(160, 160, 160, 0.2); } /*//4 row файлы*/ .b-comment__row.b-comment__row_3 { padding-top: 1.5em; padding-bottom: 1.5em; align-items: stretch; } /*//5 row подвал*/ .b-comment__row_3 + .b-comment__row_4 { border-top: 1px solid rgba(160, 160, 160, 0.2); } .b-comment__row_4 .row-right { top: 50%; transform: translateY(-50%); } .btn-del-comment, .btn-edit-comment { width: 100px; height: 24px; line-height: 24px; position: relative; } .btn-edit-comment { width: 140px; border: 1px solid #ADADAD; } .btn-del-comment:after, .btn-edit-comment:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; } .btn-edit-comment:after { content: 'Редактировать'; width: 100%; text-align: center; background: #E1E1E1; } .btn-del-comment:after { content: 'Удалить'; color: #ccc; line-height: normal; border-bottom: 1px solid; } .btn-del-comment img, .btn-edit-comment img { display: none; } .btn-del-comment a, .btn-edit-comment a { width: 100%; height: 100%; position: absolute; } .row-right { position: absolute; top: 1em; right: 1em; } .row-right > * { display: inline-block; vertical-align: middle; } .row-right > *:not(:last-child) { margin-right: .5em; } .img-thumb{max-width: 150px;} .img-thumb img:first-child { display: none; } .img-thumb > a { display: block; } .img-thumb .attach-title{ margin-top: .3em; } .thumb-pic { width: 100%; height: calc(100% - 2em); object-fit: cover; border: 1px solid #ccc; } .doc-thumb { max-width: 150px; border: 1px solid #ccc; line-height: 58px; text-align: center; text-decoration: none; color: inherit; } .doc-thumb .attach-title { padding: 0 .5em; word-break: break-all; position: relative; top: 50%; transform: translateY(-50%); } .file-thumb { flex: 1 1 15%; min-height: 70px; } .file-thumb:nth-child(n+7) { margin-top: 2em; } .file-thumb:not(:last-child) { margin-right: 1em; } .attach-title{max-width: 150px; text-align: center; line-height: normal; word-break: break-all; }";
+    let cammentsDesignCSS = '#main-content{background:#f0f0f0;padding:1px 0}#comments-tbl{max-width:720px;margin:3em auto}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{width:100%;background:#fff;font-size:12px;display:-ms-flexbox;display:flex;-ms-flex-flow:column wrap;flex-flow:column wrap;position:relative;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2)}.comment-body{width:100%}.b-comment__row{padding:1em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-no{margin-right:0}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:stretch;align-items:stretch}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end;max-height:0;padding:0;overflow:hidden}.b-comment__row_4.is-visible{animation:showRow .3s ease-out forwards}.b-comment__row.b-comment__row_4.is-hidden{max-height:0;overflow:hidden;animation:hideRow .3s ease-in}.actions-btn-wrap{padding:1em}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{width:140px;border:1px solid #adadad}.btn-del-comment{width:100px}.btn-del-comment:after,.btn-edit-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1}.btn-edit-comment:after{content:"Редактировать";width:100%;text-align:center;background:#e1e1e1}.btn-del-comment:after{content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img,.btn-edit-comment img{display:none}.btn-del-comment a,.btn-edit-comment a{width:100%;height:100%;position:absolute}.row-right{position:absolute;top:1em;right:1em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.5em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;height:calc(100% - 2em);object-fit:cover;border:1px solid #ccc}.doc-thumb{max-width:150px;border:1px solid #ccc;line-height:58px;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{padding:0 .5em;word-break:break-all;position:relative;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 15%;flex:1 1 15%;min-height:70px}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}@keyframes showRow{0%{max-height:0}to{max-height:50px}}@keyframes hideRow{0%{max-height:50px}to{max-height:0}}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
 
     addcss(cammentsDesignCSS);
-
 
     function create1row(td, rownumber) {
         let fragment = document.createDocumentFragment();
@@ -885,11 +858,6 @@ modules.cammentsDesign = function () {
         let rowItemProto = document.createElement('div');
 
         let rowItem = rowItemProto.cloneNode(true);
-
-        // //номер комментария
-        // rowItem.classList.add('comment-no');
-        // rowItem.innerHTML = rownumber+')';
-        // fragment.appendChild(rowItem);
 
         //дата
         rowItem = rowItemProto.cloneNode(true);
@@ -935,7 +903,6 @@ modules.cammentsDesign = function () {
         link.classList.add('comment-link');
         rowItem.appendChild(link);
 
-
         //номер комментария
         let no = rowItemProto.cloneNode(true);
         no.classList.add('comment-no');
@@ -971,6 +938,24 @@ modules.cammentsDesign = function () {
 
         fragment.appendChild(rowItem);
 
+        let workTime = rowItemProto.cloneNode(true);
+        workTime.classList.add('work-time');
+
+        let timeStr = td[10].textContent.split('/');
+
+        timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
+            ' '+
+            createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);
+
+        if (isNaN(Number(timeStr[1]))) {
+            workTime.innerHTML = timeStr[0];
+        }else{
+            timeStr[1] = ' из '+timeStr[1];
+            workTime.innerHTML = timeStr.join(' ');
+        }
+
+        fragment.appendChild(workTime);
+
         return fragment;
     }
 
@@ -994,26 +979,9 @@ modules.cammentsDesign = function () {
 
         let rowItem = rowItemProto.cloneNode(true);
 
-        //время потраченное и запланированное
-        rowItem.classList.add('work-time');
-        let timeStr = td[10].textContent.split('/');
-
-        timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
-            ' '+
-            createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);
-
-        if (isNaN(Number(timeStr[1]))) {
-            rowItem.innerHTML = timeStr[0];
-        }else{
-            timeStr[1] = ' из запланированных '+timeStr[1];
-            rowItem.innerHTML = timeStr.join(' ');
-        }
-
-        fragment.appendChild(rowItem);
-
         //обертка для кнопок Удалить и Редактировать
         let rowItemWrap = rowItemProto.cloneNode(true);
-        rowItemWrap.classList.add('row-right');
+        rowItemWrap.classList.add('actions-btn-wrap');
 
         //удалить
 
@@ -1087,9 +1055,18 @@ modules.cammentsDesign = function () {
 
         return wrap;
     }
+
+    function showHiddenRow(row) {
+        row.classList.add('is-visible');
+        row.classList.remove('is-hidden');
+    }
+
+    function hideHiddenRow(row) {
+        row.classList.add('is-hidden');
+        row.classList.remove('is-visible');
+    }
+
 };/* End: js-parts\cammentsDesign.js */
-        //вставить выделенный текст камента в текстареа
-        //оформленный как цитата для markdown
 
 
         switch (action_page) {

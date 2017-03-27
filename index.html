@@ -201,231 +201,26 @@
 
         /*camments design*/
 
-        #main-content{
-            background: #FCFCFC;
-        }
-
-        #comments-tbl {
-            max-width: 960px;
-            margin: 3em auto;
-        }
-
-        #comments-tbl, #comments-tbl tbody, #comments-tbl tr {
-            display: block;
-        }
-
-        #comments-tbl tr:not(:last-child){
-            margin-bottom: 2em;
-        }
-
-        .b-comment {
-            width: 100%;
-            font-size: 12px;
-            display: flex;
-            flex-flow: column wrap;
-            position: relative;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
-        }
-
-        .b-comment__row {
-            padding: 1em;
-            display: flex;
-            flex-flow: row wrap;
-            position: relative;
-        }
-
-        /*//1 row шапка*/
-
-        .task-rank,
-        .task-status {
-            padding: 0 .5em 0 2em;
-        }
-
-        .id-checkbox {
-            position: absolute;
-            visibility: hidden;
-            z-index: -1;
-        }
-
-        .comment-no{
-            margin-right: 1em;
-        }
-
-        /*//2 row автор - исполнитель*/
-        .b-comment__row.b-comment__row_1{
-            padding-top: 0;
-        }
-
-        .comment-info > span {
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .comment-author {
-            padding-right: 2em;
-            position: relative;
-        }
-
-        .comment-author:after {
-            content: '→';
-            position: relative;
-            left: 1em;
-        }
-
-        /*//3 row текст камента*/
-        .b-comment__row_2 {
-            font-size: 14px;
-            border-top: 1px solid rgba(160,160,160,0.2);
-            border-bottom: 1px solid rgba(160,160,160,0.2);
-        }
-
-        /*//4 row файлы*/
-        .b-comment__row.b-comment__row_3 {
-            padding-top: 1.5em;
-            padding-bottom: 1.5em;
-            align-items: stretch;
-        }
-
-        /*//5 row подвал*/
-        .b-comment__row_3 + .b-comment__row_4 {
-            border-top: 1px solid rgba(160,160,160,0.2);
-        }
-
-        .b-comment__row_4 .row-right {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .btn-del-comment, .btn-edit-comment {
-            width: 100px;
-            height: 24px;
-            line-height: 24px;
-            position: relative;
-        }
-
-        .btn-edit-comment {
-            width: 140px;
-            border: 1px solid #ADADAD;
-        }
-
-        .btn-del-comment:after, .btn-edit-comment:after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-        }
-
-        .btn-edit-comment:after {
-            content: 'Редактировать';
-            width: 100%;
-            text-align: center;
-            background: #E1E1E1;
-        }
-
-        .btn-del-comment:after {
-            content: 'Удалить';
-            color: #ccc;
-            line-height: normal;
-            border-bottom: 1px solid;
-        }
-
-        .btn-del-comment img, .btn-edit-comment img {
-            display: none;
-        }
-
-        .btn-del-comment a, .btn-edit-comment a {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        .row-right {
-            position: absolute;
-            top: 1em;
-            right: 1em;
-        }
-
-        .row-right > * {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .row-right > *:not(:last-child) {
-            margin-right: .5em;
-        }
-
-        .img-thumb{max-width: 150px;}
-
-        .img-thumb img:first-child{
-            display: none;
-        }
-
-        .img-thumb > a{
-            display: block;
-        }
-
-        .img-thumb .attach-title{ margin-top: .3em; }
-
-        .thumb-pic{
-            width: 100%;
-            height: calc(100% - 2em);
-            object-fit: cover;
-            border: 1px solid #ccc;
-        }
-
-        .doc-thumb{
-            max-width: 150px;
-            border: 1px solid #ccc;
-            line-height: 58px;
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .doc-thumb .attach-title{
-            padding: 0 .5em;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .file-thumb{
-            /*width: 15%;*/
-            flex: 1 1 15%;
-            min-height: 70px;
-        }
-
-        .file-thumb:nth-child(n+7){
-            margin-top: 2em;
-        }
-
-        .file-thumb:not(:last-child){
-            margin-right: 1em;
-        }
-
-        .attach-title{max-width: 150px; text-align: center; line-height: normal; word-break: break-all; }
-
     </style>
 </head>
 <body>
 <form action="" name="theForm" method="POST" enctype="multipart/form-data" id="main-content">
     <table id="comments-tbl" width="100%" cellspacing="0" cellpadding="0">
         <!--<tr>
-            <td class="problems_head" width="1%">&nbsp;</td>
-            <td class="problems_head" width="1%">&nbsp;</td>
-            <td class="problems_head" width="1%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td class="problems_head" width="9%">Дата</td>
-            <td class="problems_head" width="11%">Автор</td>
-            <td class="problems_head" width="36%">Комментарий</td>
-            <td class="problems_head" width="11%">Исполнитель</td>
-            <td class="problems_head" width="8%">Срок исполнения работ</td>
-            <td class="problems_head" width="8%">Приоритет</td>
-            <td class="problems_head" width="7%">Статус</td>
-            <td class="problems_head" width="5%">Время затр./план.</td>
-            <td class="problems_head" width="1%">&nbsp;</td>
-            <td class="problems_head" width="0"></td>
-        </tr>-->
+                <td class="problems_head" width="1%">&nbsp;</td>
+                <td class="problems_head" width="1%">&nbsp;</td>
+                <td class="problems_head" width="1%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td class="problems_head" width="9%">Дата</td>
+                <td class="problems_head" width="11%">Автор</td>
+                <td class="problems_head" width="36%">Комментарий</td>
+                <td class="problems_head" width="11%">Исполнитель</td>
+                <td class="problems_head" width="8%">Срок исполнения работ</td>
+                <td class="problems_head" width="8%">Приоритет</td>
+                <td class="problems_head" width="7%">Статус</td>
+                <td class="problems_head" width="5%">Время затр./план.</td>
+                <td class="problems_head" width="1%">&nbsp;</td>
+                <td class="problems_head" width="0"></td>
+            </tr>-->
 
         <tr>
             <td class="problems_2"><input name="checkbox_3618887" id="checkbox_3618887" type="checkbox"></td>
