@@ -9,7 +9,11 @@ modules.cammentsDesign = function () {
 
     let rows = getAllCommentsRows();
 
-    rows[0].parentNode.removeChild(rows[0].previousElementSibling);
+    //rows[0].parentNode.removeChild(rows[0].previousElementSibling);
+    //скрываю, а не удаляю чтобы не менять уже используемые функции
+    //выбирающие строки с каментами и игнорирующие первую строку.
+    //Если удалять то получится что первый камент не будет обрабатываться
+    rows[0].previousElementSibling.classList.add('hidden-elem');
 
     rows.map(function (item, i) {
         let td = Array.from(item.querySelectorAll('td'));

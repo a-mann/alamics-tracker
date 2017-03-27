@@ -41,6 +41,7 @@ console.info('start userscript');
         //добавим новые стили
         var custom_css = ".onoff-opt{margin: 0 6px 0 10px}";
         custom_css += ".none{display: none !important}";
+        custom_css += ".hidden-elem{position:fixed;left:-999em;z-index: -1; visibility: hidden;}";
         custom_css += ".none.view{display: block !important}";
         custom_css += ".ch_addr{margin: 10px 10px 10px 0; vertical-align: top}";
         custom_css += ".totop > input {margin: 10px 0 0}";
@@ -820,7 +821,11 @@ modules.cammentsDesign = function () {
 
     let rows = getAllCommentsRows();
 
-    rows[0].parentNode.removeChild(rows[0].previousElementSibling);
+    //rows[0].parentNode.removeChild(rows[0].previousElementSibling);
+    //скрываю, а не удаляю чтобы не менять уже используемые функции
+    //выбирающие строки с каментами и игнорирующие первую строку.
+    //Если удалять то получится что первый камент не будет обрабатываться
+    rows[0].previousElementSibling.classList.add('hidden-elem');
 
     rows.map(function (item, i) {
         let td = Array.from(item.querySelectorAll('td'));
