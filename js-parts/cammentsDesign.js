@@ -55,15 +55,15 @@ modules.cammentsDesign = function () {
 
         //cтрока скрыта
         //rows[4].classList.add('is-hidden');
-        rows[4].appendChild(create5row(td));
+        //rows[4].appendChild(create5row(td));
 
         //становится видимой при наведении курсора на карточку камента
         block.addEventListener('mouseenter', function () {
-            showHiddenRow(rows[4]);
+            showActionsBtn(this);
         });
 
         block.addEventListener('mouseleave', function () {
-            hideHiddenRow(rows[4]);
+            showActionsBtn(this);
         });
 
         td.map(function (tditem) {
@@ -85,7 +85,6 @@ modules.cammentsDesign = function () {
         let rowItem = rowItemProto.cloneNode(true);
 
         //дата
-        rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-date');
         rowItem.innerHTML = td[3].textContent;
 
@@ -185,12 +184,39 @@ modules.cammentsDesign = function () {
     }
 
     function create3row(td) {
-        //комментарий
 
-        let rowItem = document.createElement('div');
+        let fragment = document.createDocumentFragment();
+
+        let rowItemProto = document.createElement('div');
+
+        //комментарий
+        let rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-body');
         rowItem.appendChild(td[5].firstElementChild.cloneNode(true));
-        return rowItem;
+
+        fragment.appendChild(rowItem);
+
+        //обертка для кнопок Удалить и Редактировать
+        let rowItemWrap = rowItemProto.cloneNode(true);
+        rowItemWrap.classList.add('actions-btn-wrap');
+        //удалить
+
+        if(td[11].firstElementChild){
+            rowItem = rowItemProto.cloneNode(true);
+            rowItem.classList.add('btn-del-comment');
+            rowItem.appendChild(td[11].firstElementChild);
+            rowItemWrap.appendChild(rowItem);
+        }
+
+        //редактировать
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('btn-edit-comment');
+        rowItem.appendChild(td[1].firstElementChild);
+        rowItemWrap.appendChild(rowItem);
+
+        fragment.appendChild(rowItemWrap);
+
+        return fragment;
     }
 
     function create4row(td) {
@@ -268,7 +294,7 @@ modules.cammentsDesign = function () {
 
         let blockRow;
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             blockRow = document.createElement('div');
             blockRow.classList.add('b-comment__row', 'b-comment__row_' + i);
             block.appendChild(blockRow)
@@ -281,14 +307,8 @@ modules.cammentsDesign = function () {
         return wrap;
     }
 
-    function showHiddenRow(row) {
-        row.classList.add('is-visible');
-        row.classList.remove('is-hidden');
+    function showActionsBtn(camment) {
+        let btns = camment.querySelector('.actions-btn-wrap');
+        btns.classList.toggle('is-visible');
     }
-
-    function hideHiddenRow(row) {
-        row.classList.add('is-hidden');
-        row.classList.remove('is-visible');
-    }
-
 };

@@ -32,6 +32,9 @@ module.exports = function (grunt) {
                         modifier: 'm'
                     }
                 }),
+                require('postcss-nested')({
+                    bubble: ['@nest']
+                }),
                 require('cssnano')({
                     safe: true
                 })

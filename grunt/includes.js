@@ -20,8 +20,7 @@ module.exports = function(grunt){
                 includePath: 'css-parts/',
                 includeRegexp: /\/\/\s*cssimport\s+['"]?(.*.css)/,
                 duplicates: false,
-                debug: false,
-                banner: ''
+                debug: false
             },
             files: [{
                 cwd: '.',

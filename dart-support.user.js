@@ -40,7 +40,7 @@ console.info('start userscript');
     if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
-        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list>li{line-height:1.5}.selected{color:green}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}';
+        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list>li{line-height:1.5}.selected{color:green}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
 
         addcss(custom_css);
 
@@ -75,6 +75,32 @@ console.info('start userscript');
 
                 input_div.appendChild($user_toolbar);
             }
+
+            //подвал задачи
+
+            //обертка
+            let $task_footer = document.querySelectorAll('table.theForm');
+            $task_footer = $task_footer[0];
+            $task_footer.id = 'task-footer';
+
+            //таблица с textarea камента
+            let $footer_tbls = $task_footer.querySelectorAll('table');
+
+            let $commentTbl = $footer_tbls[0];
+            $commentTbl.id = 'tbl-new-comment';
+
+            //обертка ячейки с textarea
+            let $newComment = $commentTbl.querySelectorAll('td')[1];
+            $newComment.id = 'new-comment-wrap';
+
+            //добавлю обертку для textarea
+            //в нее буду вставлять кнопки всякие
+            let $tareaWrap = document.createElement('div');
+            $tareaWrap.id = 'tarea-wrap';
+            $tareaWrap.classList.add('tarea-wrap');
+
+            $tareaWrap.appendChild(document.getElementById('text'));
+            $newComment.appendChild($tareaWrap);
         }
 
 
@@ -659,18 +685,22 @@ modules.calculateElapsedTime = function () {
 //на случай внезапного звершения сессии
 modules.saveNewComment = function () {
     'use strict';
-    var $field = document.getElementById('text');
 
-    var query = window.location.search.substring(1);
-    var task_id = query.split("=")[2];
+    let $field = document.getElementById('text');
+    let wrap = document.getElementById('tarea-wrap');
+
+    let query = window.location.search.substring(1);
+    let task_id = query.split("=")[2];
 
     //добавлю кнопку для вставки сохраненного текста
-    var btn = document.createElement('BUTTON');
+    let btn = document.createElement('BUTTON');
     btn.setAttribute('type', 'button');
-    btn.classList.add('label_head');
-    btn.innerHTML = 'Вставить сохраненный текст';
+    btn.classList.add('btn-insert-ls');
+    btn.id ='btn-insert-ls';
+    btn.innerHTML = 'Вставить из LS';
     btn.classList.add('none'); //по умолчанию скрыта
-    $field.parentNode.insertBefore(btn, $field);
+
+    wrap.appendChild(btn);
 
     //если есть сохраненный текст - показать кнопку
     showPasteBtn(btn, task_id);
@@ -687,6 +717,14 @@ modules.saveNewComment = function () {
     //если есть сохраненный текст - показать кнопку
     $field.addEventListener('blur', function () {
         showPasteBtn(btn, task_id);
+    });
+
+    wrap.addEventListener('mouseenter',function () {
+        btn.classList.add('is-visible');
+    });
+
+    wrap.addEventListener('mouseleave',function () {
+        btn.classList.remove('is-visible');
     });
 
     function saveTaskComment() {
@@ -830,15 +868,15 @@ modules.cammentsDesign = function () {
 
         //cтрока скрыта
         //rows[4].classList.add('is-hidden');
-        rows[4].appendChild(create5row(td));
+        //rows[4].appendChild(create5row(td));
 
         //становится видимой при наведении курсора на карточку камента
         block.addEventListener('mouseenter', function () {
-            showHiddenRow(rows[4]);
+            showActionsBtn(this);
         });
 
         block.addEventListener('mouseleave', function () {
-            hideHiddenRow(rows[4]);
+            showActionsBtn(this);
         });
 
         td.map(function (tditem) {
@@ -848,7 +886,7 @@ modules.cammentsDesign = function () {
         });
     });
 
-    let cammentsDesignCSS = '#main-content{background:#f0f0f0;padding:1px 0}#comments-tbl{max-width:720px;margin:3em auto}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{width:100%;background:#fff;font-size:12px;display:-ms-flexbox;display:flex;-ms-flex-flow:column wrap;flex-flow:column wrap;position:relative;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2)}.comment-body{width:100%}.b-comment__row{padding:1em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-no{margin-right:0}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:stretch;align-items:stretch}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end;max-height:0;padding:0;overflow:hidden}.b-comment__row_4.is-visible{animation:showRow .3s ease-out forwards}.b-comment__row.b-comment__row_4.is-hidden{max-height:0;overflow:hidden;animation:hideRow .3s ease-in}.actions-btn-wrap{padding:1em}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{width:140px;border:1px solid #adadad}.btn-del-comment{width:100px}.btn-del-comment:after,.btn-edit-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1}.btn-edit-comment:after{content:"Редактировать";width:100%;text-align:center;background:#e1e1e1}.btn-del-comment:after{content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img,.btn-edit-comment img{display:none}.btn-del-comment a,.btn-edit-comment a{width:100%;height:100%;position:absolute}.row-right{position:absolute;top:1em;right:1em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.5em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;height:calc(100% - 2em);object-fit:cover;border:1px solid #ccc}.doc-thumb{max-width:150px;border:1px solid #ccc;line-height:58px;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{padding:0 .5em;word-break:break-all;position:relative;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 15%;flex:1 1 15%;min-height:70px}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}@keyframes showRow{0%{max-height:0}to{max-height:50px}}@keyframes hideRow{0%{max-height:50px}to{max-height:0}}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
+    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fff;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;display:-ms-flexbox;display:flex;-ms-flex-flow:column wrap;flex-flow:column wrap;position:relative}.comment-body{width:100%}.b-comment__row{padding:1em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-no{margin-right:0}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{width:140px;border:1px solid #adadad}.btn-del-comment{width:100px}.btn-del-comment:after,.btn-edit-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1}.btn-edit-comment:after{content:"Редактировать";width:100%;text-align:center;background:#e1e1e1}.btn-del-comment:after{content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img,.btn-edit-comment img{display:none}.btn-del-comment a,.btn-edit-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:stretch;align-items:stretch}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:1em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.5em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;height:calc(100% - 2em);object-fit:cover;border:1px solid #ccc}.doc-thumb{max-width:150px;border:1px solid #ccc;line-height:58px;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{padding:0 .5em;word-break:break-all;position:relative;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 15%;flex:1 1 15%;min-height:70px}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
 
     addcss(cammentsDesignCSS);
 
@@ -860,7 +898,6 @@ modules.cammentsDesign = function () {
         let rowItem = rowItemProto.cloneNode(true);
 
         //дата
-        rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-date');
         rowItem.innerHTML = td[3].textContent;
 
@@ -960,12 +997,39 @@ modules.cammentsDesign = function () {
     }
 
     function create3row(td) {
-        //комментарий
 
-        let rowItem = document.createElement('div');
+        let fragment = document.createDocumentFragment();
+
+        let rowItemProto = document.createElement('div');
+
+        //комментарий
+        let rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-body');
         rowItem.appendChild(td[5].firstElementChild.cloneNode(true));
-        return rowItem;
+
+        fragment.appendChild(rowItem);
+
+        //обертка для кнопок Удалить и Редактировать
+        let rowItemWrap = rowItemProto.cloneNode(true);
+        rowItemWrap.classList.add('actions-btn-wrap');
+        //удалить
+
+        if(td[11].firstElementChild){
+            rowItem = rowItemProto.cloneNode(true);
+            rowItem.classList.add('btn-del-comment');
+            rowItem.appendChild(td[11].firstElementChild);
+            rowItemWrap.appendChild(rowItem);
+        }
+
+        //редактировать
+        rowItem = rowItemProto.cloneNode(true);
+        rowItem.classList.add('btn-edit-comment');
+        rowItem.appendChild(td[1].firstElementChild);
+        rowItemWrap.appendChild(rowItem);
+
+        fragment.appendChild(rowItemWrap);
+
+        return fragment;
     }
 
     function create4row(td) {
@@ -1043,7 +1107,7 @@ modules.cammentsDesign = function () {
 
         let blockRow;
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             blockRow = document.createElement('div');
             blockRow.classList.add('b-comment__row', 'b-comment__row_' + i);
             block.appendChild(blockRow)
@@ -1056,18 +1120,34 @@ modules.cammentsDesign = function () {
         return wrap;
     }
 
-    function showHiddenRow(row) {
-        row.classList.add('is-visible');
-        row.classList.remove('is-hidden');
+    function showActionsBtn(camment) {
+        let btns = camment.querySelector('.actions-btn-wrap');
+        btns.classList.toggle('is-visible');
     }
-
-    function hideHiddenRow(row) {
-        row.classList.add('is-hidden');
-        row.classList.remove('is-visible');
-    }
-
 };/* End: js-parts\cammentsDesign.js */
+/* Begin: js-parts\taskFooterDesign.js */
+modules.taskFooterDesign = function () {
+    'use strict';
 
+//new comment
+    let commentTbl = document.getElementById('tbl-new-comment');
+    let newComment = commentTbl.querySelectorAll('td')[1];
+    newComment.id = 'new-comment-wrap';
+
+    // добавлю заголовок
+    let newCommentTitle = document.createElement('h2');
+    newCommentTitle.textContent = 'Новый комментарий';
+    newCommentTitle.classList.add('section-title');
+
+    //блок в котором будут поля для ввода затраченног и планируемого времени
+    //и выбор приоритета
+
+    newComment.insertBefore(newCommentTitle, newComment.firstElementChild);
+
+    let footerDesignCSS = '#tbl-new-comment tbody,#tbl-new-comment td,#tbl-new-comment tr{display:block}#tbl-new-comment td:first-child{display:none}#new-comment-wrap{max-width:720px;margin:auto;position:relative;overflow:hidden}.tl{display:none}#text{padding:.6em;border:0;box-sizing:border-box;box-shadow:inset 0 -2px 2px 0 rgba(0,0,0,.14),inset 0 1px 5px 0 rgba(0,0,0,.12),inset 0 3px 1px -2px rgba(0,0,0,.2)}';
+
+    addcss(footerDesignCSS);
+};/* End: js-parts\taskFooterDesign.js */
 
         switch (action_page) {
             case 'new':
@@ -1083,6 +1163,7 @@ modules.cammentsDesign = function () {
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
+                modules.taskFooterDesign();
                 modules.copyPasteCommentQuote();
                 break;
             default:

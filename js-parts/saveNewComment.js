@@ -4,18 +4,22 @@
 //на случай внезапного звершения сессии
 modules.saveNewComment = function () {
     'use strict';
-    var $field = document.getElementById('text');
 
-    var query = window.location.search.substring(1);
-    var task_id = query.split("=")[2];
+    let $field = document.getElementById('text');
+    let wrap = document.getElementById('tarea-wrap');
+
+    let query = window.location.search.substring(1);
+    let task_id = query.split("=")[2];
 
     //добавлю кнопку для вставки сохраненного текста
-    var btn = document.createElement('BUTTON');
+    let btn = document.createElement('BUTTON');
     btn.setAttribute('type', 'button');
-    btn.classList.add('label_head');
-    btn.innerHTML = 'Вставить сохраненный текст';
+    btn.classList.add('btn-insert-ls');
+    btn.id ='btn-insert-ls';
+    btn.innerHTML = 'Вставить из LS';
     btn.classList.add('none'); //по умолчанию скрыта
-    $field.parentNode.insertBefore(btn, $field);
+
+    wrap.appendChild(btn);
 
     //если есть сохраненный текст - показать кнопку
     showPasteBtn(btn, task_id);
@@ -32,6 +36,14 @@ modules.saveNewComment = function () {
     //если есть сохраненный текст - показать кнопку
     $field.addEventListener('blur', function () {
         showPasteBtn(btn, task_id);
+    });
+
+    wrap.addEventListener('mouseenter',function () {
+        btn.classList.add('is-visible');
+    });
+
+    wrap.addEventListener('mouseleave',function () {
+        btn.classList.remove('is-visible');
     });
 
     function saveTaskComment() {

@@ -1,15 +1,11 @@
-:root{
-    --bg-color: #f0f0f0;
-}
+@import "_vars.pcss";
 
-#main-content {
-    background: var(--bg-color);
-    padding: 1px 0;
-}
+//#main-content {}
 
 #comments-tbl {
-    max-width: 720px;
-    margin: 3em auto;
+    margin: auto;
+    padding: 3em 0;
+    background: var(--bg-color);
 }
 
 #comments-tbl, #comments-tbl tbody, #comments-tbl tr {
@@ -21,13 +17,13 @@
 }
 
 .b-comment {
+    @apply --card;
+
     width: 100%;
-    background: #fff;
     font-size: 12px;
     display: flex;
     flex-flow: column wrap;
     position: relative;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 .comment-body {
@@ -88,40 +84,24 @@
     font-size: 14px;
     border-top: 1px solid rgba(160, 160, 160, 0.2);
     border-bottom: 1px solid rgba(160, 160, 160, 0.2);
-}
-
-/*//4 row файлы*/
-.b-comment__row.b-comment__row_3 {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-    align-items: stretch;
-}
-
-/*//5 row подвал*/
-.b-comment__row_3 + .b-comment__row_4 {
-    border-top: 1px solid rgba(160, 160, 160, 0.2);
-}
-
-.b-comment__row.b-comment__row_4 {
-    justify-content: flex-end;
-    max-height: 0;
-    padding: 0;
+    position: relative;
     overflow: hidden;
 }
 
-.b-comment__row_4.is-visible {
-    animation: showRow .3s ease-out forwards;
-}
-
-.b-comment__row.b-comment__row_4.is-hidden {
-    max-height: 0;
-    overflow: hidden;
-    animation: hideRow .3s ease-in;
-}
+ /*и кнопки Удалить, Редактировать*/
 
 .actions-btn-wrap {
     padding: 1em;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transition: transform .3s;
+
+    &.is-visible{
+        transform: translateY(-100%);
+    }
 }
+
 
 .btn-del-comment, .btn-edit-comment {
     display: inline-block;
@@ -172,6 +152,24 @@
     height: 100%;
     position: absolute;
 }
+
+/*//4 row файлы*/
+.b-comment__row.b-comment__row_3 {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    align-items: stretch;
+}
+
+/*//5 row подвал*/
+.b-comment__row_3 + .b-comment__row_4 {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.b-comment__row.b-comment__row_4 {
+    justify-content: flex-end;
+}
+
+/*----*/
 
 .row-right {
     position: absolute;
@@ -246,24 +244,6 @@
     text-align: center;
     line-height: normal;
     word-break: break-all;
-}
-
-@keyframes showRow {
-    0% {
-        max-height: 0;
-    }
-    100% {
-        max-height: 50px;
-    }
-}
-
-@keyframes hideRow {
-    0% {
-        max-height: 50px;
-    }
-    100% {
-        max-height: 0;
-    }
 }
 
 #comments-tbl tr:last-child .b-comment__row_0,

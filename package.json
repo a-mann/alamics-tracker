@@ -15,6 +15,7 @@
     "load-grunt-config": "^0.19.2",
     "postcss-bem": "^0.4.1",
     "postcss-cssnext": "^2.8.0",
+    "postcss-nested": "^1.0.0",
     "postcss-partial-import": "^3.1.1",
     "time-grunt": "^1.4.0"
   },

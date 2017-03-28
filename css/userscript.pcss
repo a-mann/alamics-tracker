@@ -196,3 +196,22 @@
     padding-left: .6em;
     list-style-position: inside;
 }
+
+/*typo*/
+.section-title{
+    color: inherit;
+    margin: 0 0 1em;
+    padding: 0 !important;
+}
+
+/*вставка текста из local storage*/
+.btn-insert-ls{
+    position: absolute;
+    top: 100%;
+    right: 2em;
+    transition: transform .3s;
+
+    &.is-visible{
+        transform: translateY(-150%);
+    }
+}

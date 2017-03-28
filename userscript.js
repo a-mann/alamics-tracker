@@ -75,6 +75,32 @@ console.info('start userscript');
 
                 input_div.appendChild($user_toolbar);
             }
+
+            //подвал задачи
+
+            //обертка
+            let $task_footer = document.querySelectorAll('table.theForm');
+            $task_footer = $task_footer[0];
+            $task_footer.id = 'task-footer';
+
+            //таблица с textarea камента
+            let $footer_tbls = $task_footer.querySelectorAll('table');
+
+            let $commentTbl = $footer_tbls[0];
+            $commentTbl.id = 'tbl-new-comment';
+
+            //обертка ячейки с textarea
+            let $newComment = $commentTbl.querySelectorAll('td')[1];
+            $newComment.id = 'new-comment-wrap';
+
+            //добавлю обертку для textarea
+            //в нее буду вставлять кнопки всякие
+            let $tareaWrap = document.createElement('div');
+            $tareaWrap.id = 'tarea-wrap';
+            $tareaWrap.classList.add('tarea-wrap');
+
+            $tareaWrap.appendChild(document.getElementById('text'));
+            $newComment.appendChild($tareaWrap);
         }
 
 
@@ -86,7 +112,7 @@ console.info('start userscript');
         //jsimport saveNewComment.js
         //jsimport copyPasteCommentQuote.js
         //jsimport cammentsDesign.js
-
+        //jsimport taskFooterDesign.js
 
         switch (action_page) {
             case 'new':
@@ -102,6 +128,7 @@ console.info('start userscript');
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
+                modules.taskFooterDesign();
                 modules.copyPasteCommentQuote();
                 break;
             default:
