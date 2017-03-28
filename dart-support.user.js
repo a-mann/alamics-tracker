@@ -2,8 +2,8 @@
 
 // ==UserScript==
 // @name DartIT tracker-tweaker revo
-// @updateURL https://github.com/a-mann/alamics-tracker/blob/master/dart-support.user.js
-// @downloadURL https://github.com/a-mann/alamics-tracker/blob/master/dart-support.user.js
+// @updateURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js
+// @downloadURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js
 // @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
 // @include https://support.dartit.ru/*
 // @include https://support.alamics.ru/*
