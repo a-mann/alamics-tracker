@@ -2,16 +2,15 @@
 
 // ==UserScript==
 // @name DartIT tracker-tweaker revo
-// @updateURL https://dl.dropboxusercontent.com/u/11456758/DartUserScript/dart-support.user.js
-// @downloadURL https://dl.dropboxusercontent.com/u/11456758/DartUserScript/dart-support.user.js
+// @updateURL https://github.com/a-mann/alamics-tracker/blob/master/dart-support.user.js
+// @downloadURL https://github.com/a-mann/alamics-tracker/blob/master/dart-support.user.js
 // @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
 // @include https://support.dartit.ru/*
 // @include https://support.alamics.ru/*
-// @CSS http://galagodesign.ru/userscript/commentsDesign.css
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 0.0.5.5
+// @version 0.1.0.0
 
 // ==/UserScript==
 console.info('start userscript');
