@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dart-support.user.js" afterPath="$PROJECT_DIR$/dart-support.user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userscript.js" afterPath="$PROJECT_DIR$/userscript.js" />
     </list>
     <ignored path="dart-user-script.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +28,8 @@
       <file leaf-file-name="userscript.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userscript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="89" lean-forward="false" selection-start-line="5" selection-start-column="89" selection-end-line="5" selection-end-column="89" />
+            <state relative-caret-position="391">
+              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="e#727#759#0" expanded="false" />
                 <element signature="e#765#792#0" expanded="false" />
@@ -531,7 +531,7 @@
       <workItem from="1490246665208" duration="41215000" />
       <workItem from="1490350493011" duration="35933000" />
       <workItem from="1490615116628" duration="10000" />
-      <workItem from="1490615135415" duration="6757000" />
+      <workItem from="1490615135415" duration="6863000" />
     </task>
     <task id="LOCAL-00001" summary="попробую разбивать камент по 2 br&#10;а получившиеся строки перед обработккой markdown дополнительно по 1 br">
       <created>1490178790527</created>
@@ -610,11 +610,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490679989366</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Снова обновил одновил update/download url. Нужно проверить будет ли обновляться">
+      <created>1490680107428</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1490680107428</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280112000" />
+    <option name="totallyTimeSpent" value="280218000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="79" y="52" width="1735" height="1003" extended-state="0" />
@@ -1072,8 +1079,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="89" lean-forward="false" selection-start-line="5" selection-start-column="89" selection-end-line="5" selection-end-column="89" />
+        <state relative-caret-position="391">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="e#727#759#0" expanded="false" />
             <element signature="e#765#792#0" expanded="false" />
