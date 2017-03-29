@@ -96,4 +96,6 @@ modules.elemsModification = function () {
     if (document.getElementById('project_id') || document.getElementById('client_id')) {
         this.modifyProjectList();
     }
+
+    console.info('load elemsModification');
 };

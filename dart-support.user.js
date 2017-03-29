@@ -39,7 +39,7 @@ console.info('start userscript');
     if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
-        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list>li{line-height:1.5}.selected{color:green}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
+        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;display:inline-block;cursor:pointer}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
 
         addcss(custom_css);
 
@@ -100,6 +100,10 @@ console.info('start userscript');
 
             $tareaWrap.appendChild(document.getElementById('text'));
             $newComment.appendChild($tareaWrap);
+
+            //Таблица статусов задачи
+            let $statusTbl = $footer_tbls[1].querySelector('table');
+            $statusTbl.id = 'tbl-status';
         }
 
 
@@ -196,8 +200,62 @@ modules.userSettings = function () {
         });
     }
 
+    // добавление кнопок включения/отключения разных модулей
+    let optionsBlock = document.createElement('div');
+    optionsBlock.classList.add('user-list');
+
+    let settings_title = document.createElement('h2');
+    settings_title.textContent = 'Опции';
+    settings_title.classList.add('user-title');
+
+    optionsBlock.appendChild(settings_title);
+
+    let countTimeBtn =  document.createElement('span');
+    countTimeBtn.id = 'countTimeBtn';
+    countTimeBtn.classList.add('btn-flat');
+    countTimeBtn.textContent = 'Подсчет времени в задаче - Включен';
+
+    if(!localStorage.getItem('worker-time-count')){
+        localStorage.setItem('worker-time-count', 'true');
+    }
+
+    countTimeBtn.addEventListener('click',function () {
+       this.classList.toggle('selected');
+
+       if(this.classList.contains('selected')){
+           this.textContent = 'Подсчет времени в задаче - Включен';
+           localStorage.setItem('worker-time-count', 'true');
+       }else{
+           this.textContent = 'Подсчет времени в задаче - Выключен';
+           localStorage.setItem('worker-time-count','false');
+       }
+    });
+
+    function checkTimeCountOption() {
+        let btn = document.getElementById('countTimeBtn');
+
+        if(localStorage.getItem('worker-time-count') === 'true'){
+            btn.textContent = 'Подсчет времени в задаче - Включен';
+            btn.classList.add('selected');
+        }else{
+            btn.textContent = 'Подсчет времени в задаче - Выключен';
+            btn.classList.remove('selected');
+        }
+    }
+
+    optionsBlock.appendChild(countTimeBtn);
+
+    $user_settings_box.appendChild(optionsBlock);
+
+    checkTimeCountOption();
+
+
+
+
     createTaskListHTML();
     createWorkersListHTML();
+
+    console.info('load userSettings');
 };
 /* End: js-parts\userSettings.js */
 /* Begin: js-parts\elemsModification.js */
@@ -299,6 +357,8 @@ modules.elemsModification = function () {
     if (document.getElementById('project_id') || document.getElementById('client_id')) {
         this.modifyProjectList();
     }
+
+    console.info('load elemsModification');
 };/* End: js-parts\elemsModification.js */
 /* Begin: js-parts\modyfiComments.js */
 
@@ -540,6 +600,8 @@ modules.modyfiComments = function () {
 
         return str + space;
     }
+
+    console.info('load modyfiComments');
 };/* End: js-parts\modyfiComments.js */
 /* Begin: js-parts\countWorkerTime.js */
 
@@ -640,6 +702,8 @@ modules.countWorkerTime = function () {
     $input_box.insertBefore($timelist, $input_box.lastChild);
 
     //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
+
+    console.info('load countWorkerTime');
 };/* End: js-parts\countWorkerTime.js */
 /* Begin: js-parts\calculateElapsedTime.js */
 
@@ -676,6 +740,8 @@ modules.calculateElapsedTime = function () {
             minToDays(cur_value);
         }
     });
+
+    console.info('load calculateElapsedTime');
 };/* End: js-parts\calculateElapsedTime.js */
 /* Begin: js-parts\saveNewComment.js */
 
@@ -735,6 +801,8 @@ modules.saveNewComment = function () {
             button.classList.remove('none');
         }
     }
+
+    console.info('load saveNewComment');
 };/* End: js-parts\saveNewComment.js */
 /* Begin: js-parts\copyPasteCommentQuote.js */
 
@@ -808,6 +876,8 @@ modules.copyPasteCommentQuote = function () {
         "17",
         "V".charCodeAt(0)
     );
+
+    console.info('load copyPasteCommentQuote');
 };/* End: js-parts\copyPasteCommentQuote.js */
 /* Begin: js-parts\cammentsDesign.js */
 
@@ -853,7 +923,7 @@ modules.cammentsDesign = function () {
                 let ext = item.href.lastIndexOf('.');
                 ext = item.href.slice(ext+1,item.href.length);
 
-                if(pics.indexOf(ext) > -1){
+                if(pics.indexOf(ext.toLowerCase()) > -1){
                     item = createImgThumb(item);
                 }else{
                     item = createDocsThumb(ext,item);
@@ -885,7 +955,7 @@ modules.cammentsDesign = function () {
         });
     });
 
-    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fff;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;display:-ms-flexbox;display:flex;-ms-flex-flow:column wrap;flex-flow:column wrap;position:relative}.comment-body{width:100%}.b-comment__row{padding:1em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-no{margin-right:0}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{width:140px;border:1px solid #adadad}.btn-del-comment{width:100px}.btn-del-comment:after,.btn-edit-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1}.btn-edit-comment:after{content:"Редактировать";width:100%;text-align:center;background:#e1e1e1}.btn-del-comment:after{content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img,.btn-edit-comment img{display:none}.btn-del-comment a,.btn-edit-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:stretch;align-items:stretch}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:1em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.5em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;height:calc(100% - 2em);object-fit:cover;border:1px solid #ccc}.doc-thumb{max-width:150px;border:1px solid #ccc;line-height:58px;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{padding:0 .5em;word-break:break-all;position:relative;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 15%;flex:1 1 15%;min-height:70px}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
+    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fff;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;display:-ms-flexbox;display:flex;-ms-flex-flow:column wrap;flex-flow:column wrap;position:relative}.comment-body{width:100%}.b-comment__row{padding:1em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-no{margin-right:0}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{width:140px;border:1px solid #adadad}.btn-del-comment{width:100px}.btn-del-comment:after,.btn-edit-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1}.btn-edit-comment:after{content:"Редактировать";width:100%;text-align:center;background:#e1e1e1}.btn-del-comment:after{content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img,.btn-edit-comment img{display:none}.btn-del-comment a,.btn-edit-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:stretch;align-items:stretch}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:1em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.5em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;object-fit:cover;border:1px solid #ccc}.doc-thumb{max-width:150px;border:1px solid #ccc;line-height:58px;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{padding:0 .5em;word-break:break-all;position:relative;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 15%;flex:1 1 15%;min-height:70px}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
 
     addcss(cammentsDesignCSS);
 
@@ -1123,6 +1193,8 @@ modules.cammentsDesign = function () {
         let btns = camment.querySelector('.actions-btn-wrap');
         btns.classList.toggle('is-visible');
     }
+
+    console.info('load cammentsDesign');
 };/* End: js-parts\cammentsDesign.js */
 /* Begin: js-parts\taskFooterDesign.js */
 modules.taskFooterDesign = function () {
@@ -1130,23 +1202,308 @@ modules.taskFooterDesign = function () {
 
 //new comment
     let commentTbl = document.getElementById('tbl-new-comment');
-    let newComment = commentTbl.querySelectorAll('td')[1];
-    newComment.id = 'new-comment-wrap';
+    let newComment = document.getElementById('new-comment-wrap');
 
     // добавлю заголовок
     let newCommentTitle = document.createElement('h2');
     newCommentTitle.textContent = 'Новый комментарий';
     newCommentTitle.classList.add('section-title');
-
-    //блок в котором будут поля для ввода затраченног и планируемого времени
-    //и выбор приоритета
-
     newComment.insertBefore(newCommentTitle, newComment.firstElementChild);
 
-    let footerDesignCSS = '#tbl-new-comment tbody,#tbl-new-comment td,#tbl-new-comment tr{display:block}#tbl-new-comment td:first-child{display:none}#new-comment-wrap{max-width:720px;margin:auto;position:relative;overflow:hidden}.tl{display:none}#text{padding:.6em;border:0;box-sizing:border-box;box-shadow:inset 0 -2px 2px 0 rgba(0,0,0,.14),inset 0 1px 5px 0 rgba(0,0,0,.12),inset 0 3px 1px -2px rgba(0,0,0,.2)}';
+    //1 первая строка - исполнитель, статус, приоритет
+    //блок в котором будут поля для ввода затраченного и планируемого времени
+    //и выбор приоритета
+
+    let rowItemProto = document.createElement('div');
+    let rowItem = rowItemProto.cloneNode(true);
+    let fragment = document.createDocumentFragment();
+    let rowsFragment = document.createDocumentFragment();
+
+    //исполнитель
+    let field = document.getElementById('internal_worker');
+    let workerBlock = field.parentNode;
+    workerBlock.classList.add('worker-block');
+    fragment.appendChild(workerBlock);
+
+    //статус
+    let statusTbl = document.getElementById('tbl-status');
+    let statusList = createStatusList(statusTbl);
+    let block = createFieldAndLabel('Статус', statusList);
+    block.classList.add('frow-col-2-1');
+
+    fragment.appendChild(block);
+
+    //приоритет
+    field = document.getElementById('priority_id');
+    block = createFieldAndLabel('Приоритет', field);
+    field.classList.add('frow-col-2-2');
+    fragment.appendChild(block);
+
+    rowItem.classList.add('task-fields-row','task-row-1');
+    rowItem.appendChild(fragment);
+    rowsFragment.appendChild(rowItem);
+
+    //2 вторая строка - время (затрачено/планируемо), проект, срок
+
+    rowItem = rowItemProto.cloneNode(true);
+    rowItem.classList.add('task-fields-row','task-row-2');
+
+    let timeBlock = rowItemProto.cloneNode(true);
+    timeBlock.classList.add('time-block');
+
+    //затрачено времени
+    field = document.getElementById('spended_time');
+    block = createFieldAndLabel('Затрачено', field);
+    timeBlock.appendChild(block);
+
+    //планируемое время
+    field = document.getElementById('plan_time');
+    block = createFieldAndLabel('Планируемое', field);
+    timeBlock.appendChild(block);
+
+    fragment.appendChild(timeBlock);
+
+    //проект
+    field = document.getElementById('client_id');
+    let project = createFieldAndLabel('Проект', field);
+    project.classList.add('frow-col-2-1');
+    fragment.appendChild(project);
+
+    //срок
+    let deadline = document.getElementById('end_date').parentNode;
+    deadline.width = '';
+    deadline.classList.add('deadline-calendar','frow-col-2-2');
+
+    //убираю символ перевода строки
+    deadline.removeChild(deadline.querySelector('script').nextSibling);
+
+    //кнопку Х - очистить поле - убираю
+    //deadline.removeChild(deadline.querySelector('input[type=button]'));
+    fragment.appendChild(createFieldAndLabel('Срок', deadline));
+
+    rowItem.classList.add('task-fields-row','task-row-2');
+    rowItem.appendChild(fragment);
+    rowsFragment.appendChild(rowItem);
+
+    //3 третья строка - дополнительный емейл и тип задачи
+    //дополнительный емейл
+    rowItem = rowItemProto.cloneNode(true);
+    rowItem.classList.add('task-fields-row','task-row-3');
+
+    let sendList = document.getElementById('add_email');
+
+    let addEmail = sendList.parentNode;
+    addEmail.classList.add('add-email');
+
+    let addEmailLabel = document.createElement('label');
+    addEmailLabel.textContent = 'Получатели рассылки по почте';
+    addEmail.insertBefore(addEmailLabel,addEmail.firstElementChild);
+
+    let sendListBtn = document.getElementById('getEmailAddressesButton');
+    sendListBtn.value = 'Кому письма';
+    addEmail.appendChild(sendListBtn);
+
+    fragment.appendChild(addEmail);
+
+    //тип задачи
+    let taskTypeBlock = document.getElementById('problem_type').parentNode;
+    taskTypeBlock.classList.add('task-type');
+
+    let taskTypeLabel = document.createElement('label');
+    taskTypeLabel.textContent = 'Тип задачи';
+    taskTypeBlock.insertBefore(taskTypeLabel,taskTypeBlock.firstElementChild);
+    fragment.appendChild(taskTypeBlock);
+
+    rowItem.appendChild(fragment);
+    rowsFragment.appendChild(rowItem);
+
+    //4 четвертая строка - добавление файлов
+    rowItem = rowItemProto.cloneNode(true);
+    rowItem.classList.add('task-fields-row','task-row-4');
+
+    let existAddFile = document.getElementById('FileInputs');
+    let addFilesBlock = existAddFile.parentNode;
+    addFilesBlock.classList.add('add-files');
+
+    let addFilesLabel = document.createElement('label');
+    addFilesLabel.textContent = 'Прикрепить файлы, размер всех файлов до 3 мб';
+    addFilesBlock.insertBefore(addFilesLabel,addFilesBlock.firstElementChild);
+
+    let addFileInput = addFilesBlock.querySelector('a');
+
+    addFileInput.addEventListener('click', function () {
+        removeFileInput(existAddFile);
+    });
+
+    fragment.appendChild(addFilesBlock);
+    rowItem.appendChild(fragment);
+    rowsFragment.appendChild(rowItem);
+
+    //5 пятая строка - кнопка Сохранить
+    rowItem = rowItemProto.cloneNode(true);
+    rowItem.classList.add('task-fields-row','task-row-5');
+
+    let saveBtn = document.querySelector('input[name=submitButton]');
+    saveBtn.classList.add('btn-action');
+
+    fragment.appendChild(saveBtn);
+    rowItem.appendChild(fragment);
+    rowsFragment.appendChild(rowItem);
+
+    //все собранное/перемещенное вставляю в блок
+    newComment.appendChild(rowsFragment);
+
+    //--тут навешиваю события на перемещенные элементы
+
+    //при выборе в списке доп.емайлов сразу вставлять в поле для отправки
+    let emailList = document.getElementById('add_email_worker');
+    let onPageEmailList = document.createElement('ul');
+    onPageEmailList.classList.add('email-send-list');
+    addEmail.insertBefore(onPageEmailList,addEmail.childNodes[2]);
+
+    emailList.addEventListener('change', function () {
+        addWorkerEmailToSendList(this,sendList,onPageEmailList);
+    });
+
+    //при выборе в селекте Статус переключаю радио, чтобы форма правильно работала
+    statusList.addEventListener('change', function () {
+        document.getElementById(this.value).checked = true;
+    });
+
+    //при загрузке страницы нужно смотреть выбранный радио со статусом (в скрытой части таблицы #task-footer)
+    //и ставить статус в селекте statusList
+    updateStatusListOnLoad(statusList);
+
+    let footerDesignCSS = '#main-content{margin-bottom:0}#main-content br:last-child{display:none}.content{padding-bottom:0}#tbl-new-comment tbody,#tbl-new-comment td,#tbl-new-comment tr{display:block}#tbl-new-comment+br,#tbl-new-comment tr:first-child>td:first-child{display:none}#new-comment-wrap{max-width:720px;margin:auto}.tl{display:none}.tarea-wrap{position:relative;overflow:hidden}#text{width:100%;padding:.6em;border:0;box-sizing:border-box;box-shadow:inset 0 -2px 2px 0 rgba(0,0,0,.14),inset 0 1px 5px 0 rgba(0,0,0,.12),inset 0 3px 1px -2px rgba(0,0,0,.2)}.task-fields-row{max-width:720px;margin:1.6em auto}.task-fields-row label{margin:0 0 .5em;color:gray;display:inline-block}.task-fields-row input.input_field,.task-fields-row input[type=text],.task-fields-row select{width:auto;max-width:100%;height:2em;padding:.3em .6em;border:1px solid #9e9e9e;display:block;box-sizing:border-box}.task-fields-row input.input_field:focus,.task-fields-row input[type=text]:focus,.task-fields-row select:focus{border-color:#26a69a}.task-fields-row select{padding:.3em 0 .3em .2em}.task-fields-row td{padding:0;font-size:100%;display:block}.task-fields-row .frow-col-2-1{width:190px;margin-right:30px}.task-fields-row .frow-col-2-2{width:120px}.task-row-1{display:-ms-flexbox;display:flex}.worker-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px}.worker-block input[type=radio]{display:inline-block;vertical-align:middle;position:relative;top:-.2em}.worker-block select{width:100%;margin:.5em 0 0}.task-row-2,.task-row-2 .time-block{display:-ms-flexbox;display:flex}.task-row-2 .time-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;-ms-flex-pack:justify;justify-content:space-between}.task-row-2 .time-block>div{width:120px}.task-row-2 .time-block>div input{width:76%;display:inline-block;vertical-align:middle}.task-row-2 .time-block>div:after{content:"мин";margin-left:.5em;display:inline-block;vertical-align:middle}:root .deadline-calendar{position:relative;padding:0!important;font-size:100%}:root .deadline-calendar>img,:root .deadline-calendar>input{display:inline-block;vertical-align:top;box-sizing:border-box}:root .deadline-calendar>input[type=text]{padding-right:30px}:root .deadline-calendar>img{position:absolute;top:.4em;right:.5em}:root .deadline-calendar input[type=button]{display:none}:root .deadline-calendar #end_date{width:auto!important}.task-row-3{display:-ms-flexbox;display:flex}.add-email{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;position:relative}.add-email a{display:none}.add-email label{display:block}.add-email #add_email{position:absolute;visibility:hidden;z-index:auto}.add-email #add_email_worker{width:226px;display:inline-block;vertical-align:middle}.add-email #getEmailAddressesButton{display:none}.email-send-list{margin:.4em 0 .5em;padding:0;list-style-type:none}.email-send-list>li{margin:0;line-height:1}.email-send-list>li:before{content:"·";font-size:1.5em;margin-right:.2em;display:inline-block;vertical-align:middle}.email-send-list>li:after{content:"🞩";margin-left:.4em;color:red;display:inline-block;cursor:pointer}.task-type select{min-width:190px}.task-type>div select{margin-top:.3em}.task-type>div br{display:none}.add-files a{margin-top:.8em;display:inline-block}#FileInputs input:not(:first-child){margin-top:.3em;display:inline-block;vertical-align:middle}#FileInputs br{display:none}.btn-remove-item{width:12px;height:18px;margin-left:.3em;color:red;display:inline-block;vertical-align:middle;position:relative;cursor:pointer}.btn-remove-item:after{content:"🞩";position:absolute;top:0;left:0}#task-footer tbody,#task-footer td,#task-footer tr{display:block}#task-footer tr:nth-child(2){height:0;overflow:hidden}.btn-action{height:36px;padding:0 1.6em;font-size:14px;color:#fff;border:0;border-radius:4px;background:#7eb519;cursor:pointer}';
 
     addcss(footerDesignCSS);
-};/* End: js-parts\taskFooterDesign.js */
+
+    console.info('load taskFooterDesign');
+};
+
+function createFieldAndLabel(text,field) {
+    let rowItemProto = document.createElement('div');
+    let label = document.createElement('label');
+    label.textContent = text;
+    rowItemProto.appendChild(label);
+    rowItemProto.appendChild(field);
+    return rowItemProto;
+}
+
+function createStatusList(tbl) {
+    let list = document.createElement('select');
+    let rows = Array.from(tbl.querySelectorAll('tr'));
+
+    let optgroup;
+
+    rows.map(function (item) {
+        if(item.firstElementChild.getAttribute('colspan')){
+            optgroup = document.createElement('optgroup');
+            optgroup.label = item.textContent;
+            list.appendChild(optgroup);
+        }else{
+            let radio = item.querySelector('input');
+            let option = document.createElement('option');
+            option.value = radio.id;
+            option.textContent = item.querySelector('label').textContent;
+            optgroup.appendChild(option);
+        }
+    });
+
+    return list;
+}
+
+function updateStatusListOnLoad(list) {
+    let status = document.querySelector('input[name=new_problem_status]:checked');
+
+    for( let i of list.options){
+        if(i.value === status.id){
+            i.selected = true;
+        }
+    }
+}
+
+function addWorkerEmailToSendList(select, input, list) {
+    let option = select.options[select.selectedIndex];
+    let data = [option.text,select.value];
+    let email = data[1];
+
+    if (email.trim() !== "") {
+        let addEmail = input.value;
+        let newval = '';
+
+        if (addEmail === "") {
+            newval = email;
+        } else if (addEmail.indexOf(email) === -1) {
+            newval = addEmail + (email.charAt(addEmail.length - 1) == ";" ? "" : ";") + email;
+        }
+
+        input.value = newval;
+
+        let newitem = document.createElement('li');
+        newitem.textContent = data[0];
+        newitem.dataset.email = data[1];
+
+        list.appendChild(newitem);
+
+        newitem.addEventListener('click', function () {
+            removeItemFromSendlist(this, select, input)
+        });
+
+        //выбранного получателя скрываю
+        //ставлю выбранным дефолтный (первый) элемент списка
+
+        option.setAttribute('hidden','');
+        select.options[0].selected = true;
+    }
+}
+
+function removeItemFromSendlist(item, select, input) {
+    let text = item.dataset.email;
+
+    let sendList = input.value.split(';');
+
+    let filteredSendList = sendList.filter(function (listitem) {
+        if(listitem !== text){
+            return listitem
+        }
+    });
+
+    input.value = filteredSendList.join(';');
+
+    item.parentNode.removeChild(item);
+
+    for( let i of select.options){
+        if(i.value === text){
+            i.removeAttribute('hidden');
+        }
+    }
+}
+
+function removeFileInput(block) {
+
+    //таймаут т.к. нужно дать время сработать функции добавляющей новое поля выбора файла
+    setTimeout(function () {
+        //let newInput = block.querySelector('input:last-child');
+        let removeBtn = document.createElement('div');
+        removeBtn.classList.add('btn-remove-item');
+        block.appendChild(removeBtn);
+
+        removeBtn.addEventListener('click', function () {
+            block.removeChild(this.previousElementSibling);
+            block.removeChild(this);
+            let inputs = block.querySelectorAll('input');
+
+            for(let i = 0; i < inputs.length; i++){
+                inputs[i].id = 'fileInput'+i;
+                inputs[i].name = 'fileInput'+i;
+            }
+        })
+    },100)
+
+}
+
+/* End: js-parts\taskFooterDesign.js */
 
         switch (action_page) {
             case 'new':
@@ -1158,12 +1515,15 @@ modules.taskFooterDesign = function () {
 
                 var elemsModification = new modules.elemsModification();
                 modules.modyfiComments();
-                modules.countWorkerTime();
+                if(localStorage.getItem('worker-time-count') === 'true'){
+                    modules.countWorkerTime();
+                }
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
                 modules.taskFooterDesign();
                 modules.copyPasteCommentQuote();
+                anchorLink();
                 break;
             default:
 
@@ -1174,6 +1534,62 @@ modules.taskFooterDesign = function () {
         //----------
         //утилиты
         //----------
+        //прокрутка к каменту по якорю. Нужна если вызван cmmentsDesign()
+        function anchorLink() {
+            //обработка ссылок с id камента в хеше
+            //т.к. из-за изменения высоты каментов и соответсвенно страницы в modules.cammentsDesign()
+            //они работают не правильно
+
+            let cammentId = w.location.hash;
+
+            cammentId = cammentId.slice(1,cammentId.length);
+
+            //добавляю setTimeout т.к. пока не придумал как отловить
+            //что переделка страницы закончена и высота и позиция камента
+            //к которому нужно прокрутить будет рассчитана правильно
+            setTimeout(function () {
+                if(cammentId){
+                    console.info('anchorLink start');
+                    //ищу скрытый чекбокс с id и от него вверх до карточки камента b-comment
+                    let camment = document.getElementById('checkbox_'+cammentId).parentNode.parentNode.parentNode;
+                    let distance = camment.offsetTop;
+
+                    animate({
+                        duration: 1000,
+                        timing: function (timeFraction) {
+                            return timeFraction;
+                        },
+                        draw: function (progress) {
+                            scrollToY(distance, progress)
+                        }
+                    });
+                }
+            },600);
+        }
+
+        function animate(options) {
+            var start = performance.now();
+
+            requestAnimationFrame(function animate(time) {
+                var timeFraction = (time - start) / options.duration;
+                if (timeFraction > 1) timeFraction = 1;
+
+                var progress = options.timing(timeFraction);
+
+                options.draw(progress);
+
+                if (timeFraction < 1) {
+                    requestAnimationFrame(animate);
+                }
+
+            });
+        }
+
+        function scrollToY(distanse, progress) {
+            var scrollY = w.scrollY || document.documentElement.scrollTop;
+            w.scrollTo(0, scrollY + ((distanse - scrollY) * progress));
+        }
+
         //вызов функции по сочетанию клавишь
         function runOnKeys(func,elem) {
             let codes = [].slice.call(arguments, 2);

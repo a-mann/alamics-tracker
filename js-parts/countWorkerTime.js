@@ -96,4 +96,6 @@ modules.countWorkerTime = function () {
     $input_box.insertBefore($timelist, $input_box.lastChild);
 
     //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
+
+    console.info('load countWorkerTime');
 };

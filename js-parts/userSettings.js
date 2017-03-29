@@ -90,6 +90,60 @@ modules.userSettings = function () {
         });
     }
 
+    // добавление кнопок включения/отключения разных модулей
+    let optionsBlock = document.createElement('div');
+    optionsBlock.classList.add('user-list');
+
+    let settings_title = document.createElement('h2');
+    settings_title.textContent = 'Опции';
+    settings_title.classList.add('user-title');
+
+    optionsBlock.appendChild(settings_title);
+
+    let countTimeBtn =  document.createElement('span');
+    countTimeBtn.id = 'countTimeBtn';
+    countTimeBtn.classList.add('btn-flat');
+    countTimeBtn.textContent = 'Подсчет времени в задаче - Включен';
+
+    if(!localStorage.getItem('worker-time-count')){
+        localStorage.setItem('worker-time-count', 'true');
+    }
+
+    countTimeBtn.addEventListener('click',function () {
+       this.classList.toggle('selected');
+
+       if(this.classList.contains('selected')){
+           this.textContent = 'Подсчет времени в задаче - Включен';
+           localStorage.setItem('worker-time-count', 'true');
+       }else{
+           this.textContent = 'Подсчет времени в задаче - Выключен';
+           localStorage.setItem('worker-time-count','false');
+       }
+    });
+
+    function checkTimeCountOption() {
+        let btn = document.getElementById('countTimeBtn');
+
+        if(localStorage.getItem('worker-time-count') === 'true'){
+            btn.textContent = 'Подсчет времени в задаче - Включен';
+            btn.classList.add('selected');
+        }else{
+            btn.textContent = 'Подсчет времени в задаче - Выключен';
+            btn.classList.remove('selected');
+        }
+    }
+
+    optionsBlock.appendChild(countTimeBtn);
+
+    $user_settings_box.appendChild(optionsBlock);
+
+    checkTimeCountOption();
+
+
+
+
     createTaskListHTML();
     createWorkersListHTML();
+
+    console.info('load userSettings');
 };

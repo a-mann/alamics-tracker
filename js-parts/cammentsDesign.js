@@ -41,7 +41,7 @@ modules.cammentsDesign = function () {
                 let ext = item.href.lastIndexOf('.');
                 ext = item.href.slice(ext+1,item.href.length);
 
-                if(pics.indexOf(ext) > -1){
+                if(pics.indexOf(ext.toLowerCase()) > -1){
                     item = createImgThumb(item);
                 }else{
                     item = createDocsThumb(ext,item);
@@ -311,4 +311,6 @@ modules.cammentsDesign = function () {
         let btns = camment.querySelector('.actions-btn-wrap');
         btns.classList.toggle('is-visible');
     }
+
+    console.info('load cammentsDesign');
 };

@@ -69,4 +69,6 @@ modules.copyPasteCommentQuote = function () {
         "17",
         "V".charCodeAt(0)
     );
+
+    console.info('load copyPasteCommentQuote');
 };

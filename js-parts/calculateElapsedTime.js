@@ -32,4 +32,6 @@ modules.calculateElapsedTime = function () {
             minToDays(cur_value);
         }
     });
+
+    console.info('load calculateElapsedTime');
 };

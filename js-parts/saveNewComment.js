@@ -55,4 +55,6 @@ modules.saveNewComment = function () {
             button.classList.remove('none');
         }
     }
+
+    console.info('load saveNewComment');
 };

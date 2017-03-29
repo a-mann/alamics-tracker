@@ -100,6 +100,10 @@ console.info('start userscript');
 
             $tareaWrap.appendChild(document.getElementById('text'));
             $newComment.appendChild($tareaWrap);
+
+            //Таблица статусов задачи
+            let $statusTbl = $footer_tbls[1].querySelector('table');
+            $statusTbl.id = 'tbl-status';
         }
 
 
@@ -123,12 +127,15 @@ console.info('start userscript');
 
                 var elemsModification = new modules.elemsModification();
                 modules.modyfiComments();
-                modules.countWorkerTime();
+                if(localStorage.getItem('worker-time-count') === 'true'){
+                    modules.countWorkerTime();
+                }
                 modules.saveNewComment();
                 modules.calculateElapsedTime();
                 modules.cammentsDesign();
                 modules.taskFooterDesign();
                 modules.copyPasteCommentQuote();
+                anchorLink();
                 break;
             default:
 
@@ -139,6 +146,62 @@ console.info('start userscript');
         //----------
         //утилиты
         //----------
+        //прокрутка к каменту по якорю. Нужна если вызван cmmentsDesign()
+        function anchorLink() {
+            //обработка ссылок с id камента в хеше
+            //т.к. из-за изменения высоты каментов и соответсвенно страницы в modules.cammentsDesign()
+            //они работают не правильно
+
+            let cammentId = w.location.hash;
+
+            cammentId = cammentId.slice(1,cammentId.length);
+
+            //добавляю setTimeout т.к. пока не придумал как отловить
+            //что переделка страницы закончена и высота и позиция камента
+            //к которому нужно прокрутить будет рассчитана правильно
+            setTimeout(function () {
+                if(cammentId){
+                    console.info('anchorLink start');
+                    //ищу скрытый чекбокс с id и от него вверх до карточки камента b-comment
+                    let camment = document.getElementById('checkbox_'+cammentId).parentNode.parentNode.parentNode;
+                    let distance = camment.offsetTop;
+
+                    animate({
+                        duration: 1000,
+                        timing: function (timeFraction) {
+                            return timeFraction;
+                        },
+                        draw: function (progress) {
+                            scrollToY(distance, progress)
+                        }
+                    });
+                }
+            },600);
+        }
+
+        function animate(options) {
+            var start = performance.now();
+
+            requestAnimationFrame(function animate(time) {
+                var timeFraction = (time - start) / options.duration;
+                if (timeFraction > 1) timeFraction = 1;
+
+                var progress = options.timing(timeFraction);
+
+                options.draw(progress);
+
+                if (timeFraction < 1) {
+                    requestAnimationFrame(animate);
+                }
+
+            });
+        }
+
+        function scrollToY(distanse, progress) {
+            var scrollY = w.scrollY || document.documentElement.scrollTop;
+            w.scrollTo(0, scrollY + ((distanse - scrollY) * progress));
+        }
+
         //вызов функции по сочетанию клавишь
         function runOnKeys(func,elem) {
             let codes = [].slice.call(arguments, 2);
