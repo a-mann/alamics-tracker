@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userscript.js" afterPath="$PROJECT_DIR$/userscript.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dart-support.user.js" afterPath="$PROJECT_DIR$/dart-support.user.js" />
     </list>
     <ignored path="dart-user-script.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +28,8 @@
       <file leaf-file-name="userscript.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userscript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            <state relative-caret-position="357">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="e#725#757#0" expanded="false" />
                 <element signature="e#763#790#0" expanded="false" />
@@ -595,7 +595,7 @@
       <workItem from="1490350493011" duration="35933000" />
       <workItem from="1490615116628" duration="10000" />
       <workItem from="1490615135415" duration="36784000" />
-      <workItem from="1490783193519" duration="6738000" />
+      <workItem from="1490783193519" duration="6804000" />
     </task>
     <task id="LOCAL-00001" summary="попробую разбивать камент по 2 br&#10;а получившиеся строки перед обработккой markdown дополнительно по 1 br">
       <created>1490178790527</created>
@@ -716,11 +716,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490790494877</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Запутался с нумарацией версий. Поставил 1.0.0 - пусть будет">
+      <created>1490790604235</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1490790604235</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="316877000" />
+    <option name="totallyTimeSpent" value="316943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="79" y="52" width="1735" height="1003" extended-state="0" />
@@ -796,7 +803,8 @@
     <MESSAGE value="Удалил из репы папку .idea" />
     <MESSAGE value="допили поля под вводом камента.&#10;Удлаю функции сворачивания камента" />
     <MESSAGE value="Поправил багу с цитатами markdown - еще одно проверка и замена gt на &gt; - в однострочном комментарии" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поправил багу с цитатами markdown - еще одно проверка и замена gt на &gt; - в однострочном комментарии" />
+    <MESSAGE value="Запутался с нумарацией версий. Поставил 1.0.0 - пусть будет" />
+    <option name="LAST_COMMIT_MESSAGE" value="Запутался с нумарацией версий. Поставил 1.0.0 - пусть будет" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1136,8 +1144,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="357">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="e#725#757#0" expanded="false" />
             <element signature="e#763#790#0" expanded="false" />
