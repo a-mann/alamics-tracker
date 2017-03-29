@@ -23,101 +23,6 @@ modules.modyfiComments = function () {
         div = getCommentFromRow(rows[i]);
         txt = replaceURLWithHTMLLinks(div.innerHTML);
         div.innerHTML = txt;
-        // collapse_btn = addCollapseButton(div);
-        //
-        // if (collapse_btn) {
-        //     collapse_btn.addEventListener('click', function (e) {
-        //         collapseComment(this);
-        //         e.preventDefault();
-        //     });
-        //     collapse_btns.push(collapse_btn);
-        // }
-    }
-
-    //добавить кнопку свернуть/развернуть все каменты
-    // if (!!document.querySelector('.comment-collapsed')) {
-    //     collapse_btn = document.createElement('BUTTON');
-    //     collapse_btn.type = 'button';
-    //     collapse_btn.tabindex = '-1';
-    //     collapse_btn.innerHTML = 'Развернуть все';
-    //     collapse_btn.classList.add('btn-collapse-all', 'is-close');
-    //     collapse_btn.addEventListener('click', function (e) {
-    //         collapseAllComment(this);
-    //         e.preventDefault();
-    //     });
-    //     $content_cell.appendChild(collapse_btn);
-    // }
-
-    //добавить кнопку свернуть/развернуть к каменту
-    function addCollapseButton(el) {
-        let collapse_btn;
-
-        if (el.offsetHeight > 200) {
-            let wrap = document.createElement('DIV');
-            wrap.classList.add('comment-collapsed', 'long-comment');
-
-            collapse_btn = document.createElement('BUTTON');
-            collapse_btn.type = 'button';
-            collapse_btn.tabindex = '-1';
-            collapse_btn.innerHTML = 'Развернуть';
-            collapse_btn.classList.add('btn-collapse', 'foo-collapse', 'is-close');
-            el.parentNode.appendChild(wrap);
-            wrap.appendChild(collapse_btn);
-            wrap.appendChild(el);
-        }
-
-        return collapse_btn;
-    }
-
-    function collapseComment(el, state) {
-
-        //el - node || nodeList
-        //state - string || check contains class is-close
-        state = state || el.classList.contains('is-close');
-
-        if (Array.isArray(el)) {
-
-            for (let i = 0; i < el.length; i++) {
-                if (state === 'expand') {
-                    setExpand(el[i]);
-                    continue;
-                }
-                setCollapse(el[i]);
-            }
-        } else {
-            if (state) {
-                setExpand(el);
-            } else {
-                setCollapse(el);
-            }
-        }
-
-        function setExpand(el) {
-            el.classList.remove('is-close');
-            el.innerHTML = 'Свернуть';
-            el.parentNode.classList.remove('comment-collapsed');
-        }
-
-        function setCollapse(el) {
-            el.classList.add('is-close');
-            el.innerHTML = 'Развернуть';
-            el.parentNode.classList.add('comment-collapsed')
-        }
-    }
-
-    function collapseAllComment(btn) {
-        if (btn.classList.contains('is-close')) {
-            btn.classList.remove('is-close');
-            btn.innerHTML = 'Свернуть все';
-
-            collapseComment(collapse_btns, 'expand');
-
-        } else {
-            btn.classList.add('is-close');
-            btn.innerHTML = 'Развернуть все';
-
-            collapseComment(collapse_btns, 'collapse');
-        }
     }
 
     //парсер markdown
@@ -153,7 +58,7 @@ modules.modyfiComments = function () {
 
                     item = item.join('');
                 } else {
-                    item.trim();
+                    item = replaceHtmlGtToSymbol(item.trim());
                     //+'<br>' нужно чтобы было похоже на исходное форматирование
                     item = renderMdString(item, md)+'<br>';
                 }
