@@ -10,7 +10,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.0.1
+// @version 1.0.2
 
 // ==/UserScript==
 console.info('start userscript');
@@ -289,8 +289,17 @@ console.info('start userscript');
 
         // получение строки с датой из таблицы с комментарими задачи
         function getRowDateString(row) {
-            var t = row.children[3].textContent;
+            let t = '';
+            if(row.children[3]){
+                //до запуска cammentsDesign();
+                t = row.children[3].textContent;
+            }else{
+                //после запуска cammentsDesign();
+                t = row.querySelector('.comment-date').textContent
+            }
+
             t = t.split(' ');
+
             return createISODate(t[0]);
         }
 
@@ -304,9 +313,18 @@ console.info('start userscript');
 
         // получение строки с времнем из таблицы с комментарими задачи
         function getRowTimeString(row) {
-            var t = row.children[10].textContent;
-            t = t.split('/');
-            return parseInt(t[0]);
+            let t = '';
+
+            if(row.children[10]){
+                //до запуска cammentsDesign();
+                t = row.children[10].textContent;
+                t = parseInt(t.split('/')[0]);
+            }else{
+                //после запуска cammentsDesign();
+                t = parseInt(row.querySelector('.elapsed-time').textContent);
+            }
+
+            return t;
         }
 
         // скрыть/показать опреденные option в select
@@ -360,6 +378,7 @@ console.info('start userscript');
 
         // создание объекта со списком сотруднков и времени каждого в задаче
         function createTimeList(workers, rows) {
+
             var ntime, name, tsum;
             var timelist = {};
 
@@ -369,7 +388,13 @@ console.info('start userscript');
                 for (var i = 0; i < rows.length; i++) {
                     ntime = getRowTimeString(rows[i]);
 
-                    name = rows[i].children[4].textContent;
+                    if(rows[i].children[4]){
+                        //до запуска cammentsDesign();
+                        name = rows[i].children[4].textContent;
+                    }else{
+                        //после запуска cammentsDesign();
+                        name = rows[i].querySelector('.comment-author').textContent;
+                    }
 
                     if (workers[s] === name) {
                         tsum += ntime;
@@ -430,7 +455,6 @@ console.info('start userscript');
         }
 
         // получить список отмеченных сотрудников - из списка всех сотрудников задачи
-
         function getSelectedWorkers() {
             var selected_workers = document.getElementById('workers-time').querySelectorAll('.selected');
             var selected_names = [];
@@ -443,7 +467,6 @@ console.info('start userscript');
         }
 
         // получить все строки с каментами в задаче
-
         function getAllCommentsRows() {
             let rows = Array.from(document.getElementById('comments-tbl').querySelectorAll('TR'));
             rows = rows.splice(1, rows.length); //исключить первую строку с заголовками столбцов
@@ -583,8 +606,9 @@ console.info('start userscript');
             var $btn = lists.btn;
 
             function findRowsInRange(rows, start, end) {
+
                 return rows.filter(function (item) {
-                    var item_date = getRowDateString(item);
+                    let item_date = getRowDateString(item);
 
                     if (item_date >= start && item_date <= end) {
                         return item;
@@ -610,6 +634,7 @@ console.info('start userscript');
             // });
 
             $btn.addEventListener('click', function () {
+
                 var find_rows = findRowsInRange(rows, $start_list.value, $end_list.value);
 
                 var range_timelist = createTimeList(getSelectedWorkers(), find_rows);

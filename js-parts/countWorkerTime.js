@@ -73,13 +73,15 @@ modules.countWorkerTime = function () {
 
     $timelist.classList.add('user-toolbar__item');
 
-    //добавляем строку с общим временм всех сотрудников
+    //добавляем строку с общим временем всех сотрудников
     //третий параметр true - ставит класс-маркер выбранных работников
     insertTotalTime($timelist, timelist, true);
 
     // добавляем клик по строке для подсчета времени выбранных работников
     $timelist.addEventListener('click', function (e) {
-        countSelectedWorkersTime(this, e);
+        if(!e.target.classList.contains('time-list-total')){
+            countSelectedWorkersTime(this, e);
+        }
     });
 
     var $title = document.createElement('H3');

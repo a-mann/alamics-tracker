@@ -86,6 +86,7 @@ modules.cammentsDesign = function () {
 
         //дата
         rowItem.classList.add('comment-date');
+        rowItem.id = 'comment-date';
         rowItem.innerHTML = td[3].textContent;
 
         fragment.appendChild(rowItem);
@@ -170,7 +171,7 @@ modules.cammentsDesign = function () {
         /*timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
             ' '+ createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);*/
 
-        timeStr[0] = timeStr[0] + ' мин.';
+        timeStr[0] = '<span class="elapsed-time">'+timeStr[0] + ' мин.</span>';
         workTime.innerHTML = timeStr[0];
 
         // if (isNaN(Number(timeStr[1]))) {
