@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="Исправил подсчет времени работников в задаче за период.&#10;После запуска commentsDesign() значения дат и времени нужно забирать из других элементов, ячеек таблицы то нет уже">
+    <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/commentsDesign.pcss" afterPath="$PROJECT_DIR$/css/commentsDesign.pcss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/taskFooterDesign.pcss" afterPath="$PROJECT_DIR$/css/taskFooterDesign.pcss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dart-support.user.js" afterPath="$PROJECT_DIR$/dart-support.user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js-parts/cammentsDesign.js" afterPath="$PROJECT_DIR$/js-parts/cammentsDesign.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js-parts/countWorkerTime.js" afterPath="$PROJECT_DIR$/js-parts/countWorkerTime.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userscript.js" afterPath="$PROJECT_DIR$/userscript.js" />
     </list>
     <ignored path="dart-user-script.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +28,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="userscript.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userscript.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userscript.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -64,50 +64,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="countWorkerTime.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js-parts/countWorkerTime.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="95" column="24" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="24" />
-              <folding>
-                <element signature="e#618#2211#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modyfiComments.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js-parts/modyfiComments.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="133" column="51" lean-forward="true" selection-start-line="133" selection-start-column="51" selection-end-line="133" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="cammentsDesign.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js-parts/cammentsDesign.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="173" column="33" lean-forward="false" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="33" />
+            <state relative-caret-position="315">
+              <caret line="290" column="49" lean-forward="true" selection-start-line="290" selection-start-column="49" selection-end-line="290" selection-end-column="49" />
               <folding>
                 <element signature="e#2348#4171#0" expanded="false" />
                 <element signature="e#5783#6873#0" expanded="false" />
                 <element signature="e#6903#6966#0" expanded="false" />
                 <element signature="e#6996#7907#0" expanded="false" />
-                <element signature="e#8903#9438#0" expanded="false" />
-                <element signature="e#9477#9592#0" expanded="false" />
+                <element signature="e#9307#9842#0" expanded="false" />
+                <element signature="e#9881#9996#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="commentsDesign.pcss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="commentsDesign.pcss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3757">
-              <caret line="221" column="23" lean-forward="true" selection-start-line="221" selection-start-column="23" selection-end-line="221" selection-end-column="23" />
+            <state relative-caret-position="629">
+              <caret line="283" column="15" lean-forward="false" selection-start-line="283" selection-start-column="15" selection-end-line="283" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -116,8 +94,8 @@
       <file leaf-file-name="_vars.pcss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="107">
+              <caret line="8" column="120" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -156,14 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>t</find>
-      <find>thu</find>
-      <find>thum</find>
-      <find>thumb</find>
-      <find>thumb-</find>
-      <find>thumb-p</find>
-      <find>thumb-pic</find>
-      <find>tbl-new-comment</find>
       <find>jpg</find>
       <find>createInsertWorkersProjectsLists</find>
       <find>workers-time</find>
@@ -178,22 +148,30 @@
       <find>deadl</find>
       <find>deadli</find>
       <find>btn-edit-comment</find>
-      <find>b-comment__row_2</find>
       <find>local</find>
       <find>deadline</find>
       <find>.row-right</find>
       <find>(t)</find>
-      <find>findTimeInDatesRange</find>
       <find>comment-date</find>
       <find>countSelectedWorkersTime</find>
+      <find>#</find>
+      <find>#t</find>
+      <find>#te</find>
+      <find>#tex</find>
+      <find>#text</find>
+      <find>findTimeInDatesRange</find>
+      <find>b-comment__row_2</find>
+      <find>thumb</find>
+      <find>.b-comment__row.b-comment__row_3</find>
+      <find>img-thumb</find>
     </findStrings>
     <replaceStrings>
       <replace>page_elems</replace>
       <replace>src=&quot;//support.alamics.ru/images/</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>D:\work\projects\dart-user-script\css</dir>
       <dir>D:\work\projects\dart-user-script\js-parts</dir>
+      <dir>D:\work\projects\dart-user-script\css</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -240,12 +218,12 @@
         <option value="$PROJECT_DIR$/js-parts/copyPasteCommentQuote.js" />
         <option value="$PROJECT_DIR$/css/userscript.pcss" />
         <option value="$PROJECT_DIR$/js-parts/modyfiComments.js" />
-        <option value="$PROJECT_DIR$/css/taskFooterDesign.pcss" />
         <option value="$PROJECT_DIR$/css/_vars.pcss" />
-        <option value="$PROJECT_DIR$/css/commentsDesign.pcss" />
         <option value="$PROJECT_DIR$/js-parts/countWorkerTime.js" />
-        <option value="$PROJECT_DIR$/js-parts/cammentsDesign.js" />
         <option value="$PROJECT_DIR$/userscript.js" />
+        <option value="$PROJECT_DIR$/css/taskFooterDesign.pcss" />
+        <option value="$PROJECT_DIR$/js-parts/cammentsDesign.js" />
+        <option value="$PROJECT_DIR$/css/commentsDesign.pcss" />
       </list>
     </option>
   </component>
@@ -595,7 +573,7 @@
       <workItem from="1490350493011" duration="35933000" />
       <workItem from="1490615116628" duration="10000" />
       <workItem from="1490615135415" duration="36784000" />
-      <workItem from="1490783193519" duration="22536000" />
+      <workItem from="1490783193519" duration="26692000" />
     </task>
     <task id="LOCAL-00001" summary="попробую разбивать камент по 2 br&#10;а получившиеся строки перед обработккой markdown дополнительно по 1 br">
       <created>1490178790527</created>
@@ -744,11 +722,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490857576569</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Исправил подсчет времени работников в задаче за период.&#10;После запуска commentsDesign() значения дат и времени нужно забирать из других элементов, ячеек таблицы то нет уже">
+      <created>1490864020166</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1490864020166</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332675000" />
+    <option name="totallyTimeSpent" value="336831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="79" y="52" width="1735" height="1003" extended-state="0" />
@@ -827,7 +812,8 @@
     <MESSAGE value="Запутался с нумарацией версий. Поставил 1.0.0 - пусть будет" />
     <MESSAGE value="Попробую оборачивать текст камента между двойным br в параграф" />
     <MESSAGE value="Поправил форматирование текста в каменте&#10;Поправил вставку цитаты из selection&#10;Мелкие правки в шапку блока камента&#10;Версию поднял + 0.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поправил форматирование текста в каменте&#10;Поправил вставку цитаты из selection&#10;Мелкие правки в шапку блока камента&#10;Версию поднял + 0.0.1" />
+    <MESSAGE value="Исправил подсчет времени работников в задаче за период.&#10;После запуска commentsDesign() значения дат и времени нужно забирать из других элементов, ячеек таблицы то нет уже" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправил подсчет времени работников в задаче за период.&#10;После запуска commentsDesign() значения дат и времени нужно забирать из других элементов, ячеек таблицы то нет уже" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1159,53 +1145,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/taskFooterDesign.pcss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="134" column="1" lean-forward="true" selection-start-line="134" selection-start-column="1" selection-end-line="134" selection-end-column="1" />
-          <folding>
-            <element signature="e#714#769#0" expanded="false" />
-            <element signature="e#823#845#0" expanded="false" />
-            <element signature="e#903#952#0" expanded="false" />
-            <element signature="e#959#1178#0" expanded="false" />
-            <element signature="e#1253#2003#0" expanded="false" />
-            <element signature="e#3563#4074#0" expanded="false" />
-            <element signature="e#4601#4826#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3757">
-          <caret line="221" column="23" lean-forward="true" selection-start-line="221" selection-start-column="23" selection-end-line="221" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js-parts/cammentsDesign.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="173" column="33" lean-forward="false" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="33" />
-          <folding>
-            <element signature="e#2348#4171#0" expanded="false" />
-            <element signature="e#5783#6873#0" expanded="false" />
-            <element signature="e#6903#6966#0" expanded="false" />
-            <element signature="e#6996#7907#0" expanded="false" />
-            <element signature="e#8903#9438#0" expanded="false" />
-            <element signature="e#9477#9592#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js-parts/countWorkerTime.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -1247,6 +1186,52 @@
             <element signature="e#19974#21232#0" expanded="false" />
             <element signature="e#21849#21902#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/taskFooterDesign.pcss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+          <folding>
+            <element signature="e#714#769#0" expanded="false" />
+            <element signature="e#823#845#0" expanded="false" />
+            <element signature="e#903#952#0" expanded="false" />
+            <element signature="e#1305#2055#0" expanded="false" />
+            <element signature="e#3615#4126#0" expanded="false" />
+            <element signature="e#4653#4878#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="8" column="120" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js-parts/cammentsDesign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="290" column="49" lean-forward="true" selection-start-line="290" selection-start-column="49" selection-end-line="290" selection-end-column="49" />
+          <folding>
+            <element signature="e#2348#4171#0" expanded="false" />
+            <element signature="e#5783#6873#0" expanded="false" />
+            <element signature="e#6903#6966#0" expanded="false" />
+            <element signature="e#6996#7907#0" expanded="false" />
+            <element signature="e#9307#9842#0" expanded="false" />
+            <element signature="e#9881#9996#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="283" column="15" lean-forward="false" selection-start-line="283" selection-start-column="15" selection-end-line="283" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

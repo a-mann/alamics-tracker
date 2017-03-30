@@ -271,6 +271,17 @@ modules.cammentsDesign = function () {
         wrap.appendChild(item);
         wrap.appendChild(title);
 
+        wrap.addEventListener('mouseenter', function () {
+            let bigpic = pic.cloneNode(false);
+            bigpic.classList.add('large-pic-preview');
+            bigpic.classList.remove('thumb-pic');
+            this.appendChild(bigpic);
+        });
+
+        wrap.addEventListener('mouseleave', function () {
+            this.removeChild(this.querySelector('.large-pic-preview'));
+        });
+
         return wrap;
     }
 
