@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/_vars.pcss" afterPath="$PROJECT_DIR$/css/_vars.pcss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/commentsDesign.pcss" afterPath="$PROJECT_DIR$/css/commentsDesign.pcss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dart-support.user.js" afterPath="$PROJECT_DIR$/dart-support.user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js-parts/modyfiComments.js" afterPath="$PROJECT_DIR$/js-parts/modyfiComments.js" />
     </list>
     <ignored path="dart-user-script.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="userscript.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userscript.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userscript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="58" lean-forward="true" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
               <folding>
                 <element signature="e#725#757#0" expanded="false" />
                 <element signature="e#763#790#0" expanded="false" />
@@ -46,11 +49,31 @@
       <file leaf-file-name="modyfiComments.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js-parts/modyfiComments.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
-                <element signature="e#2925#3597#0" expanded="false" />
+                <element signature="e#2962#3634#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commentsDesign.pcss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="88" column="21" lean-forward="true" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_vars.pcss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,8 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setd</find>
-      <find>setu</find>
       <find>set</find>
       <find>se</find>
       <find>dta</find>
@@ -185,6 +206,8 @@
       <find>workers-time</find>
       <find>user-list</find>
       <find>local</find>
+      <find>b-c</find>
+      <find>@apply --card;</find>
       <find>renderMdString</find>
     </findStrings>
     <replaceStrings>
@@ -232,8 +255,6 @@
         <option value="$PROJECT_DIR$/grunt/watch.js" />
         <option value="$PROJECT_DIR$/dart-support.user.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/css/_vars.pcss" />
-        <option value="$PROJECT_DIR$/css/commentsDesign.pcss" />
         <option value="$PROJECT_DIR$/js-parts/copyPasteCommentQuote.js" />
         <option value="$PROJECT_DIR$/js-parts/calculateElapsedTime.js" />
         <option value="$PROJECT_DIR$/js-parts/countWorkerTime.js" />
@@ -244,8 +265,10 @@
         <option value="$PROJECT_DIR$/css/taskFooterDesign.pcss" />
         <option value="$PROJECT_DIR$/css/userscript.pcss" />
         <option value="$PROJECT_DIR$/js-parts/userSettings.js" />
-        <option value="$PROJECT_DIR$/js-parts/modyfiComments.js" />
         <option value="$PROJECT_DIR$/userscript.js" />
+        <option value="$PROJECT_DIR$/js-parts/modyfiComments.js" />
+        <option value="$PROJECT_DIR$/css/_vars.pcss" />
+        <option value="$PROJECT_DIR$/css/commentsDesign.pcss" />
       </list>
     </option>
   </component>
@@ -595,7 +618,7 @@
       <workItem from="1490350493011" duration="35933000" />
       <workItem from="1490615116628" duration="10000" />
       <workItem from="1490615135415" duration="36784000" />
-      <workItem from="1490783193519" duration="6804000" />
+      <workItem from="1490783193519" duration="9637000" />
     </task>
     <task id="LOCAL-00001" summary="попробую разбивать камент по 2 br&#10;а получившиеся строки перед обработккой markdown дополнительно по 1 br">
       <created>1490178790527</created>
@@ -723,11 +746,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490790604235</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Запутался с нумарацией версий. Поставил 1.0.0 - пусть будет">
+      <created>1490790644976</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1490790644976</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="316943000" />
+    <option name="totallyTimeSpent" value="319776000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="79" y="52" width="1735" height="1003" extended-state="0" />
@@ -1000,26 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dart-support.user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="1271" column="3086" lean-forward="false" selection-start-line="1271" selection-start-column="3077" selection-end-line="1271" selection-end-column="3086" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="206" column="6" lean-forward="false" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1132,20 +1146,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js-parts/modyfiComments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2925#3597#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="17" column="58" lean-forward="true" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
           <folding>
             <element signature="e#725#757#0" expanded="false" />
             <element signature="e#763#790#0" expanded="false" />
@@ -1155,6 +1159,32 @@
             <element signature="e#6984#7142#0" expanded="false" />
             <element signature="e#7227#7979#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/_vars.pcss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js-parts/modyfiComments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#2962#3634#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/commentsDesign.pcss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="88" column="21" lean-forward="true" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

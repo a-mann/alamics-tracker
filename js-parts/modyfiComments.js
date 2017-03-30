@@ -32,7 +32,7 @@ modules.modyfiComments = function () {
         md.options.html = true;
         md.options.linkify = true;
         md.options.typographer = true;
-        //md.options.breaks = true;
+        md.options.breaks = true;
 
         rows.map(function (row) {
             addMarkdown(row, md)
@@ -45,6 +45,7 @@ modules.modyfiComments = function () {
             blocks = blocks.map(function (item) {
                 if (item.indexOf('<br>') > -1) {
                     item = item.split('<br>');
+                    console.log(item);
                     item = item.map(function (str) {
                         return str.trim();
                     });
