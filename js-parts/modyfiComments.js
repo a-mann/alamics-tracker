@@ -45,7 +45,6 @@ modules.modyfiComments = function () {
             blocks = blocks.map(function (item) {
                 if (item.indexOf('<br>') > -1) {
                     item = item.split('<br>');
-                    console.log(item);
                     item = item.map(function (str) {
                         return str.trim();
                     });
@@ -60,15 +59,11 @@ modules.modyfiComments = function () {
                     item = item.join('');
                 } else {
                     item = replaceHtmlGtToSymbol(item.trim());
-                    //+'<br>' нужно чтобы было похоже на исходное форматирование
-                    item = renderMdString(item, md)+'<br>';
+                    item = renderMdString(item, md);
                 }
 
-                return item;
+                return '<p>'+item+'</p>';
             });
-
-            //очистка пустых строк
-            //string = string.replace(/^\s+|\s+$/g, '');
 
             comment.innerHTML = blocks.join('');
         }

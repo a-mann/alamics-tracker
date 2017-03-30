@@ -105,7 +105,7 @@ modules.cammentsDesign = function () {
         let deadline = td[7].textContent;
 
         if(deadline.length > 1){
-            rowItem.innerHTML = rowItem.innerHTML + ' до '+deadline;
+            rowItem.innerHTML = rowItem.innerHTML + '.<b class="deadline-date">Сдать '+deadline+'</b>';
         }
 
         fragment.appendChild(rowItem);
@@ -167,16 +167,18 @@ modules.cammentsDesign = function () {
 
         let timeStr = td[10].textContent.split('/');
 
-        timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
-            ' '+
-            createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);
+        /*timeStr[0] = createTimeTitleString(timeStr[0], ['Затрачена', 'Затрачено', 'Затрачено'])+
+            ' '+ createTimeString(timeStr[0], ['минута', 'минуты', 'минут']);*/
 
-        if (isNaN(Number(timeStr[1]))) {
-            workTime.innerHTML = timeStr[0];
-        }else{
-            timeStr[1] = ' из '+timeStr[1];
-            workTime.innerHTML = timeStr.join(' ');
-        }
+        timeStr[0] = timeStr[0] + ' мин.';
+        workTime.innerHTML = timeStr[0];
+
+        // if (isNaN(Number(timeStr[1]))) {
+        //     workTime.innerHTML = timeStr[0];
+        // }else{
+        //     timeStr[1] = ' из '+timeStr[1];
+        //     workTime.innerHTML = timeStr.join(' ');
+        // }
 
         fragment.appendChild(workTime);
 

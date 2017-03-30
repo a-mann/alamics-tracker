@@ -10,7 +10,7 @@ modules.copyPasteCommentQuote = function () {
 
         camment.addEventListener('mouseup', function () {
             let selection = w.getSelection();
-            selection = selection.toString().replace(/(?:(?:\r\n|\r|\n)\s*){2}/gm, "").trim();
+
             localStorage.setItem('selection',selection);
         })
 
@@ -24,30 +24,16 @@ modules.copyPasteCommentQuote = function () {
             let endPos = elem.selectionEnd;
 
             let selection = localStorage.getItem('selection');
-            let max_characters = 60;
 
-            if(selection.length > max_characters){
-                let strings = selection.split(' ');
+            let strings = selection.split('\n');
 
-                let substr = [];
-                let str = '';
+            strings = strings.map(function (str) {
+                 return '> '+str;
+            });
 
-                for(let i = 0; i < strings.length; i++){
-                    str += strings[i]+' ';
+            selection = strings.join('');
 
-                    if(str.length >= max_characters || i === strings.length - 1){
-                        substr.push('> '+str.trim());
-                        str = '';
-                    }
-                }
-
-                selection = substr.join('\n');
-
-            }else{
-                selection = '> '+selection.trim();
-            }
-
-            selection = '\n'+selection+'\n';
+            // selection = '\n'+selection+'\n';
 
             elem.value = elem.value.substring(0, startPos)
                 + selection
