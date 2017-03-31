@@ -28,9 +28,16 @@
 
 .comment-body {
     width: 100%;
+}
+
+.comment-wrap{
 
     & p{
         line-height: 1.4;
+
+        &:first-child{
+            margin-top: 0;
+        }
 
         &:last-child{
             margin-bottom: 0;
@@ -39,8 +46,18 @@
         &:only-of-type{
             margin: 0;
         }
+
+    /*
+    //где-то таки вставляются лишние переводы строк
+    //сделаю такой грязный хак
+    */
+        & br:first-child,
+        & br:last-child{
+            display: none;
+        }
     }
 }
+
 
 .b-comment__row {
     padding: 1em 2em;
