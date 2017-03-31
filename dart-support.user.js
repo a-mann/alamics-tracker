@@ -10,7 +10,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.0.2
+// @version 1.1.2
 
 // ==/UserScript==
 console.info('start userscript');
@@ -39,7 +39,7 @@ console.info('start userscript');
     if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
-        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;display:inline-block;cursor:pointer}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl blockquote p:not(:last-child){margin-bottom:1em}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
+        var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed!important;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;display:inline-block;cursor:pointer}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl blockquote p:not(:last-child){margin-bottom:1em}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.s-info{color:gray;font-size:12px}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
 
         addcss(custom_css);
 
@@ -844,7 +844,7 @@ modules.cammentsDesign = function () {
         });
     });
 
-    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fafafa;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;position:relative}.comment-body{width:100%}.comment-body p{line-height:1.4}.comment-body p:last-child{margin-bottom:0}.comment-body p:only-of-type{margin:0}.b-comment__row{padding:1em 2em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row:first-child{padding-top:2em}.b-comment__row:first-child .row-right{top:2em}.b-comment__row:last-child{padding-bottom:2em}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.deadline-date{padding-left:1em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-link,.comment-no{margin-right:0!important}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;background:#fff;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{margin-left:.5em;top:3px}.btn-del-comment{width:70px}.btn-del-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1;content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img{display:none}.btn-del-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:start;align-items:flex-start}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:2em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.7em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;object-fit:cover;max-height:200px;border:1px solid #ccc}.large-pic-preview{max-width:50vw;border:1px solid gray;position:absolute;top:90%;left:0;z-index:1}.doc-thumb{max-width:150px;background:#f3f3f3;font-size:11px;border:1px solid #ccc;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{width:100%;padding:0 .5em;line-height:1.6;word-break:break-all;position:absolute;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 25%;flex:1 1 25%;min-height:70px;position:relative}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
+    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fafafa;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;position:relative}.comment-body{width:100%}.comment-body p{line-height:1.4}.comment-body p:last-child{margin-bottom:0}.comment-body p:only-of-type{margin:0}.b-comment__row{padding:1em 2em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row:first-child{padding-top:2em}.b-comment__row:first-child .row-right{top:2em}.b-comment__row:last-child{padding-bottom:2em}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.deadline-date{padding-left:1em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-link,.comment-no{margin-right:0!important}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;background:#fff;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{margin-left:.5em;top:3px}.btn-del-comment{width:70px}.btn-del-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1;content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img{display:none}.btn-del-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:start;align-items:flex-start}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:2em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.7em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;object-fit:cover;max-height:200px;border:1px solid #ccc}.large-pic-preview{max-width:40vw;border:1px solid gray;position:absolute;top:90%;left:0;z-index:1}.doc-thumb{max-width:150px;background:#f3f3f3;font-size:11px;border:1px solid #ccc;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{width:100%;padding:0 .5em;line-height:1.6;word-break:break-all;box-sizing:border-box;position:absolute;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 25%;flex:1 1 25%;min-height:70px;position:relative}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
 
     addcss(cammentsDesignCSS);
 
@@ -1228,15 +1228,66 @@ modules.taskFooterDesign = function () {
     let addFilesBlock = existAddFile.parentNode;
     addFilesBlock.classList.add('add-files');
 
-    let addFilesLabel = document.createElement('label');
-    addFilesLabel.textContent = 'Прикрепить файлы, размер всех файлов до 3 мб';
+    let addFilesLabel = document.createElement('h2');
+    addFilesLabel.classList.add('section-title');
+    addFilesLabel.innerHTML = 'Файлы <span class="s-info">общий объем <span id="files-total">до 3 Мб</span></span>';
+    //в id="files-total" будет заменятся текст когда файлы выбрны - общий объем выбранных файлов
     addFilesBlock.insertBefore(addFilesLabel,addFilesBlock.firstElementChild);
 
-    let addFileInput = addFilesBlock.querySelector('a');
+    //эту ссылку я скрою стилями
+    // let addFileInput = addFilesBlock.querySelector('a');
+    // addFileInput.setAttribute('onclick','addFileInput("FileInputs")');
 
-    addFileInput.addEventListener('click', function () {
-        removeFileInput(existAddFile);
+    // addFileInput.addEventListener('click', function () {
+    //     removeFileInput(existAddFile);
+    // });
+
+    //блок в котором будет список загруженных файлов
+    let addedFilesList = document.createElement('ul');
+    addedFilesList.id = 'files-list';
+    addedFilesList.classList.add('files-list');
+    addFilesBlock.insertBefore(addedFilesList,existAddFile);
+
+    //обернуть существующий input file
+    //сам input будет скрыт
+    //и навесить вызов функции создающей новый инпут
+    let defaultFileInput = document.getElementById('fileInput0');
+    //атрибут onchange добавляю чтобы не копировать уже существующюю
+    //в трекере функцию добаляния инпутов
+    defaultFileInput.setAttribute('onchange','addFileInput("FileInputs")');
+    defaultFileInput.addEventListener('change', function () {
+        processFiles(this,addedFilesList);
+        hideFilledFileInput(this);
     });
+    existAddFile.appendChild(wrapFileInputs(defaultFileInput));
+
+    let addFileObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+
+            if(mutation.addedNodes[0].tagName.toLowerCase() === 'input'){
+                let input = mutation.addedNodes[0];
+
+                input.setAttribute('onchange','addFileInput("FileInputs")');
+                input.addEventListener('change',function () {
+                    processFiles(this,addedFilesList);
+                    hideFilledFileInput(this);
+                });
+
+                //все новые input file нужно обернуть,
+                //сам input будет скрыт
+                let fakeInput = wrapFileInputs(input);
+                mutation.target.appendChild(fakeInput);
+            }
+        });
+    });
+
+    let addFileObserverConfig = {
+        attributes: false,
+        childList: true,
+        characterData: false
+    };
+
+    addFileObserver.observe(existAddFile, addFileObserverConfig);
 
     fragment.appendChild(addFilesBlock);
     rowItem.appendChild(fragment);
@@ -1258,6 +1309,41 @@ modules.taskFooterDesign = function () {
 
     //--тут навешиваю события на перемещенные элементы
 
+    function hideFilledFileInput(input) {
+        input.parentNode.classList.add('hidden-elem');
+    }
+
+    function processFiles(field, fileslist) {
+        let file = field.files[0];
+        let fileSize = file.size;
+
+
+        if(!fileslist.dataset.total){
+            fileslist.dataset.total = fileSize;
+        }else{
+            fileslist.dataset.total = parseInt(fileslist.dataset.total) + parseInt(fileSize);
+        }
+
+        let total = document.getElementById('files-total');
+        total.textContent = bytesToSize(fileslist.dataset.total) + ' из 3 Мб';
+
+        let p = document.createElement('li');
+        p.innerHTML = file.name + '<span class="s-info">' + Math.ceil(fileSize / 1024) + ' Kb</span>';
+        p.classList.add('file-list-item');
+
+        let removeBtn = document.createElement('span');
+        removeBtn.classList.add('btn-remove-item');
+        removeBtn.dataset.fieldId = field.id;
+
+        p.appendChild(removeBtn);
+
+        fileslist.appendChild(p);
+
+        removeBtn.addEventListener('click',function () {
+            removeFileInput(this);
+        });
+    }
+
     //при выборе в списке доп.емайлов сразу вставлять в поле для отправки
     let emailList = document.getElementById('add_email_worker');
     let onPageEmailList = document.createElement('ul');
@@ -1277,7 +1363,7 @@ modules.taskFooterDesign = function () {
     //и ставить статус в селекте statusList
     updateStatusListOnLoad(statusList);
 
-    let footerDesignCSS = '#main-content{margin-bottom:0}#main-content br:last-child{display:none}.content{padding-bottom:0}#tbl-new-comment tbody,#tbl-new-comment td,#tbl-new-comment tr{display:block}#tbl-new-comment+br,#tbl-new-comment tr:first-child>td:first-child{display:none}#new-comment-wrap{max-width:720px;margin:auto}.tl{display:none}.tarea-wrap{position:relative;overflow:hidden}#text{width:100%;padding:.6em .8em;font-family:inherit;font-size:14px;border:0;box-sizing:border-box;box-shadow:inset 0 -2px 2px 0 rgba(0,0,0,.14),inset 0 1px 5px 0 rgba(0,0,0,.12),inset 0 3px 1px -2px rgba(0,0,0,.2)}.task-fields-row{max-width:720px;margin:1.6em auto}.task-fields-row label{margin:0 0 .5em;color:gray;display:inline-block}.task-fields-row input.input_field,.task-fields-row input[type=text],.task-fields-row select{width:auto;max-width:100%;height:2em;padding:.3em .6em;border:1px solid #9e9e9e;display:block;box-sizing:border-box}.task-fields-row input.input_field:focus,.task-fields-row input[type=text]:focus,.task-fields-row select:focus{border-color:#26a69a}.task-fields-row select{padding:.3em 0 .3em .2em}.task-fields-row td{padding:0;font-size:100%;display:block}.task-fields-row .frow-col-2-1{width:190px;margin-right:30px}.task-fields-row .frow-col-2-2{width:120px}.task-row-1{display:-ms-flexbox;display:flex}.worker-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px}.worker-block input[type=radio]{display:inline-block;vertical-align:middle;position:relative;top:-.2em}.worker-block select{width:100%;margin:.5em 0 0}.task-row-2,.task-row-2 .time-block{display:-ms-flexbox;display:flex}.task-row-2 .time-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;-ms-flex-pack:justify;justify-content:space-between}.task-row-2 .time-block>div{width:120px}.task-row-2 .time-block>div input{width:76%;display:inline-block;vertical-align:middle}.task-row-2 .time-block>div:after{content:"мин";margin-left:.5em;display:inline-block;vertical-align:middle}:root .deadline-calendar{position:relative;padding:0!important;font-size:100%}:root .deadline-calendar>img,:root .deadline-calendar>input{display:inline-block;vertical-align:top;box-sizing:border-box}:root .deadline-calendar>input[type=text]{padding-right:30px}:root .deadline-calendar>img{position:absolute;top:.4em;right:.5em}:root .deadline-calendar input[type=button]{display:none}:root .deadline-calendar #end_date{width:auto!important}.task-row-3{display:-ms-flexbox;display:flex}.add-email{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;position:relative}.add-email a{display:none}.add-email label{display:block}.add-email #add_email{position:absolute;visibility:hidden;z-index:auto}.add-email #add_email_worker{width:226px;display:inline-block;vertical-align:middle}.add-email #getEmailAddressesButton{display:none}.email-send-list{margin:.4em 0 .5em;padding:0;list-style-type:none}.email-send-list>li{margin:0;line-height:1}.email-send-list>li:before{content:"·";font-size:1.5em;margin-right:.2em;display:inline-block;vertical-align:middle}.email-send-list>li:after{content:"🞩";margin-left:.4em;color:red;display:inline-block;cursor:pointer}.task-type select{min-width:190px}.task-type>div select{margin-top:.3em}.task-type>div br{display:none}.add-files a{margin-top:.8em;display:inline-block}#FileInputs input:not(:first-child){margin-top:.3em;display:inline-block;vertical-align:middle}#FileInputs br{display:none}.btn-remove-item{width:12px;height:18px;margin-left:.3em;color:red;display:inline-block;vertical-align:middle;position:relative;cursor:pointer}.btn-remove-item:after{content:"🞩";position:absolute;top:0;left:0}#task-footer tbody,#task-footer td,#task-footer tr{display:block}#task-footer tr:nth-child(2){height:0;overflow:hidden}.btn-action{height:36px;padding:0 1.6em;font-size:14px;color:#fff;border:0;border-radius:4px;background:#7eb519;cursor:pointer}';
+    let footerDesignCSS = '#main-content{margin-bottom:0}#main-content br:last-child{display:none}.content{padding-bottom:0}#tbl-new-comment tbody,#tbl-new-comment td,#tbl-new-comment tr{display:block}#tbl-new-comment+br,#tbl-new-comment tr:first-child>td:first-child{display:none}#new-comment-wrap{max-width:720px;margin:auto}.tl{display:none}.tarea-wrap{position:relative;overflow:hidden}#text{width:100%;padding:.6em .8em;font-family:inherit;font-size:14px;border:0;box-sizing:border-box;box-shadow:inset 0 -2px 2px 0 rgba(0,0,0,.14),inset 0 1px 5px 0 rgba(0,0,0,.12),inset 0 3px 1px -2px rgba(0,0,0,.2)}.task-fields-row{max-width:720px;margin:1.6em auto}.task-fields-row label{margin:0 0 .5em;color:gray;display:inline-block}.task-fields-row input.input_field,.task-fields-row input[type=text],.task-fields-row select{width:auto;max-width:100%;height:2em;padding:.3em .6em;border:1px solid #9e9e9e;display:block;box-sizing:border-box}.task-fields-row input.input_field:focus,.task-fields-row input[type=text]:focus,.task-fields-row select:focus{border-color:#26a69a}.task-fields-row select{padding:.3em 0 .3em .2em}.task-fields-row td{padding:0;font-size:100%;display:block}.task-fields-row .frow-col-2-1{width:190px;margin-right:30px}.task-fields-row .frow-col-2-2{width:120px}.task-row-1{display:-ms-flexbox;display:flex}.worker-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px}.worker-block input[type=radio]{display:inline-block;vertical-align:middle;position:relative;top:-.2em}.worker-block select{width:100%;margin:.5em 0 0}.task-row-2,.task-row-2 .time-block{display:-ms-flexbox;display:flex}.task-row-2 .time-block{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;-ms-flex-pack:justify;justify-content:space-between}.task-row-2 .time-block>div{width:120px}.task-row-2 .time-block>div input{width:76%;display:inline-block;vertical-align:middle}.task-row-2 .time-block>div:after{content:"мин";margin-left:.5em;display:inline-block;vertical-align:middle}:root .deadline-calendar{position:relative;padding:0!important;font-size:100%}:root .deadline-calendar>img,:root .deadline-calendar>input{display:inline-block;vertical-align:top;box-sizing:border-box}:root .deadline-calendar>input[type=text]{padding-right:30px}:root .deadline-calendar>img{position:absolute;top:.4em;right:.5em}:root .deadline-calendar input[type=button]{display:none}:root .deadline-calendar #end_date{width:auto!important}.task-row-3{display:-ms-flexbox;display:flex}.add-email{width:300px;margin-right:70px;-ms-flex:0 0 300px;flex:0 0 300px;position:relative}.add-email a{display:none}.add-email label{display:block}.add-email #add_email{position:absolute;visibility:hidden;z-index:auto}.add-email #add_email_worker{width:226px;display:inline-block;vertical-align:middle}.add-email #getEmailAddressesButton{display:none}.email-send-list{margin:.4em 0 .5em;padding:0;list-style-type:none}.email-send-list>li{margin:0;line-height:1}.email-send-list>li:before{content:"·";font-size:1.5em;margin-right:.2em;display:inline-block;vertical-align:middle}.email-send-list>li:after{content:"🞩";margin-left:.4em;color:red;display:inline-block;cursor:pointer}.task-type select{min-width:190px}.task-type>div select{margin-top:.3em}.task-type>div br{display:none}.add-files a{display:none}#FileInputs input:not(:first-child){margin-top:.3em;display:inline-block;vertical-align:middle}#FileInputs br{display:none}.btn-remove-item{width:12px;height:18px;margin-left:.3em;color:red;display:inline-block;vertical-align:middle;position:relative;cursor:pointer}.btn-remove-item:after{content:"🞩";position:absolute;top:0;left:0}.fake-file-input{width:225px;height:60px;border:1px dashed #82a5c3;background:#f4f6f8;text-align:center;border-radius:.5em;position:relative}.fake-file-input.is-hover{background:#d2dce5}.fake-file-input>input{width:100%;height:100%;position:absolute;top:0;left:0;opacity:0}.fake-file-input .btn-fake-file{padding:.7em 0 0;text-align:center;display:inline-block;font-size:16px;color:#82a5c3;cursor:pointer}.fake-file-input .btn-fake-file span{width:100%;display:inline-block;font-size:12px}.files-list{margin:-.5em 0 .5em;padding:0;list-style-type:none;transition:height .3s}.files-list .file-list-item{margin:.4em 0}.files-list .file-list-item .s-info{padding-left:.6em;display:inline-block;vertical-align:middle}#task-footer tbody,#task-footer td,#task-footer tr{display:block}#task-footer tr:nth-child(2){height:0;overflow:hidden}.btn-action{height:36px;padding:0 1.6em;font-size:14px;color:#fff;border:0;border-radius:4px;background:#7eb519;cursor:pointer}';
 
     addcss(footerDesignCSS);
 
@@ -1383,29 +1469,59 @@ function removeItemFromSendlist(item, select, input) {
     }
 }
 
-function removeFileInput(block) {
+function removeFileInput(btn) {
+    let inputId = btn.dataset.fieldId;
+    document.getElementById(inputId).parentNode.remove();
+    btn.parentNode.remove();
 
-    //таймаут т.к. нужно дать время сработать функции добавляющей новое поля выбора файла
-    setTimeout(function () {
-        //let newInput = block.querySelector('input:last-child');
-        let removeBtn = document.createElement('div');
-        removeBtn.classList.add('btn-remove-item');
-        block.appendChild(removeBtn);
+    let fileInputs = Array.from(document.querySelectorAll('div.fileInput'));
+    let removeBtns = document.querySelectorAll('.btn-remove-item');
 
-        removeBtn.addEventListener('click', function () {
-            block.removeChild(this.previousElementSibling);
-            block.removeChild(this);
-            let inputs = block.querySelectorAll('input');
-
-            for(let i = 0; i < inputs.length; i++){
-                inputs[i].id = 'fileInput'+i;
-                inputs[i].name = 'fileInput'+i;
-            }
-        })
-    },100)
-
+    //переписать имена и id всех инпутов.
+    //если они идут не по порядку или с пропусками
+    //при загрузке файлов на сервер будет ошибка
+    //то же надо сделать с data-input-id кнопок удаленя файла
+    //а то будет удалятся не тот инпут
+    for(let i = 0; i < fileInputs.length; i++){
+        fileInputs[i].firstElementChild.id = 'fileInput'+i;
+        fileInputs[i].firstElementChild.name = 'fileInput'+i;
+        removeBtns[i].dataset.fieldId = 'fileInput'+i;
+    }
 }
 
+function wrapFileInputs(input) {
+    let wrap = document.createElement('div');
+    let btn = wrap.cloneNode(false);
+
+    wrap.classList.add('fake-file-input',input.classList[0]);
+    wrap.appendChild(input);
+
+    btn.innerHTML = 'Добавить файл <span>Нажми или тащи его сюда</span>';
+    btn.classList.add('btn-fake-file');
+    wrap.appendChild(btn);
+
+    wrap.addEventListener('dragenter',function () {
+        console.log(this);
+        this.classList.add('is-hover');
+    });
+
+    wrap.addEventListener('dragleave',function () {
+        this.classList.remove('is-hover');
+    });
+
+    wrap.addEventListener('mouseup',function () {
+        this.classList.remove('is-hover');
+    });
+
+    return wrap;
+}
+
+function bytesToSize(bytes) {
+    let sizes = ['Bytes', 'Кб', 'Мб', 'Гб', 'Тб'];
+    //if (!bytes) return '0 Byte';
+    let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+};
 /* End: js-parts\taskFooterDesign.js */
 
         switch (action_page) {

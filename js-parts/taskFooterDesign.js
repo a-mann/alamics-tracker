@@ -126,15 +126,66 @@ modules.taskFooterDesign = function () {
     let addFilesBlock = existAddFile.parentNode;
     addFilesBlock.classList.add('add-files');
 
-    let addFilesLabel = document.createElement('label');
-    addFilesLabel.textContent = 'Прикрепить файлы, размер всех файлов до 3 мб';
+    let addFilesLabel = document.createElement('h2');
+    addFilesLabel.classList.add('section-title');
+    addFilesLabel.innerHTML = 'Файлы <span class="s-info">общий объем <span id="files-total">до 3 Мб</span></span>';
+    //в id="files-total" будет заменятся текст когда файлы выбрны - общий объем выбранных файлов
     addFilesBlock.insertBefore(addFilesLabel,addFilesBlock.firstElementChild);
 
-    let addFileInput = addFilesBlock.querySelector('a');
+    //эту ссылку я скрою стилями
+    // let addFileInput = addFilesBlock.querySelector('a');
+    // addFileInput.setAttribute('onclick','addFileInput("FileInputs")');
 
-    addFileInput.addEventListener('click', function () {
-        removeFileInput(existAddFile);
+    // addFileInput.addEventListener('click', function () {
+    //     removeFileInput(existAddFile);
+    // });
+
+    //блок в котором будет список загруженных файлов
+    let addedFilesList = document.createElement('ul');
+    addedFilesList.id = 'files-list';
+    addedFilesList.classList.add('files-list');
+    addFilesBlock.insertBefore(addedFilesList,existAddFile);
+
+    //обернуть существующий input file
+    //сам input будет скрыт
+    //и навесить вызов функции создающей новый инпут
+    let defaultFileInput = document.getElementById('fileInput0');
+    //атрибут onchange добавляю чтобы не копировать уже существующюю
+    //в трекере функцию добаляния инпутов
+    defaultFileInput.setAttribute('onchange','addFileInput("FileInputs")');
+    defaultFileInput.addEventListener('change', function () {
+        processFiles(this,addedFilesList);
+        hideFilledFileInput(this);
     });
+    existAddFile.appendChild(wrapFileInputs(defaultFileInput));
+
+    let addFileObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+
+            if(mutation.addedNodes[0].tagName.toLowerCase() === 'input'){
+                let input = mutation.addedNodes[0];
+
+                input.setAttribute('onchange','addFileInput("FileInputs")');
+                input.addEventListener('change',function () {
+                    processFiles(this,addedFilesList);
+                    hideFilledFileInput(this);
+                });
+
+                //все новые input file нужно обернуть,
+                //сам input будет скрыт
+                let fakeInput = wrapFileInputs(input);
+                mutation.target.appendChild(fakeInput);
+            }
+        });
+    });
+
+    let addFileObserverConfig = {
+        attributes: false,
+        childList: true,
+        characterData: false
+    };
+
+    addFileObserver.observe(existAddFile, addFileObserverConfig);
 
     fragment.appendChild(addFilesBlock);
     rowItem.appendChild(fragment);
@@ -155,6 +206,41 @@ modules.taskFooterDesign = function () {
     newComment.appendChild(rowsFragment);
 
     //--тут навешиваю события на перемещенные элементы
+
+    function hideFilledFileInput(input) {
+        input.parentNode.classList.add('hidden-elem');
+    }
+
+    function processFiles(field, fileslist) {
+        let file = field.files[0];
+        let fileSize = file.size;
+
+
+        if(!fileslist.dataset.total){
+            fileslist.dataset.total = fileSize;
+        }else{
+            fileslist.dataset.total = parseInt(fileslist.dataset.total) + parseInt(fileSize);
+        }
+
+        let total = document.getElementById('files-total');
+        total.textContent = bytesToSize(fileslist.dataset.total) + ' из 3 Мб';
+
+        let p = document.createElement('li');
+        p.innerHTML = file.name + '<span class="s-info">' + Math.ceil(fileSize / 1024) + ' Kb</span>';
+        p.classList.add('file-list-item');
+
+        let removeBtn = document.createElement('span');
+        removeBtn.classList.add('btn-remove-item');
+        removeBtn.dataset.fieldId = field.id;
+
+        p.appendChild(removeBtn);
+
+        fileslist.appendChild(p);
+
+        removeBtn.addEventListener('click',function () {
+            removeFileInput(this);
+        });
+    }
 
     //при выборе в списке доп.емайлов сразу вставлять в поле для отправки
     let emailList = document.getElementById('add_email_worker');
@@ -281,26 +367,56 @@ function removeItemFromSendlist(item, select, input) {
     }
 }
 
-function removeFileInput(block) {
+function removeFileInput(btn) {
+    let inputId = btn.dataset.fieldId;
+    document.getElementById(inputId).parentNode.remove();
+    btn.parentNode.remove();
 
-    //таймаут т.к. нужно дать время сработать функции добавляющей новое поля выбора файла
-    setTimeout(function () {
-        //let newInput = block.querySelector('input:last-child');
-        let removeBtn = document.createElement('div');
-        removeBtn.classList.add('btn-remove-item');
-        block.appendChild(removeBtn);
+    let fileInputs = Array.from(document.querySelectorAll('div.fileInput'));
+    let removeBtns = document.querySelectorAll('.btn-remove-item');
 
-        removeBtn.addEventListener('click', function () {
-            block.removeChild(this.previousElementSibling);
-            block.removeChild(this);
-            let inputs = block.querySelectorAll('input');
-
-            for(let i = 0; i < inputs.length; i++){
-                inputs[i].id = 'fileInput'+i;
-                inputs[i].name = 'fileInput'+i;
-            }
-        })
-    },100)
-
+    //переписать имена и id всех инпутов.
+    //если они идут не по порядку или с пропусками
+    //при загрузке файлов на сервер будет ошибка
+    //то же надо сделать с data-input-id кнопок удаленя файла
+    //а то будет удалятся не тот инпут
+    for(let i = 0; i < fileInputs.length; i++){
+        fileInputs[i].firstElementChild.id = 'fileInput'+i;
+        fileInputs[i].firstElementChild.name = 'fileInput'+i;
+        removeBtns[i].dataset.fieldId = 'fileInput'+i;
+    }
 }
 
+function wrapFileInputs(input) {
+    let wrap = document.createElement('div');
+    let btn = wrap.cloneNode(false);
+
+    wrap.classList.add('fake-file-input',input.classList[0]);
+    wrap.appendChild(input);
+
+    btn.innerHTML = 'Добавить файл <span>Нажми или тащи его сюда</span>';
+    btn.classList.add('btn-fake-file');
+    wrap.appendChild(btn);
+
+    wrap.addEventListener('dragenter',function () {
+        console.log(this);
+        this.classList.add('is-hover');
+    });
+
+    wrap.addEventListener('dragleave',function () {
+        this.classList.remove('is-hover');
+    });
+
+    wrap.addEventListener('mouseup',function () {
+        this.classList.remove('is-hover');
+    });
+
+    return wrap;
+}
+
+function bytesToSize(bytes) {
+    let sizes = ['Bytes', 'Кб', 'Мб', 'Гб', 'Тб'];
+    //if (!bytes) return '0 Byte';
+    let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+};
