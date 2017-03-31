@@ -16,27 +16,27 @@
 console.info('start userscript');
 // [1] Оборачиваем скрипт в замыкание, для кроссбраузерности (opera, ie)
 (function (window, undefined) {  // [2] нормализуем window
-    var w;
-    if (typeof unsafeWindow != undefined) {
-        w = unsafeWindow
-    } else {
-        w = window;
-    }
+    var w = window;
+    // if (typeof unsafeWindow != undefined) {
+    //     w = unsafeWindow
+    // } else {
+    //     w = window;
+    // }
     //------------------------------------------
 
     //--------------------------------------------
     // [3] не запускаем скрипт во фреймах
     // без этого условия скрипт будет запускаться несколько раз на странице с фреймами
-    if (w.self != w.top) {
-        return;
-    }
+    // if (w.self != w.top) {
+    //     return;
+    // }
 
     // [4] дополнительная проверка наряду с @include
     var location_test = function () {
         return /https:\/\/support.dartit.ru/.test(w.location.href) || /https:\/\/support.alamics.ru/.test(w.location.href);
     };
 
-    if (location_test) document.addEventListener("DOMContentLoaded", function () {
+    // if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
         var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed!important;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;display:inline-block;cursor:pointer}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl blockquote p:not(:last-child){margin-bottom:1em}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.s-info{color:gray;font-size:12px}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
@@ -2059,5 +2059,5 @@ function bytesToSize(bytes) {
             });
         }
 
-    });
+    // });
 })(window);

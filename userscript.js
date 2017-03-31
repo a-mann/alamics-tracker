@@ -16,27 +16,27 @@
 console.info('start userscript');
 // [1] Оборачиваем скрипт в замыкание, для кроссбраузерности (opera, ie)
 (function (window, undefined) {  // [2] нормализуем window
-    var w;
-    if (typeof unsafeWindow != undefined) {
-        w = unsafeWindow
-    } else {
-        w = window;
-    }
+    var w = window;
+    // if (typeof unsafeWindow != undefined) {
+    //     w = unsafeWindow
+    // } else {
+    //     w = window;
+    // }
     //------------------------------------------
 
     //--------------------------------------------
     // [3] не запускаем скрипт во фреймах
     // без этого условия скрипт будет запускаться несколько раз на странице с фреймами
-    if (w.self != w.top) {
-        return;
-    }
+    // if (w.self != w.top) {
+    //     return;
+    // }
 
     // [4] дополнительная проверка наряду с @include
     var location_test = function () {
         return /https:\/\/support.dartit.ru/.test(w.location.href) || /https:\/\/support.alamics.ru/.test(w.location.href);
     };
 
-    if (location_test) document.addEventListener("DOMContentLoaded", function () {
+    // if (location_test) document.addEventListener("DOMContentLoaded", function () {
 
         //добавим новые стили
         var custom_css = '//cssimport userscript.css';
@@ -652,5 +652,5 @@ console.info('start userscript');
             });
         }
 
-    });
+    // });
 })(window);
