@@ -7,6 +7,7 @@
 // @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
 // @include https://support.dartit.ru/*
 // @include https://support.alamics.ru/*
+// @require https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js
 // @grant unsafeWindow
 // @author mann
 // @license MIT
@@ -15,7 +16,7 @@
 // ==/UserScript==
 console.info('start userscript');
 // [1] Оборачиваем скрипт в замыкание, для кроссбраузерности (opera, ie)
-(function (window, undefined) {  // [2] нормализуем window
+(function () {  // [2] нормализуем window
     var w = window;
     // if (typeof unsafeWindow != undefined) {
     //     w = unsafeWindow
@@ -391,7 +392,7 @@ modules.modyfiComments = function () {
     //парсер markdown
     function goMarkdown(rows) {
 
-        let md = w.markdownit();
+        let md = markdownit();
         md.options.html = true;
         md.options.linkify = true;
         md.options.typographer = true;
@@ -2060,4 +2061,4 @@ function bytesToSize(bytes) {
         }
 
     // });
-})(window);
+})();

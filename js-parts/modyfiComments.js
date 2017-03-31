@@ -28,7 +28,7 @@ modules.modyfiComments = function () {
     //парсер markdown
     function goMarkdown(rows) {
 
-        let md = w.markdownit();
+        let md = markdownit();
         md.options.html = true;
         md.options.linkify = true;
         md.options.typographer = true;
