@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="">
+    <list default="true" id="d288d1e3-e040-4bc2-b116-f28984bc56cb" name="Default" comment="Пробую приспособить для работы в хроме через tumpermonkey">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dart-support.user.js" afterPath="$PROJECT_DIR$/dart-support.user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js-parts/modyfiComments.js" afterPath="$PROJECT_DIR$/js-parts/modyfiComments.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userscript.js" afterPath="$PROJECT_DIR$/userscript.js" />
     </list>
     <ignored path="dart-user-script.iws" />
@@ -85,8 +84,8 @@
       <file leaf-file-name="userscript.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userscript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="307">
+              <caret line="657" column="0" lean-forward="true" selection-start-line="657" selection-start-column="0" selection-end-line="657" selection-end-column="0" />
               <folding>
                 <element signature="e#6571#7042#0" expanded="false" />
                 <element signature="e#7091#7249#0" expanded="false" />
@@ -590,7 +589,7 @@
       <workItem from="1490350493011" duration="35933000" />
       <workItem from="1490615116628" duration="10000" />
       <workItem from="1490615135415" duration="36784000" />
-      <workItem from="1490783193519" duration="49834000" />
+      <workItem from="1490783193519" duration="50163000" />
     </task>
     <task id="LOCAL-00001" summary="попробую разбивать камент по 2 br&#10;а получившиеся строки перед обработккой markdown дополнительно по 1 br">
       <created>1490178790527</created>
@@ -767,11 +766,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490954125584</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Пробую приспособить для работы в хроме через tumpermonkey">
+      <created>1490954496112</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1490954496112</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359973000" />
+    <option name="totallyTimeSpent" value="360302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="79" y="52" width="1735" height="1003" extended-state="0" />
@@ -854,7 +860,8 @@
     <MESSAGE value="Добавил показ большой картинки при наведении на ее превью во вложенных файлах" />
     <MESSAGE value="Переделал загрузку файлов. Инпуты скрыты, видно только одни- не заполненный.&#10;Список выбранных файлов&#10;Возможность удалить файл из списка&#10;Общий вес выбранных файлов" />
     <MESSAGE value="Проьбую приспособить для работы в хроме через tumpermonkey" />
-    <option name="LAST_COMMIT_MESSAGE" value="Проьбую приспособить для работы в хроме через tumpermonkey" />
+    <MESSAGE value="Пробую приспособить для работы в хроме через tumpermonkey" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пробую приспособить для работы в хроме через tumpermonkey" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1228,8 +1235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="307">
+          <caret line="657" column="0" lean-forward="true" selection-start-line="657" selection-start-column="0" selection-end-line="657" selection-end-column="0" />
           <folding>
             <element signature="e#6571#7042#0" expanded="false" />
             <element signature="e#7091#7249#0" expanded="false" />
