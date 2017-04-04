@@ -33,5 +33,5 @@ modules.calculateElapsedTime = function () {
         }
     });
 
-    console.info('load calculateElapsedTime');
+    //console.info('load calculateElapsedTime');
 };

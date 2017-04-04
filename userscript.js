@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.2.4
+// @version 1.3.4
 // ==/UserScript==
 
 console.info('start userscript');
@@ -86,6 +86,10 @@ console.info('start userscript');
         //Таблица статусов задачи
         let $statusTbl = $footer_tbls[1].querySelector('table');
         $statusTbl.id = 'tbl-status';
+
+        //заголовок задачи
+        let taskTite = document.querySelector('h1');
+        taskTite.id = 'task-title';
     }
 
 
@@ -98,6 +102,7 @@ console.info('start userscript');
     //jsimport copyPasteCommentQuote.js
     //jsimport cammentsDesign.js
     //jsimport taskFooterDesign.js
+    //jsimport taskUpdateNotify.js
 
     switch (action_page) {
         case 'new':
@@ -118,6 +123,7 @@ console.info('start userscript');
             modules.taskFooterDesign();
             modules.copyPasteCommentQuote();
             anchorLink();
+            modules.taskUpdateNotify();
             break;
         default:
 
@@ -128,6 +134,34 @@ console.info('start userscript');
     //----------
     //утилиты
     //----------
+    //номер задачи из URl
+    function getTaskId() {
+        let query = window.location.search.substring(1);
+        return query.split("=")[2]
+    }
+
+    //ajax запрос
+    function loadByAjax(path, success, error) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    if (success) {
+                        success(xhr.responseText);
+                    }
+
+                } else {
+                    if (error) {
+                        error(xhr);
+                    }
+                }
+            }
+        };
+        xhr.open("GET", path, true);
+        xhr.send();
+    }
+
     //прокрутка к каменту по якорю. Нужна если вызван cmmentsDesign()
     function anchorLink() {
         //обработка ссылок с id камента в хеше

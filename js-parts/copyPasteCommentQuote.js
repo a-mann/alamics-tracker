@@ -56,5 +56,5 @@ modules.copyPasteCommentQuote = function () {
         "V".charCodeAt(0)
     );
 
-    console.info('load copyPasteCommentQuote');
+    //console.info('load copyPasteCommentQuote');
 };
