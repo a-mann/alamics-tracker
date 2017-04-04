@@ -139,5 +139,5 @@ modules.modyfiComments = function () {
         return str + space;
     }
 
-    console.info('load modyfiComments');
+    //console.info('load modyfiComments');
 };

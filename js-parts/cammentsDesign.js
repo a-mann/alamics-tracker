@@ -326,5 +326,5 @@ modules.cammentsDesign = function () {
         btns.classList.toggle('is-visible');
     }
 
-    console.info('load cammentsDesign');
+    //console.info('load cammentsDesign');
 };

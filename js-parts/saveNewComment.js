@@ -8,8 +8,7 @@ modules.saveNewComment = function () {
     let $field = document.getElementById('text');
     let wrap = document.getElementById('tarea-wrap');
 
-    let query = window.location.search.substring(1);
-    let task_id = query.split("=")[2];
+    let task_id = getTaskId();
 
     //добавлю кнопку для вставки сохраненного текста
     let btn = document.createElement('BUTTON');
@@ -56,5 +55,5 @@ modules.saveNewComment = function () {
         }
     }
 
-    console.info('load saveNewComment');
+    //console.info('load saveNewComment');
 };

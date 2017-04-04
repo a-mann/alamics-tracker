@@ -100,9 +100,10 @@ modules.userSettings = function () {
 
     optionsBlock.appendChild(settings_title);
 
+    //добавление настройки - вкл/выкл генерации блока с подсчетом времени участников задачи
     let countTimeBtn =  document.createElement('span');
     countTimeBtn.id = 'countTimeBtn';
-    countTimeBtn.classList.add('btn-flat');
+    countTimeBtn.classList.add('btn-flat','row-item');
     countTimeBtn.textContent = 'Подсчет времени в задаче - Включен';
 
     if(!localStorage.getItem('worker-time-count')){
@@ -121,6 +122,7 @@ modules.userSettings = function () {
        }
     });
 
+    //включить/отключить генерацию блока с подсчетов времени участников задачи
     function checkTimeCountOption() {
         let btn = document.getElementById('countTimeBtn');
 
@@ -133,11 +135,46 @@ modules.userSettings = function () {
         }
     }
 
+    /*//добавление настройки - вкл/выкл уведомлений о новом комментарии в задаче
+    let commentsUpdateBtn =  document.createElement('span');
+    commentsUpdateBtn.id = 'commentsUpdateBtn';
+    commentsUpdateBtn.classList.add('btn-flat','row-item');
+    commentsUpdateBtn.textContent = 'Уведомления о новых комментариях - Включены';
+
+    commentsUpdateBtn.addEventListener('click',function () {
+        this.classList.toggle('selected');
+
+        if(this.classList.contains('selected')){
+            this.textContent = 'Уведомления о новых комментариях - Включены';
+            localStorage.setItem('comments-update', 'true');
+        }else{
+            this.textContent = 'Уведомления о новых комментариях - Выключены';
+            localStorage.setItem('comments-update','false');
+        }
+    });
+
+    //включить/отключить уведомления о новых комментраиях
+    //на открытой странице задачи
+    function checkCommentsUpdate() {
+        let btn = document.getElementById('commentsUpdateBtn');
+
+        if(localStorage.getItem('comments-update') === 'true'){
+            btn.textContent = 'Уведомления о новых комментариях - Включены';
+            btn.classList.add('selected');
+        }else{
+            btn.textContent = 'Уведомления о новых комментариях - Выключены';
+            btn.classList.remove('selected');
+        }
+    }*/
+
     optionsBlock.appendChild(countTimeBtn);
+    //optionsBlock.appendChild(commentsUpdateBtn);
 
     $user_settings_box.appendChild(optionsBlock);
 
+    //запуск проверок включенных/отключенных опций
     checkTimeCountOption();
+    checkCommentsUpdate();
 
 
 
@@ -145,5 +182,5 @@ modules.userSettings = function () {
     createTaskListHTML();
     createWorkersListHTML();
 
-    console.info('load userSettings');
+    //console.info('load userSettings');
 };

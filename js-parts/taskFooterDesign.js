@@ -265,7 +265,7 @@ modules.taskFooterDesign = function () {
 
     addcss(footerDesignCSS);
 
-    console.info('load taskFooterDesign');
+    //console.info('load taskFooterDesign');
 };
 
 function createFieldAndLabel(text,field) {

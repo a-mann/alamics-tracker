@@ -89,6 +89,15 @@
     cursor: pointer;
 }
 
+.row-item{
+    display: inline-block;
+    vertical-align: top;
+
+    &:not(:last-child){
+        margin-right: 1em;
+    }
+}
+
 #settings-btn {
     margin: 0 0 20px 0
 }
@@ -151,8 +160,8 @@
 
 .btn-collapse-all {
     position: fixed;
-    top: 10;
-    right: 10;
+    top: 10px;
+    right: 10px;
 }
 
 :root .dates-list {
@@ -236,5 +245,30 @@
 
     &.is-visible{
         transform: translateY(-150%);
+    }
+}
+
+/*
+    добавление иконки подписки на уведомление о новых каментах
+    в заголовок задачи
+*/
+
+.add-alert{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+ICAgIDxwYXRoIGQ9Ik0xMC4wMSAyMS4wMWMwIDEuMS44OSAxLjk5IDEuOTkgMS45OXMxLjk5LS44OSAxLjk5LTEuOTloLTMuOTh6bTguODctNC4xOVYxMWMwLTMuMjUtMi4yNS01Ljk3LTUuMjktNi42OXYtLjcyQzEzLjU5IDIuNzEgMTIuODggMiAxMiAycy0xLjU5LjcxLTEuNTkgMS41OXYuNzJDNy4zNyA1LjAzIDUuMTIgNy43NSA1LjEyIDExdjUuODJMMyAxOC45NFYyMGgxOHYtMS4wNmwtMi4xMi0yLjEyek0xNiAxMy4wMWgtM3YzaC0ydi0zSDhWMTFoM1Y4aDJ2M2gzdjIuMDF6Ii8+PC9zdmc+);
+    cursor: pointer;
+}
+
+#task-title{
+
+    & .add-alert{
+        vertical-align: middle;
+        opacity: .5;
+
+        &.selected{
+            opacity: 1;
+        }
     }
 }

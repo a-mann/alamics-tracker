@@ -16,7 +16,7 @@
     margin-bottom: 2em;
 }
 
-.b-comment {
+@b b-comment {
     @apply --card;
 
     width: 100%;
@@ -24,6 +24,21 @@
     /*display: flex;
     flex-flow: column wrap;*/
     position: relative;
+    box-sizing: border-box;
+
+    @m notify{
+        margin-top: 2em;
+        padding: 2em;
+        color: #31708f;
+        background: #d9edf7;
+        border: 1px solid #bce8f1;
+
+        & .comments-update-link{
+            display: inline-block;
+            padding-left: 1em;
+            color: inherit;
+        }
+    }
 }
 
 .comment-body {

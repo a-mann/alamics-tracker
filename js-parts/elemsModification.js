@@ -97,5 +97,5 @@ modules.elemsModification = function () {
         this.modifyProjectList();
     }
 
-    console.info('load elemsModification');
+    //console.info('load elemsModification');
 };

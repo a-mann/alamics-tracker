@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.2.4
+// @version 1.3.4
 // ==/UserScript==
 
 console.info('start userscript');
@@ -21,7 +21,7 @@ console.info('start userscript');
 
 
     //добавим новые стили
-    var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed!important;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;display:inline-block;cursor:pointer}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10;right:10}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl blockquote p:not(:last-child){margin-bottom:1em}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.s-info{color:gray;font-size:12px}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}';
+    var custom_css = '.onoff-opt{margin:0 6px 0 10px}.none{display:none!important}.hidden-elem{position:fixed!important;left:-999em;z-index:-1;visibility:hidden}.none.view{display:block!important}.ch_addr{margin:10px 10px 10px 0;vertical-align:top}.totop>input{margin:10px 0 0}.label_head{display:block;margin:0 0 20px}.clearfix:after,.clearfix:before{content:"";display:table;clear:both}.alist{float:right}.alist p{margin:0 0 10px;line-height:1;text-align:right}.bar-wrap{padding:8px 15px;background:#2d2d2d}#custom-project-list>li,#custom-workers-list>li{width:20%;float:left;cursor:pointer}#custom-project-list>li:first-child{display:none}.user-list{margin:2em 1em;padding:0;list-style-position:inside}.user-list>li{line-height:1.5}.selected{color:green}.btn-flat{padding:.5em;background:#f0f0f0;cursor:pointer}.btn-flat,.row-item{display:inline-block}.row-item{vertical-align:top}.row-item:not(:last-child){margin-right:1em}#settings-btn{margin:0 0 20px}#settings-box{display:none;margin:20px 0;padding:20px 0;outline:1px solid #414141}#settings-box.is-open{display:block}.user-title{color:#000;margin:0 0 .6em;font-size:20px;padding:0}.regular-link{color:#0054b9;outline:0!important}.time-list p{margin:5px 0;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.time-list>p>span:first-child{padding-right:1em;cursor:pointer}:root .time-list-total{margin-top:1em;border-top:1px solid}.comment-collapsed{max-height:70px;overflow:hidden!important}.long-comment{width:100%!important;position:relative;padding-top:30px}.btn-collapse{position:absolute;top:0;right:0}.btn-collapse-all{position:fixed;top:10px;right:10px}:root .dates-list{width:150px;display:inline-block;margin:0 20px 0 0}.user-toolbar{margin:20px 0;padding:20px 10px;border-top:1px solid rgba(0,0,0,.7);overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.user-toolbar__item{padding:10px 15px;background:hsla(0,0%,100%,.6);box-shadow:0 1px 1px rgba(0,0,0,.6)}:root .user-toolbar-title{margin:0 0 1em;padding:0;color:#000}:root #comments-tbl .comment-wrap{font-size:14px;width:100%!important;max-width:800px;overflow:hidden}:root #comments-tbl h1{font-size:120%;font-weight:400;margin:0 0 .4em;color:inherit}:root #comments-tbl blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #ccc}:root #comments-tbl blockquote p{margin:0}:root #comments-tbl blockquote p:not(:last-child){margin-bottom:1em}:root #comments-tbl ul{padding-left:.6em;list-style-position:inside}.section-title{color:inherit;margin:0 0 1em;padding:0!important}.s-info{color:gray;font-size:12px}.btn-insert-ls{position:absolute;top:100%;right:2em;transition:transform .3s}.btn-insert-ls.is-visible{transform:translateY(-150%)}.add-alert{width:24px;height:24px;display:inline-block;background-image:url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+ICAgIDxwYXRoIGQ9Ik0xMC4wMSAyMS4wMWMwIDEuMS44OSAxLjk5IDEuOTkgMS45OXMxLjk5LS44OSAxLjk5LTEuOTloLTMuOTh6bTguODctNC4xOVYxMWMwLTMuMjUtMi4yNS01Ljk3LTUuMjktNi42OXYtLjcyQzEzLjU5IDIuNzEgMTIuODggMiAxMiAycy0xLjU5LjcxLTEuNTkgMS41OXYuNzJDNy4zNyA1LjAzIDUuMTIgNy43NSA1LjEyIDExdjUuODJMMyAxOC45NFYyMGgxOHYtMS4wNmwtMi4xMi0yLjEyek0xNiAxMy4wMWgtM3YzaC0ydi0zSDhWMTFoM1Y4aDJ2M2gzdjIuMDF6Ii8+PC9zdmc+);cursor:pointer}#task-title .add-alert{vertical-align:middle;opacity:.5}#task-title .add-alert.selected{opacity:1}';
 
     addcss(custom_css);
 
@@ -86,6 +86,10 @@ console.info('start userscript');
         //Таблица статусов задачи
         let $statusTbl = $footer_tbls[1].querySelector('table');
         $statusTbl.id = 'tbl-status';
+
+        //заголовок задачи
+        let taskTite = document.querySelector('h1');
+        taskTite.id = 'task-title';
     }
 
 
@@ -192,9 +196,10 @@ modules.userSettings = function () {
 
     optionsBlock.appendChild(settings_title);
 
+    //добавление настройки - вкл/выкл генерации блока с подсчетом времени участников задачи
     let countTimeBtn =  document.createElement('span');
     countTimeBtn.id = 'countTimeBtn';
-    countTimeBtn.classList.add('btn-flat');
+    countTimeBtn.classList.add('btn-flat','row-item');
     countTimeBtn.textContent = 'Подсчет времени в задаче - Включен';
 
     if(!localStorage.getItem('worker-time-count')){
@@ -213,6 +218,7 @@ modules.userSettings = function () {
        }
     });
 
+    //включить/отключить генерацию блока с подсчетов времени участников задачи
     function checkTimeCountOption() {
         let btn = document.getElementById('countTimeBtn');
 
@@ -225,11 +231,46 @@ modules.userSettings = function () {
         }
     }
 
+    /*//добавление настройки - вкл/выкл уведомлений о новом комментарии в задаче
+    let commentsUpdateBtn =  document.createElement('span');
+    commentsUpdateBtn.id = 'commentsUpdateBtn';
+    commentsUpdateBtn.classList.add('btn-flat','row-item');
+    commentsUpdateBtn.textContent = 'Уведомления о новых комментариях - Включены';
+
+    commentsUpdateBtn.addEventListener('click',function () {
+        this.classList.toggle('selected');
+
+        if(this.classList.contains('selected')){
+            this.textContent = 'Уведомления о новых комментариях - Включены';
+            localStorage.setItem('comments-update', 'true');
+        }else{
+            this.textContent = 'Уведомления о новых комментариях - Выключены';
+            localStorage.setItem('comments-update','false');
+        }
+    });
+
+    //включить/отключить уведомления о новых комментраиях
+    //на открытой странице задачи
+    function checkCommentsUpdate() {
+        let btn = document.getElementById('commentsUpdateBtn');
+
+        if(localStorage.getItem('comments-update') === 'true'){
+            btn.textContent = 'Уведомления о новых комментариях - Включены';
+            btn.classList.add('selected');
+        }else{
+            btn.textContent = 'Уведомления о новых комментариях - Выключены';
+            btn.classList.remove('selected');
+        }
+    }*/
+
     optionsBlock.appendChild(countTimeBtn);
+    //optionsBlock.appendChild(commentsUpdateBtn);
 
     $user_settings_box.appendChild(optionsBlock);
 
+    //запуск проверок включенных/отключенных опций
     checkTimeCountOption();
+    checkCommentsUpdate();
 
 
 
@@ -237,7 +278,7 @@ modules.userSettings = function () {
     createTaskListHTML();
     createWorkersListHTML();
 
-    console.info('load userSettings');
+    //console.info('load userSettings');
 };
 /* End: js-parts\userSettings.js */
 /* Begin: js-parts\elemsModification.js */
@@ -340,7 +381,7 @@ modules.elemsModification = function () {
         this.modifyProjectList();
     }
 
-    console.info('load elemsModification');
+    //console.info('load elemsModification');
 };/* End: js-parts\elemsModification.js */
 /* Begin: js-parts\modyfiComments.js */
 
@@ -484,7 +525,7 @@ modules.modyfiComments = function () {
         return str + space;
     }
 
-    console.info('load modyfiComments');
+    //console.info('load modyfiComments');
 };
 /* End: js-parts\modyfiComments.js */
 /* Begin: js-parts\countWorkerTime.js */
@@ -589,7 +630,7 @@ modules.countWorkerTime = function () {
 
     //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
 
-    console.info('load countWorkerTime');
+    //console.info('load countWorkerTime');
 };/* End: js-parts\countWorkerTime.js */
 /* Begin: js-parts\calculateElapsedTime.js */
 
@@ -627,7 +668,7 @@ modules.calculateElapsedTime = function () {
         }
     });
 
-    console.info('load calculateElapsedTime');
+    //console.info('load calculateElapsedTime');
 };/* End: js-parts\calculateElapsedTime.js */
 /* Begin: js-parts\saveNewComment.js */
 
@@ -640,8 +681,7 @@ modules.saveNewComment = function () {
     let $field = document.getElementById('text');
     let wrap = document.getElementById('tarea-wrap');
 
-    let query = window.location.search.substring(1);
-    let task_id = query.split("=")[2];
+    let task_id = getTaskId();
 
     //добавлю кнопку для вставки сохраненного текста
     let btn = document.createElement('BUTTON');
@@ -688,7 +728,7 @@ modules.saveNewComment = function () {
         }
     }
 
-    console.info('load saveNewComment');
+    //console.info('load saveNewComment');
 };/* End: js-parts\saveNewComment.js */
 /* Begin: js-parts\copyPasteCommentQuote.js */
 
@@ -749,7 +789,7 @@ modules.copyPasteCommentQuote = function () {
         "V".charCodeAt(0)
     );
 
-    console.info('load copyPasteCommentQuote');
+    //console.info('load copyPasteCommentQuote');
 };/* End: js-parts\copyPasteCommentQuote.js */
 /* Begin: js-parts\cammentsDesign.js */
 
@@ -827,7 +867,7 @@ modules.cammentsDesign = function () {
         });
     });
 
-    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fafafa;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;position:relative}.comment-body{width:100%}.comment-wrap p{line-height:1.4}.comment-wrap p:first-child{margin-top:0}.comment-wrap p:last-child{margin-bottom:0}.comment-wrap p:only-of-type{margin:0}.comment-wrap p br:first-child,.comment-wrap p br:last-child{display:none}.b-comment__row{padding:1em 2em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row:first-child{padding-top:2em}.b-comment__row:first-child .row-right{top:2em}.b-comment__row:last-child{padding-bottom:2em}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.deadline-date{padding-left:1em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-link,.comment-no{margin-right:0!important}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;background:#fff;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{margin-left:.5em;top:3px}.btn-del-comment{width:70px}.btn-del-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1;content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img{display:none}.btn-del-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:start;align-items:flex-start}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:2em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.7em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;object-fit:cover;max-height:200px;border:1px solid #ccc}.large-pic-preview{max-width:40vw;border:1px solid gray;position:absolute;top:90%;left:0;z-index:1}.doc-thumb{max-width:150px;background:#f3f3f3;font-size:11px;border:1px solid #ccc;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{width:100%;padding:0 .5em;line-height:1.6;word-break:break-all;box-sizing:border-box;position:absolute;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 25%;flex:1 1 25%;min-height:70px;position:relative}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
+    let cammentsDesignCSS = '#comments-tbl{margin:auto;padding:3em 0;background:#f0f0f0}#comments-tbl,#comments-tbl tbody,#comments-tbl tr{display:block}#comments-tbl tr:not(:last-child){margin-bottom:2em}.b-comment{max-width:720px;margin:auto;background:#fafafa;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);width:100%;font-size:12px;position:relative;box-sizing:border-box}.b-comment_notify{margin-top:2em;padding:2em;color:#31708f;background:#d9edf7;border:1px solid #bce8f1}.b-comment_notify .comments-update-link{display:inline-block;padding-left:1em;color:inherit}.comment-body{width:100%}.comment-wrap p{line-height:1.4}.comment-wrap p:first-child{margin-top:0}.comment-wrap p:last-child{margin-bottom:0}.comment-wrap p:only-of-type{margin:0}.comment-wrap p br:first-child,.comment-wrap p br:last-child{display:none}.b-comment__row{padding:1em 2em;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;position:relative}.b-comment__row:first-child{padding-top:2em}.b-comment__row:first-child .row-right{top:2em}.b-comment__row:last-child{padding-bottom:2em}.b-comment__row_0{color:gray}.task-rank,.task-status{padding:0 .5em 0 2em}.deadline-date{padding-left:1em}.id-checkbox{position:absolute;visibility:hidden;z-index:-1}.comment-link,.comment-no{margin-right:0!important}.b-comment__row.b-comment__row_1{padding-top:0;-ms-flex-pack:justify;justify-content:space-between;color:gray}.comment-info>span{display:inline-block;vertical-align:top}.comment-author{padding-right:2em;position:relative}.comment-author:after{content:"→";position:relative;left:1em}.b-comment__row_2{font-size:14px;background:#fff;border-top:1px solid hsla(0,0%,63%,.2);border-bottom:1px solid hsla(0,0%,63%,.2);position:relative;overflow:hidden}.actions-btn-wrap{padding:1em;position:absolute;top:100%;right:0;transition:transform .3s}.actions-btn-wrap.is-visible{transform:translateY(-100%)}.btn-del-comment,.btn-edit-comment{display:inline-block;vertical-align:middle;height:24px;line-height:24px;position:relative;z-index:1}.btn-edit-comment{margin-left:.5em;top:3px}.btn-del-comment{width:70px}.btn-del-comment:after{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1;content:"Удалить";color:#ccc;line-height:normal;border-bottom:1px solid}.btn-del-comment img{display:none}.btn-del-comment a{width:100%;height:100%;position:absolute}.b-comment__row.b-comment__row_3{padding-top:1.5em;padding-bottom:1.5em;-ms-flex-align:start;align-items:flex-start}.b-comment__row_3+.b-comment__row_4{border-top:1px solid hsla(0,0%,63%,.2)}.b-comment__row.b-comment__row_4{-ms-flex-pack:end;justify-content:flex-end}.row-right{position:absolute;top:1em;right:2em}.row-right>*{display:inline-block;vertical-align:middle}.row-right>:not(:last-child){margin-right:.7em}.img-thumb{max-width:150px}.img-thumb img:first-child{display:none}.img-thumb>a{display:block}.img-thumb .attach-title{margin-top:.3em}.thumb-pic{width:100%;object-fit:cover;max-height:200px;border:1px solid #ccc}.large-pic-preview{max-width:40vw;border:1px solid gray;position:absolute;top:90%;left:0;z-index:1}.doc-thumb{max-width:150px;background:#f3f3f3;font-size:11px;border:1px solid #ccc;text-align:center;text-decoration:none;color:inherit}.doc-thumb .attach-title{width:100%;padding:0 .5em;line-height:1.6;word-break:break-all;box-sizing:border-box;position:absolute;top:50%;transform:translateY(-50%)}.file-thumb{-ms-flex:1 1 25%;flex:1 1 25%;min-height:70px;position:relative}.file-thumb:nth-child(n+7){margin-top:2em}.file-thumb:not(:last-child){margin-right:1em}.attach-title{max-width:150px;text-align:center;line-height:normal;word-break:break-all}#comments-tbl tr:last-child .b-comment__row_0,#comments-tbl tr:last-child .b-comment__row_1{color:#000}';
 
     addcss(cammentsDesignCSS);
 
@@ -1080,7 +1120,7 @@ modules.cammentsDesign = function () {
         btns.classList.toggle('is-visible');
     }
 
-    console.info('load cammentsDesign');
+    //console.info('load cammentsDesign');
 };/* End: js-parts\cammentsDesign.js */
 /* Begin: js-parts\taskFooterDesign.js */
 modules.taskFooterDesign = function () {
@@ -1350,7 +1390,7 @@ modules.taskFooterDesign = function () {
 
     addcss(footerDesignCSS);
 
-    console.info('load taskFooterDesign');
+    //console.info('load taskFooterDesign');
 };
 
 function createFieldAndLabel(text,field) {
@@ -1506,6 +1546,145 @@ function bytesToSize(bytes) {
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 };
 /* End: js-parts\taskFooterDesign.js */
+/* Begin: js-parts\taskUpdateNotify.js */
+modules.taskUpdateNotify = function () {
+    'use strict';
+
+    let pageUrl = window.location;
+    let taskId = getTaskId();
+
+    //добавление кнопки подписки на уведомления о новых каментах в задаче
+    let alertBtn = document.createElement('div');
+    alertBtn.id = 'upd-alert';
+    alertBtn.classList.add('add-alert');
+    alertBtn.title = 'Подписаться на уведомления о новых комментариях';
+    document.getElementById('task-title').insertBefore(alertBtn, document.getElementById('subscribeElement'));
+
+    alertBtn.addEventListener('click', function (e) {
+        this.classList.toggle('selected');
+
+        checkCommentsUpdate(this,taskId,e);
+    });
+
+    checkCommentsUpdate(alertBtn,taskId);
+
+    //запуск интервала проверки изменений на странице
+
+    let notifyInterval = setInterval(function () {
+        loadByAjax(pageUrl,
+            function (data) {
+                checkUpdate(data,taskId);
+            },
+            function (xhr) {
+                console.error(xhr);
+            }
+        );
+    }, 1000 * 60 * 5);
+
+    function checkUpdate(ajaxresponse,id) {
+        let comments = document.getElementById('comments-tbl').querySelectorAll('.b-comment');
+        let commentsNum = comments.length;
+
+
+        let parser = new DOMParser();
+        let htmlDoc = parser.parseFromString(ajaxresponse.trim(),"text/html");
+        let tbl = htmlDoc.body.querySelector('form[name=theForm]').firstElementChild;
+
+        // - 1 т.к. нужно убрать первую строку с названиями столбцов
+        let updCommentNum = tbl.querySelectorAll('tr').length - 1;
+
+        if(updCommentNum > commentsNum){
+            let nComments = updCommentNum - commentsNum;
+            let lastId = comments[commentsNum - 1].querySelector('input[type=checkbox]').id.split('_')[1];
+
+            createOnPageNotify(nComments,lastId);
+
+            let checkUpadateOption = localStorage.getItem('comments-update'+id);
+
+            if(checkUpadateOption && checkUpadateOption === 'true'){
+                let notify = {
+                    'title': 'Новый комментарий',
+                    'tag': 'new-comment-'+id,
+                    'body': htmlDoc.querySelector('h1 > font').textContent.trim()
+                };
+
+                notifyMe(notify);
+
+                // очистка интервала - отключение уведомлений по клику на уведомлении
+                // let notification = notifyMe(notify);
+                //
+                // if(notification){
+                //     notification.addEventListener('click', function () {
+                //         clearInterval(notifyInterval);
+                //     })
+                // }
+            }
+        }
+    }
+
+    function notifyMe(notify) {
+        let notification;
+
+        if (Notification.permission === "granted") {
+            notification = new Notification(notify.title, {tag: notify.tag, body: notify.body});
+        }
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                if (permission === "granted") {
+                    notification = new Notification(notify.title, {tag: notify.tag, body: notify.body});
+                }
+            });
+        }
+
+        return notification;
+    }
+
+    function createOnPageNotify(num,linkId) {
+        let notify = document.getElementById('page-notify');
+
+        if(!notify){
+            notify = document.getElementById('comment-template').cloneNode(false);
+            notify.id = 'page-notify';
+            notify.classList.add('b-comment_notify');
+            document.getElementById('comments-tbl').appendChild(notify)
+        }
+
+        notify.textContent = 'В задаче '+num+' '+declOfNum(num, ['новый комментарий','новых комментария','новых комментариев']);
+
+        let link = document.createElement('a');
+        link.href = window.location+'#'+linkId;
+        link.target = '_self';
+        link.classList.add('regular-link','comments-update-link');
+        link.textContent = 'Обновить страницу';
+
+        link.addEventListener('click', function () {
+           window.location.href = this.href;
+           location.reload(false);
+        });
+
+        notify.appendChild(link);
+
+        return notify;
+    }
+
+    //включить/отключить уведомления о новых комментраиях
+    //на открытой странице задачи
+    function checkCommentsUpdate(btn,id,event = false) {
+        if(event){
+            if(btn.classList.contains('selected')){
+                localStorage.setItem('comments-update'+id,'true');
+            }else{
+                localStorage.removeItem('comments-update'+id);
+            }
+        }else{
+            if(localStorage.getItem('comments-update'+id) === 'true'){
+                btn.classList.add('selected');
+            }
+        }
+    }
+
+    //console.info('load saveNewComment');
+};/* End: js-parts\taskUpdateNotify.js */
 
     switch (action_page) {
         case 'new':
@@ -1526,6 +1705,7 @@ function bytesToSize(bytes) {
             modules.taskFooterDesign();
             modules.copyPasteCommentQuote();
             anchorLink();
+            modules.taskUpdateNotify();
             break;
         default:
 
@@ -1536,6 +1716,34 @@ function bytesToSize(bytes) {
     //----------
     //утилиты
     //----------
+    //номер задачи из URl
+    function getTaskId() {
+        let query = window.location.search.substring(1);
+        return query.split("=")[2]
+    }
+
+    //ajax запрос
+    function loadByAjax(path, success, error) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    if (success) {
+                        success(xhr.responseText);
+                    }
+
+                } else {
+                    if (error) {
+                        error(xhr);
+                    }
+                }
+            }
+        };
+        xhr.open("GET", path, true);
+        xhr.send();
+    }
+
     //прокрутка к каменту по якорю. Нужна если вызван cmmentsDesign()
     function anchorLink() {
         //обработка ссылок с id камента в хеше
