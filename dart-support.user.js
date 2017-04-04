@@ -11,12 +11,13 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.3.4
+// @version 1.4.4
 // ==/UserScript==
 
 console.info('start userscript');
 
-(function () {  // [2] нормализуем window
+(function () {
+    // [2] нормализуем window
     var w = window;
 
 
@@ -270,7 +271,7 @@ modules.userSettings = function () {
 
     //запуск проверок включенных/отключенных опций
     checkTimeCountOption();
-    checkCommentsUpdate();
+    //checkCommentsUpdate();
 
 
 
@@ -380,6 +381,11 @@ modules.elemsModification = function () {
     if (document.getElementById('project_id') || document.getElementById('client_id')) {
         this.modifyProjectList();
     }
+
+    // поле ввода id задачи и переход к задаче
+
+    let goToField = document.getElementById('goTo');
+    goToField.removeAttribute('style');
 
     //console.info('load elemsModification');
 };/* End: js-parts\elemsModification.js */
@@ -1685,6 +1691,52 @@ modules.taskUpdateNotify = function () {
 
     //console.info('load saveNewComment');
 };/* End: js-parts\taskUpdateNotify.js */
+/* Begin: js-parts\createGoToTaskDatalst.js */
+modules.goToTaskDatalist = function () {
+    'use strict';
+
+    let taskId = getTaskId();
+    let taskTitle = document.getElementById('task-title').textContent.split(' - ')[1].trim();
+    let newdata = {"id":taskId, "title": taskTitle+' '+taskId};
+    let data = JSON.parse(localStorage.getItem('datalist')) || [];
+
+    data = appendId(data,newdata);
+    localStorage.setItem('datalist', JSON.stringify(data));
+
+    //создам datalist
+    let datalist = document.createElement('datalist');
+    datalist.id = 'dl-gototask';
+    document.body.appendChild(datalist);
+
+    //связать datalist с полем ввода id задачи
+    let idField = document.getElementById('goTo');
+    idField.setAttribute('list','dl-gototask');
+
+    for(let i = 0; i < data.length; i++){
+        let op = document.createElement('option');
+        op.value = data[i].id;
+        op.label = data[i].title;
+        datalist.appendChild(op);
+    }
+
+    function appendId(arr,newdata) {
+        let check = arr.some(function (item) {
+            return item.id === newdata.id;
+        });
+
+        if(!check){
+            arr.push(newdata);
+        }
+
+        if(arr.length > 10){
+            arr.shift();
+        }
+
+        return arr;
+    }
+
+    //console.info('load goToTaskDatalist');
+};/* End: js-parts\createGoToTaskDatalst.js */
 
     switch (action_page) {
         case 'new':
@@ -1704,8 +1756,9 @@ modules.taskUpdateNotify = function () {
             modules.cammentsDesign();
             modules.taskFooterDesign();
             modules.copyPasteCommentQuote();
-            anchorLink();
             modules.taskUpdateNotify();
+            modules.goToTaskDatalist();
+            anchorLink();
             break;
         default:
 

@@ -174,7 +174,7 @@ modules.userSettings = function () {
 
     //запуск проверок включенных/отключенных опций
     checkTimeCountOption();
-    checkCommentsUpdate();
+    //checkCommentsUpdate();
 
 
 

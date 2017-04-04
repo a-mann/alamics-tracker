@@ -11,12 +11,13 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.3.4
+// @version 1.4.4
 // ==/UserScript==
 
 console.info('start userscript');
 
-(function () {  // [2] нормализуем window
+(function () {
+    // [2] нормализуем window
     var w = window;
 
 
@@ -103,6 +104,7 @@ console.info('start userscript');
     //jsimport cammentsDesign.js
     //jsimport taskFooterDesign.js
     //jsimport taskUpdateNotify.js
+    //jsimport createGoToTaskDatalst.js
 
     switch (action_page) {
         case 'new':
@@ -122,8 +124,9 @@ console.info('start userscript');
             modules.cammentsDesign();
             modules.taskFooterDesign();
             modules.copyPasteCommentQuote();
-            anchorLink();
             modules.taskUpdateNotify();
+            modules.goToTaskDatalist();
+            anchorLink();
             break;
         default:
 

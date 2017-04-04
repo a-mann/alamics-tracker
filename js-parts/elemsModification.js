@@ -97,5 +97,10 @@ modules.elemsModification = function () {
         this.modifyProjectList();
     }
 
+    // поле ввода id задачи и переход к задаче
+
+    let goToField = document.getElementById('goTo');
+    goToField.removeAttribute('style');
+
     //console.info('load elemsModification');
 };
