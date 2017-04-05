@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.5
+// @version 1.4.6
 // ==/UserScript==
 
 console.info('start userscript');
@@ -40,13 +40,16 @@ console.info('start userscript');
         $content_cell.setAttribute('id', 'main-content');
 
         let $comments_tbl = $content_cell.getElementsByTagName("TABLE")[0];
-        $comments_tbl.setAttribute('id', 'comments-tbl');
 
-        let rows = getAllCommentsRows();
+        if($comments_tbl){
+            $comments_tbl.setAttribute('id', 'comments-tbl');
 
-        rows.map(function (row) {
-            row.querySelectorAll('td')[5].firstElementChild.classList.add('comment-wrap');
-        });
+            let rows = getAllCommentsRows();
+
+            rows.map(function (row) {
+                row.querySelectorAll('td')[5].firstElementChild.classList.add('comment-wrap');
+            });
+        }
 
         let input_div = document.querySelector('div.input_box'); //есть на странице задачи
 
@@ -59,35 +62,36 @@ console.info('start userscript');
         }
 
         //подвал задачи
-
-        //обертка
         let $task_footer = document.querySelectorAll('table.theForm');
-        $task_footer = $task_footer[0];
-        $task_footer.id = 'task-footer';
 
-        //таблица с textarea камента
-        let $footer_tbls = $task_footer.querySelectorAll('table');
+        if($task_footer.length){
+            //обертка
+            $task_footer = $task_footer[0];
+            $task_footer.id = 'task-footer';
 
-        let $commentTbl = $footer_tbls[0];
-        $commentTbl.id = 'tbl-new-comment';
+            //таблица с textarea камента
+            let $footer_tbls = $task_footer.querySelectorAll('table');
 
-        //обертка ячейки с textarea
-        let $newComment = $commentTbl.querySelectorAll('td')[1];
-        $newComment.id = 'new-comment-wrap';
+            let $commentTbl = $footer_tbls[0];
+            $commentTbl.id = 'tbl-new-comment';
 
-        //добавлю обертку для textarea
-        //в нее буду вставлять кнопки всякие
-        let $tareaWrap = document.createElement('div');
-        $tareaWrap.id = 'tarea-wrap';
-        $tareaWrap.classList.add('tarea-wrap');
+            //обертка ячейки с textarea
+            let $newComment = $commentTbl.querySelectorAll('td')[1];
+            $newComment.id = 'new-comment-wrap';
 
-        $tareaWrap.appendChild(document.getElementById('text'));
-        $newComment.appendChild($tareaWrap);
+            //добавлю обертку для textarea
+            //в нее буду вставлять кнопки всякие
+            let $tareaWrap = document.createElement('div');
+            $tareaWrap.id = 'tarea-wrap';
+            $tareaWrap.classList.add('tarea-wrap');
 
-        //Таблица статусов задачи
-        let $statusTbl = $footer_tbls[1].querySelector('table');
-        $statusTbl.id = 'tbl-status';
+            $tareaWrap.appendChild(document.getElementById('text'));
+            $newComment.appendChild($tareaWrap);
 
+            //Таблица статусов задачи
+            let $statusTbl = $footer_tbls[1].querySelector('table');
+            $statusTbl.id = 'tbl-status';
+        }
         //заголовок задачи
         let taskTite = document.querySelector('h1');
         taskTite.id = 'task-title';
@@ -111,9 +115,7 @@ console.info('start userscript');
             modules.userSettings();
             break;
         case 'red':
-        case 'user_page':
             addPageElems();
-
             var elemsModification = new modules.elemsModification();
             modules.modyfiComments();
             if (localStorage.getItem('worker-time-count') === 'true') {
@@ -127,6 +129,10 @@ console.info('start userscript');
             modules.taskUpdateNotify();
             modules.goToTaskDatalist();
             anchorLink();
+            break;
+        case 'user_page':
+            addPageElems();
+            modules.goToTaskDatalist();
             break;
         default:
 

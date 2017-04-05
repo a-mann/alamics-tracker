@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.5
+// @version 1.4.6
 // ==/UserScript==
 
 console.info('start userscript');
@@ -40,13 +40,16 @@ console.info('start userscript');
         $content_cell.setAttribute('id', 'main-content');
 
         let $comments_tbl = $content_cell.getElementsByTagName("TABLE")[0];
-        $comments_tbl.setAttribute('id', 'comments-tbl');
 
-        let rows = getAllCommentsRows();
+        if($comments_tbl){
+            $comments_tbl.setAttribute('id', 'comments-tbl');
 
-        rows.map(function (row) {
-            row.querySelectorAll('td')[5].firstElementChild.classList.add('comment-wrap');
-        });
+            let rows = getAllCommentsRows();
+
+            rows.map(function (row) {
+                row.querySelectorAll('td')[5].firstElementChild.classList.add('comment-wrap');
+            });
+        }
 
         let input_div = document.querySelector('div.input_box'); //есть на странице задачи
 
@@ -59,35 +62,36 @@ console.info('start userscript');
         }
 
         //подвал задачи
-
-        //обертка
         let $task_footer = document.querySelectorAll('table.theForm');
-        $task_footer = $task_footer[0];
-        $task_footer.id = 'task-footer';
 
-        //таблица с textarea камента
-        let $footer_tbls = $task_footer.querySelectorAll('table');
+        if($task_footer.length){
+            //обертка
+            $task_footer = $task_footer[0];
+            $task_footer.id = 'task-footer';
 
-        let $commentTbl = $footer_tbls[0];
-        $commentTbl.id = 'tbl-new-comment';
+            //таблица с textarea камента
+            let $footer_tbls = $task_footer.querySelectorAll('table');
 
-        //обертка ячейки с textarea
-        let $newComment = $commentTbl.querySelectorAll('td')[1];
-        $newComment.id = 'new-comment-wrap';
+            let $commentTbl = $footer_tbls[0];
+            $commentTbl.id = 'tbl-new-comment';
 
-        //добавлю обертку для textarea
-        //в нее буду вставлять кнопки всякие
-        let $tareaWrap = document.createElement('div');
-        $tareaWrap.id = 'tarea-wrap';
-        $tareaWrap.classList.add('tarea-wrap');
+            //обертка ячейки с textarea
+            let $newComment = $commentTbl.querySelectorAll('td')[1];
+            $newComment.id = 'new-comment-wrap';
 
-        $tareaWrap.appendChild(document.getElementById('text'));
-        $newComment.appendChild($tareaWrap);
+            //добавлю обертку для textarea
+            //в нее буду вставлять кнопки всякие
+            let $tareaWrap = document.createElement('div');
+            $tareaWrap.id = 'tarea-wrap';
+            $tareaWrap.classList.add('tarea-wrap');
 
-        //Таблица статусов задачи
-        let $statusTbl = $footer_tbls[1].querySelector('table');
-        $statusTbl.id = 'tbl-status';
+            $tareaWrap.appendChild(document.getElementById('text'));
+            $newComment.appendChild($tareaWrap);
 
+            //Таблица статусов задачи
+            let $statusTbl = $footer_tbls[1].querySelector('table');
+            $statusTbl.id = 'tbl-status';
+        }
         //заголовок задачи
         let taskTite = document.querySelector('h1');
         taskTite.id = 'task-title';
@@ -1695,12 +1699,19 @@ modules.goToTaskDatalist = function () {
     'use strict';
 
     let taskId = getTaskId();
-    let taskTitle = document.getElementById('task-title').textContent.split(' - ')[1].trim();
-    let newdata = {"id":taskId, "title": taskTitle+' '+taskId};
-    let data = JSON.parse(localStorage.getItem('datalist')) || [];
+    let taskTitle = document.getElementById('task-title').textContent.split(' - ');
 
-    data = appendId(data,newdata);
-    localStorage.setItem('datalist', JSON.stringify(data));
+    let data = JSON.parse(localStorage.getItem('datalist')) || [];
+    data = appendId(data);
+
+    //если на странице есть заголовок задачи
+    // - проверить есть ли она в списке
+    if(Array.isArray(taskTitle) && taskTitle.length >= 2){
+        taskTitle = taskTitle[1].trim();
+        let newdata = {"id":taskId, "title": taskTitle+' '+taskId};
+        data = appendId(data,newdata);
+        localStorage.setItem('datalist', JSON.stringify(data));
+    }
 
     //создам datalist
     let datalist = document.createElement('datalist');
@@ -1709,6 +1720,7 @@ modules.goToTaskDatalist = function () {
 
     //связать datalist с полем ввода id задачи
     let idField = document.getElementById('goTo');
+    idField.removeAttribute('style');
     idField.setAttribute('list','dl-gototask');
 
     for(let i = 0; i < data.length; i++){
@@ -1718,23 +1730,25 @@ modules.goToTaskDatalist = function () {
         datalist.appendChild(op);
     }
 
-    function appendId(arr,newdata) {
-        let check = arr.some(function (item) {
-            return item.id === newdata.id;
-        });
+    function appendId(arr,newdata = false) {
+        if(newdata){
+            let check = arr.some(function (item) {
+                return item.id === newdata.id;
+            });
 
-        if(!check){
-            arr.push(newdata);
-        }
+            if(!check){
+                arr.push(newdata);
+            }
 
-        if(arr.length > 10){
-            arr.shift();
+            if(arr.length > 10){
+                arr.shift();
+            }
         }
 
         return arr;
     }
 
-    //console.info('load goToTaskDatalist');
+    console.info('load goToTaskDatalist');
 };/* End: js-parts\createGoToTaskDatalst.js */
 
     switch (action_page) {
@@ -1742,9 +1756,7 @@ modules.goToTaskDatalist = function () {
             modules.userSettings();
             break;
         case 'red':
-        case 'user_page':
             addPageElems();
-
             var elemsModification = new modules.elemsModification();
             modules.modyfiComments();
             if (localStorage.getItem('worker-time-count') === 'true') {
@@ -1758,6 +1770,10 @@ modules.goToTaskDatalist = function () {
             modules.taskUpdateNotify();
             modules.goToTaskDatalist();
             anchorLink();
+            break;
+        case 'user_page':
+            addPageElems();
+            modules.goToTaskDatalist();
             break;
         default:
 

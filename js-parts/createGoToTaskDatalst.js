@@ -2,12 +2,19 @@ modules.goToTaskDatalist = function () {
     'use strict';
 
     let taskId = getTaskId();
-    let taskTitle = document.getElementById('task-title').textContent.split(' - ')[1].trim();
-    let newdata = {"id":taskId, "title": taskTitle+' '+taskId};
-    let data = JSON.parse(localStorage.getItem('datalist')) || [];
+    let taskTitle = document.getElementById('task-title').textContent.split(' - ');
 
-    data = appendId(data,newdata);
-    localStorage.setItem('datalist', JSON.stringify(data));
+    let data = JSON.parse(localStorage.getItem('datalist')) || [];
+    data = appendId(data);
+
+    //если на странице есть заголовок задачи
+    // - проверить есть ли она в списке
+    if(Array.isArray(taskTitle) && taskTitle.length >= 2){
+        taskTitle = taskTitle[1].trim();
+        let newdata = {"id":taskId, "title": taskTitle+' '+taskId};
+        data = appendId(data,newdata);
+        localStorage.setItem('datalist', JSON.stringify(data));
+    }
 
     //создам datalist
     let datalist = document.createElement('datalist');
@@ -16,6 +23,7 @@ modules.goToTaskDatalist = function () {
 
     //связать datalist с полем ввода id задачи
     let idField = document.getElementById('goTo');
+    idField.removeAttribute('style');
     idField.setAttribute('list','dl-gototask');
 
     for(let i = 0; i < data.length; i++){
@@ -25,21 +33,23 @@ modules.goToTaskDatalist = function () {
         datalist.appendChild(op);
     }
 
-    function appendId(arr,newdata) {
-        let check = arr.some(function (item) {
-            return item.id === newdata.id;
-        });
+    function appendId(arr,newdata = false) {
+        if(newdata){
+            let check = arr.some(function (item) {
+                return item.id === newdata.id;
+            });
 
-        if(!check){
-            arr.push(newdata);
-        }
+            if(!check){
+                arr.push(newdata);
+            }
 
-        if(arr.length > 10){
-            arr.shift();
+            if(arr.length > 10){
+                arr.shift();
+            }
         }
 
         return arr;
     }
 
-    //console.info('load goToTaskDatalist');
+    console.info('load goToTaskDatalist');
 };
