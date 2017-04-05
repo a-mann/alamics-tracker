@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.6
+// @version 1.4.7
 // ==/UserScript==
 
 console.info('start userscript');

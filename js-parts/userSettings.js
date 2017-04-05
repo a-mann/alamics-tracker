@@ -3,6 +3,12 @@
 // добавление на страницу новой задачи блока настроек пользователя
 
 modules.userSettings = function () {
+
+    // let fixel = document.getElementById("exp_col");
+    // if(!fixel){
+    //     document.createElement('template');
+    //     document.body.appendChild(fixel);
+    // }
     'use strict';
     //добавление/удаление выбранных проектов в пользовательском списке
     //сохранение в localStorage и скрыть показать в select на странице
@@ -24,15 +30,15 @@ modules.userSettings = function () {
     });
 
     $content_cell.insertBefore($settings_btn, $content_cell.firstChild);
-
+    console.log(0);
     //создание кастомного списка проектов
     //id`s array
     function createTaskListHTML() {
-        let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
-
-        if (params_user_projects === null) {
-            params_user_projects = [];
+        if(!localStorage.getItem('params_user_projects')){
+            localStorage.setItem('params_user_projects', JSON.stringify([]));
         }
+
+        let params_user_projects = JSON.parse(localStorage.getItem('params_user_projects'));
 
         const PROJECTS_LIST_PARAMS = {
             'id': 'custom-project-list',
@@ -52,11 +58,11 @@ modules.userSettings = function () {
     //создание кастомного списка исполнителей
     //id`s array
     function createWorkersListHTML() {
-        let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
-
-        if (params_user_workers === null) {
-            params_user_workers = [];
+        if(!localStorage.getItem('params_user_workers')){
+            localStorage.setItem('params_user_workers', JSON.stringify([]));
         }
+
+        let params_user_workers = JSON.parse(localStorage.getItem('params_user_workers'));
 
         const WORKERS_LIST_PARAMS = {
             'id': 'custom-workers-list',
@@ -175,8 +181,6 @@ modules.userSettings = function () {
     //запуск проверок включенных/отключенных опций
     checkTimeCountOption();
     //checkCommentsUpdate();
-
-
 
 
     createTaskListHTML();
