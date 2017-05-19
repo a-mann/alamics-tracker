@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.7
+// @version 1.4.8
 // ==/UserScript==
 
 console.info('start userscript');
@@ -821,6 +821,9 @@ modules.cammentsDesign = function () {
     //выбирающие строки с каментами и игнорирующие первую строку.
     //Если удалять то получится что первый камент не будет обрабатываться
     rows[0].previousElementSibling.classList.add('hidden-elem');
+    //т.к. в дарте добавили строк предыдущая строка не скрывает строку с заголовками столбцов
+    //поэтому еще
+    tbl.querySelector('tr').classList.add('hidden-elem');
 
     rows.map(function (item, i) {
         let td = Array.from(item.querySelectorAll('td'));
@@ -1594,6 +1597,7 @@ modules.taskUpdateNotify = function () {
         );
     }, 1000 * 60 * 5);
 
+
     function checkUpdate(ajaxresponse,id) {
         let comments = document.getElementById('comments-tbl').querySelectorAll('.b-comment');
         let commentsNum = comments.length;
@@ -1800,6 +1804,7 @@ modules.goToTaskDatalist = function () {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+                console.log(xhr);
                 if (xhr.status === 200) {
                     if (success) {
                         success(xhr.responseText);
@@ -2140,8 +2145,14 @@ modules.goToTaskDatalist = function () {
     function getAllCommentsRows() {
         let rows = Array.from(document.getElementById('comments-tbl').querySelectorAll('TR'));
         rows = rows.splice(1, rows.length); //исключить первую строку с заголовками столбцов
-        return rows;
+
+        let result = rows.filter(function(row) {
+            return row.querySelectorAll('td').length > 1;
+        });
+
+        return result;
     }
+
 
     //получить все каменты в задаче
     function getAllCamments() {
