@@ -32,6 +32,7 @@ modules.taskUpdateNotify = function () {
         );
     }, 1000 * 60 * 5);
 
+
     function checkUpdate(ajaxresponse,id) {
         let comments = document.getElementById('comments-tbl').querySelectorAll('.b-comment');
         let commentsNum = comments.length;

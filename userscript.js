@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.7
+// @version 1.4.8
 // ==/UserScript==
 
 console.info('start userscript');
@@ -155,6 +155,7 @@ console.info('start userscript');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+                console.log(xhr);
                 if (xhr.status === 200) {
                     if (success) {
                         success(xhr.responseText);
@@ -495,8 +496,14 @@ console.info('start userscript');
     function getAllCommentsRows() {
         let rows = Array.from(document.getElementById('comments-tbl').querySelectorAll('TR'));
         rows = rows.splice(1, rows.length); //исключить первую строку с заголовками столбцов
-        return rows;
+
+        let result = rows.filter(function(row) {
+            return row.querySelectorAll('td').length > 1;
+        });
+
+        return result;
     }
+
 
     //получить все каменты в задаче
     function getAllCamments() {

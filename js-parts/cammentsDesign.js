@@ -14,6 +14,9 @@ modules.cammentsDesign = function () {
     //выбирающие строки с каментами и игнорирующие первую строку.
     //Если удалять то получится что первый камент не будет обрабатываться
     rows[0].previousElementSibling.classList.add('hidden-elem');
+    //т.к. в дарте добавили строк предыдущая строка не скрывает строку с заголовками столбцов
+    //поэтому еще
+    tbl.querySelector('tr').classList.add('hidden-elem');
 
     rows.map(function (item, i) {
         let td = Array.from(item.querySelectorAll('td'));
