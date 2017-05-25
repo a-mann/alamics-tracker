@@ -1607,8 +1607,16 @@ modules.taskUpdateNotify = function () {
         let htmlDoc = parser.parseFromString(ajaxresponse.trim(),"text/html");
         let tbl = htmlDoc.body.querySelector('form[name=theForm]').firstElementChild;
 
+
+        let uploadedComments = tbl.querySelectorAll('tr');
+
+        let filteredComments = Array.from(uploadedComments).filter(function (item) {
+            return item.querySelectorAll('td').length > 1;
+        });
+
         // - 1 т.к. нужно убрать первую строку с названиями столбцов
-        let updCommentNum = tbl.querySelectorAll('tr').length - 1;
+        let updCommentNum = filteredComments.length - 1;
+
 
         if(updCommentNum > commentsNum){
             let nComments = updCommentNum - commentsNum;
