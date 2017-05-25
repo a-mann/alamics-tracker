@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.8
+// @version 1.4.9
 // ==/UserScript==
 
 console.info('start userscript');
@@ -1137,7 +1137,8 @@ modules.cammentsDesign = function () {
     }
 
     //console.info('load cammentsDesign');
-};/* End: js-parts\cammentsDesign.js */
+};
+/* End: js-parts\cammentsDesign.js */
 /* Begin: js-parts\taskFooterDesign.js */
 modules.taskFooterDesign = function () {
     'use strict';
