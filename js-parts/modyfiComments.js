@@ -129,7 +129,7 @@ modules.modyfiComments = function () {
                 str = replaceHtmlGtToSymbol(str);
                 break;
             default:
-                console.log(symbol);
+                //console.log(symbol);
                 //console.log((str.match(/\n/g)||[]).length);
                 //str = str.replace(/\n/g, '<br>');
                 //console.log(str);

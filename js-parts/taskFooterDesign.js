@@ -399,7 +399,7 @@ function wrapFileInputs(input) {
     wrap.appendChild(btn);
 
     wrap.addEventListener('dragenter',function () {
-        console.log(this);
+        //console.log(this);
         this.classList.add('is-hover');
     });
 

@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.10
+// @version 1.4.11
 // ==/UserScript==
 
 console.info('start userscript');
@@ -155,7 +155,7 @@ console.info('start userscript');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log(xhr);
+
                 if (xhr.status === 200) {
                     if (success) {
                         success(xhr.responseText);

@@ -30,7 +30,7 @@ modules.userSettings = function () {
     });
 
     $content_cell.insertBefore($settings_btn, $content_cell.firstChild);
-    console.log(0);
+
     //создание кастомного списка проектов
     //id`s array
     function createTaskListHTML() {
@@ -82,7 +82,7 @@ modules.userSettings = function () {
     // подсветка сохраненных в настройках элементов списка
     function highlightSelected(list, settings) {
         if (!settings.length) {
-            console.log('no');
+            //console.log('no');
             return false;
         }
 
