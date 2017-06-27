@@ -1,20 +1,5 @@
 'use strict';
 
-// ==UserScript==
-// @name DartIT tracker-tweaker revo
-// @updateURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js
-// @downloadURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js
-// @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;
-// @include https://support.dartit.ru/*
-// @include https://support.alamics.ru/*
-// @require https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js
-// @grant unsafeWindow
-// @author mann
-// @license MIT
-// @version 1.4.11
-// ==/UserScript==
-
-
 import {getURLAction} from './_utils.js';
 
 import {addPageElems} from './_addCSSSelectors.js';
