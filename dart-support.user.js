@@ -11,7 +11,7 @@
 // @grant unsafeWindow
 // @author mann
 // @license MIT
-// @version 1.4.10
+// @version 1.4.11
 // ==/UserScript==
 
 console.info('start userscript');
@@ -131,7 +131,7 @@ modules.userSettings = function () {
     });
 
     $content_cell.insertBefore($settings_btn, $content_cell.firstChild);
-    console.log(0);
+
     //создание кастомного списка проектов
     //id`s array
     function createTaskListHTML() {
@@ -183,7 +183,7 @@ modules.userSettings = function () {
     // подсветка сохраненных в настройках элементов списка
     function highlightSelected(list, settings) {
         if (!settings.length) {
-            console.log('no');
+            //console.log('no');
             return false;
         }
 
@@ -528,7 +528,7 @@ modules.modyfiComments = function () {
                 str = replaceHtmlGtToSymbol(str);
                 break;
             default:
-                console.log(symbol);
+                //console.log(symbol);
                 //console.log((str.match(/\n/g)||[]).length);
                 //str = str.replace(/\n/g, '<br>');
                 //console.log(str);
@@ -1541,7 +1541,7 @@ function wrapFileInputs(input) {
     wrap.appendChild(btn);
 
     wrap.addEventListener('dragenter',function () {
-        console.log(this);
+        //console.log(this);
         this.classList.add('is-hover');
     });
 
@@ -1813,7 +1813,7 @@ modules.goToTaskDatalist = function () {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log(xhr);
+
                 if (xhr.status === 200) {
                     if (success) {
                         success(xhr.responseText);
