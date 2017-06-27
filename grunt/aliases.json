@@ -1,0 +1,14 @@
+{
+  "default": {
+    "description": "default tasks",
+    "tasks": [
+      "commands"
+    ]
+  },
+  "run-watch": {
+    "description": "watch",
+    "tasks": [
+      "watch"
+    ]
+  }
+}

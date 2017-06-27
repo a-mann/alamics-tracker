@@ -1,0 +1,408 @@
+@import "_vars.pcss";
+
+#main-content{
+    /*убираю лишние отступы и br чтобы уменьшить дыру под полями камента*/
+    margin-bottom: 0;
+
+    & br:last-child{
+        display: none;
+    }
+}
+
+.content{
+    /*убираю лишние отступы и br чтобы уменьшить дыру под полями камента*/
+    padding-bottom: 0;
+}
+
+/* превращаю все в блоки*/
+#tbl-new-comment{
+
+    & tr,
+    & td,
+    & tbody{
+        display: block;
+    }
+}
+
+/*скрываю первую ячейку с текстом Текст*/
+
+#tbl-new-comment tr:first-child > td:first-child{
+    display: none;
+}
+
+#tbl-new-comment + br{
+    /*убираю лишние отступы и br чтобы уменьшить дыру под полями камента*/
+    display: none;
+}
+
+/*выровнять новый камент по карточкам каментов*/
+
+#new-comment-wrap{
+    max-width: var(--max-width);
+    margin: auto;
+
+}
+
+/*textarea*/
+
+/*заголовок Добавить комментарий*/
+.tl{
+    display: none;
+}
+
+/*обертка вокруг поля Добавить комментарий*/
+.tarea-wrap{
+    position: relative;
+    overflow: hidden;
+}
+
+#text{
+    width: 100%;
+    padding: .6em .8em;
+    font-family: inherit;
+    font-size: 14px;
+    border: 0;
+    box-sizing: border-box;
+    box-shadow: inset 0 -2px 2px 0 rgba(0, 0, 0, 0.14), inset 0 1px 5px 0 rgba(0, 0, 0, 0.12), inset  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+/*оформление полей и строк с полями под полем камента*/
+
+.task-fields-row{
+    max-width: var(--max-width);
+    margin: 1.6em auto;
+
+    & label{
+        margin: 0 0 .5em;
+        color: #808080;
+        display: inline-block;
+    }
+
+    & select,
+    & input[type=text],
+    & input.input_field{
+        width: auto;
+        max-width: 100%;
+        height: 2em;
+        padding: .3em .6em;
+        border: 1px solid #9E9E9E;
+        display: block;
+        box-sizing: border-box;
+
+        &:focus{
+            border-color: #26a69a;
+        }
+    }
+
+    & select{
+        padding: .3em 0 .3em .2em;
+    }
+
+    & td{
+        padding: 0;
+        font-size: 100%;
+        display: block;
+    }
+
+    & .frow-col-2-1{
+        width: 190px;
+        margin-right: 30px;
+    }
+
+    & .frow-col-2-2{
+        width: 120px;
+    }
+}
+
+/* 1 строка */
+.task-row-1{
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.worker-block{
+   @apply --task-row-r-col;
+
+    & input[type=radio]{
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: -.2em;
+    }
+
+    & select{
+        width: 100%;
+        margin: .5em 0 0;
+    }
+}
+
+/* 2 строка */
+.task-row-2{
+    display: flex;
+    /*justify-content: space-between;*/
+
+    & .time-block{
+        @apply --task-row-r-col;
+
+        display: flex;
+        justify-content: space-between;
+
+        & > div{
+            width: 120px;
+
+            & input{
+                width: 76%;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            &::after{
+                content: 'мин';
+                margin-left: .5em;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+:root .deadline-calendar{
+    position: relative;
+    padding: 0 !important;
+    font-size: 100%;
+    /*flex: 1 1 180px;*/
+
+    & > img,
+    & > input {
+
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+    }
+
+    & > input[type=text]{
+        padding-right: 30px;
+    }
+
+    & > img{
+        position: absolute;
+        top: .4em;
+        right: .5em;
+    }
+
+    & input[type=button]{
+        display: none;
+    }
+
+    & #end_date{
+        width: auto !important;
+    }
+}
+
+/* 3 строка */
+
+.task-row-3{
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.add-email{
+    @apply --task-row-r-col;
+
+    position: relative;
+
+    & a{
+        display: none;
+    }
+
+    & label{
+        display: block;
+    }
+
+    & #add_email{
+        position: absolute;
+        visibility: hidden;
+        z-index: auto;
+    }
+
+    & #add_email_worker{
+        width: 226px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    & #getEmailAddressesButton{
+        display: none;
+        /*width: 90px;
+        display: inline-block;
+        vertical-align: middle;*/
+    }
+}
+
+.email-send-list{
+    margin: .4em 0 .5em;
+    padding: 0;
+    list-style-type: none;
+
+    & > li{
+        margin: 0;
+        line-height: 1;
+
+        &::before{
+            content: '·';
+            font-size: 1.5em;
+            margin-right: .2em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        &::after{
+            content: '🞩';
+            margin-left: .4em;
+            color: red;
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+}
+
+.task-type{
+    & select{
+        min-width: 190px;
+    }
+
+    /*в дивах прячуться селекты с подтипами*/
+    & > div{
+        & select{
+            margin-top: .3em;
+        }
+
+        & br{
+            display: none;
+        }
+    }
+}
+
+/* 4 строка */
+.add-files{
+
+    /*по клику на эту ссылку создавался новый file input
+    скрою ее, а событие повешу на change самого инпута*/
+    & a{
+        display: none;
+        /*margin-top: .8em;
+        display: inline-block;*/
+    }
+}
+
+#FileInputs{
+    & input:not(:first-child){
+        margin-top: .3em;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    & br{
+        display: none;
+    }
+}
+
+.btn-remove-item{
+    width: 12px;
+    height: 18px;
+    margin-left: .3em;
+    color: red;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+
+    &:after{
+        content: '🞩';
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.fake-file-input{
+    width: 225px;
+    height: 60px;
+    border: 1px dashed #82a5c3;
+    background: #f4f6f8;
+    text-align: center;
+    border-radius: .5em;
+    position: relative;
+
+    &.is-hover{
+        background: #d2dce5;
+    }
+
+    & > input{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    & .btn-fake-file{
+        padding: .7em 0 0;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        color: #82a5c3;
+
+        cursor: pointer;
+
+        & span{
+            width: 100%;
+            display: inline-block;
+            font-size: 12px;
+        }
+    }
+}
+
+.files-list{
+    margin: -.5em 0 .5em;
+    padding: 0;
+    list-style-type: none;
+    transition: height .3s;
+
+    & .file-list-item{
+        margin: .4em 0;
+
+        & .s-info{
+            padding-left: .6em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+
+/*скрываю пустые ячейки, поля из них перемещены в новый блок #new-comment-wrap*/
+#task-footer{
+    & tr,
+    & td,
+    & tbody{
+        display: block;
+    }
+
+    & tr:nth-child(2){
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+/*кнопка сохранить*/
+.btn-action{
+    height: 36px;
+    padding: 0 1.6em;
+    font-size: 14px;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    background: #7eb519;
+    cursor: pointer;
+}
