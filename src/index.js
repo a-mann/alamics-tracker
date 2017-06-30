@@ -2,6 +2,7 @@
 if(NODE_ENV === 'development') {
     console.time('total');
 }
+
 import {getURLAction} from './_utils.js';
 
 import {addPageElems} from './_addCSSSelectors.js';
@@ -69,6 +70,6 @@ switch (action_page) {
 }
 
 if(NODE_ENV === 'development'){
-    console.log('hello');
+    console.log('hello1');
     console.timeEnd('total');
 }

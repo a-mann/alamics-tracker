@@ -15,12 +15,10 @@
     "load-grunt-config": "^0.19.2",
     "postcss": "^6.0.2",
     "postcss-apply": "^0.8.0",
-    "postcss-bem": "^0.4.1",
     "postcss-cssnext": "^2.11.0",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.6",
     "postcss-nested": "^2.0.2",
-    "postcss-partial-import": "^4.1.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0"
   },
