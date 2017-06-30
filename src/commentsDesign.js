@@ -6,8 +6,8 @@ import {getAllCommentsRows} from './_finders.js';
 
 function commentsDesign() {
     //переделка внешнего вида каментов
-
     'use strict';
+
     createTemplate();
 
     let tbl = document.getElementById('comments-tbl');
@@ -45,21 +45,20 @@ function commentsDesign() {
             let pics = ['png', 'jpg', 'gif'];
 
             files.map(function (item) {
-
-                //let ext = item.href.split('.')[1];
                 let ext = item.href.lastIndexOf('.');
                 ext = item.href.slice(ext + 1, item.href.length);
 
                 if (pics.indexOf(ext.toLowerCase()) > -1) {
                     item = createImgThumb(item);
                 } else {
-                    item = createDocsThumb(ext, item);
+                    item = createDocsThumb(item);
                 }
 
                 rows[3].appendChild(item);
             });
         } else {
-            block.removeChild(rows[3]);
+            rows[3].classList.add('none');
+            //block.removeChild(rows[3]);
         }
 
         //cтрока скрыта
@@ -75,12 +74,19 @@ function commentsDesign() {
             showActionsBtn(this);
         });
 
-        td.map(function (tditem) {
+        //вместо удаления из DOM или навешивания класса на каждый td
+        //вешаю класс на таблицу после обработки всех строк
+        /*td.map(function (tditem) {
+            //tditem.classList.add('none');
             if (tditem) {
                 item.removeChild(tditem);
             }
-        });
+        });*/
     });
+
+    //наследуясь от этого класса скрываю td в строках таблицы
+    //после создания карточек каментов
+    tbl.classList.add('hide-original');
 
     function create1row(td, rownumber) {
         let fragment = document.createDocumentFragment();
@@ -192,7 +198,6 @@ function commentsDesign() {
     }
 
     function create3row(td) {
-
         let fragment = document.createDocumentFragment();
 
         let rowItemProto = document.createElement('div');
@@ -200,6 +205,7 @@ function commentsDesign() {
         //комментарий
         let rowItem = rowItemProto.cloneNode(true);
         rowItem.classList.add('comment-body');
+
         rowItem.appendChild(td[5].firstElementChild.cloneNode(true));
 
         fragment.appendChild(rowItem);
@@ -231,36 +237,36 @@ function commentsDesign() {
         return Array.from(td[2].querySelectorAll('a'));
     }
 
-    function create5row(td) {
-        let fragment = document.createDocumentFragment();
-
-        let rowItemProto = document.createElement('div');
-
-        let rowItem = rowItemProto.cloneNode(true);
-
-        //обертка для кнопок Удалить и Редактировать
-        let rowItemWrap = rowItemProto.cloneNode(true);
-        rowItemWrap.classList.add('actions-btn-wrap');
-
-        //удалить
-
-        if (td[11].firstElementChild) {
-            rowItem = rowItemProto.cloneNode(true);
-            rowItem.classList.add('btn-del-comment');
-            rowItem.appendChild(td[11].firstElementChild);
-            rowItemWrap.appendChild(rowItem);
-        }
-
-        //редактировать
-        rowItem = rowItemProto.cloneNode(true);
-        rowItem.classList.add('btn-edit-comment');
-        rowItem.appendChild(td[1].firstElementChild);
-        rowItemWrap.appendChild(rowItem);
-
-        fragment.appendChild(rowItemWrap);
-
-        return fragment;
-    }
+    // function create5row(td) {
+    //     let fragment = document.createDocumentFragment();
+    //
+    //     let rowItemProto = document.createElement('div');
+    //
+    //     let rowItem = rowItemProto.cloneNode(true);
+    //
+    //     //обертка для кнопок Удалить и Редактировать
+    //     let rowItemWrap = rowItemProto.cloneNode(true);
+    //     rowItemWrap.classList.add('actions-btn-wrap');
+    //
+    //     //удалить
+    //
+    //     if (td[11].firstElementChild) {
+    //         rowItem = rowItemProto.cloneNode(true);
+    //         rowItem.classList.add('btn-del-comment');
+    //         rowItem.appendChild(td[11].firstElementChild);
+    //         rowItemWrap.appendChild(rowItem);
+    //     }
+    //
+    //     //редактировать
+    //     rowItem = rowItemProto.cloneNode(true);
+    //     rowItem.classList.add('btn-edit-comment');
+    //     rowItem.appendChild(td[1].firstElementChild);
+    //     rowItemWrap.appendChild(rowItem);
+    //
+    //     fragment.appendChild(rowItemWrap);
+    //
+    //     return fragment;
+    // }
 }
 
 function createImgThumb(item) {
@@ -271,8 +277,8 @@ function createImgThumb(item) {
     pic.src = item.getAttribute('href');
     pic.classList.add('thumb-pic');
 
-    //item.classList.add('img-thumb', 'file-thumb');
     item.appendChild(pic);
+
     let title = getAttachTitle(item);
     wrap.appendChild(item);
     wrap.appendChild(title);
@@ -291,7 +297,7 @@ function createImgThumb(item) {
     return wrap;
 }
 
-function createDocsThumb(ext, item) {
+function createDocsThumb(item) {
     item.classList.add('doc-thumb', 'file-thumb');
     item.appendChild(getAttachTitle(item));
     item.removeChild(item.firstElementChild);

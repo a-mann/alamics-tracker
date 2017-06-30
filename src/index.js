@@ -9,7 +9,7 @@ import {addPageElems} from './_addCSSSelectors.js';
 
 import {modyfiComments} from './modyfiComments.js';
 
-import {commentsDesign} from './commentsDesign.js';
+//import {commentsDesign} from './commentsDesign.js';
 
 import {calculateElapsedTime} from './calculateElapsedTime.js';
 
@@ -41,7 +41,6 @@ switch (action_page) {
         break;
     case 'red':
         addPageElems();
-        //let elemsModification = new elemsModification();
         elemsModification();
         modyfiComments();
 
@@ -55,7 +54,7 @@ switch (action_page) {
 
         saveNewComment();
         calculateElapsedTime();
-        commentsDesign();
+        //commentsDesign();
         taskFooterDesign();
         copyPasteCommentQuote();
         taskUpdateNotify();
@@ -70,6 +69,5 @@ switch (action_page) {
 }
 
 if(NODE_ENV === 'development'){
-    console.log('hello1');
     console.timeEnd('total');
 }

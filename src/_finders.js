@@ -1,3 +1,5 @@
+import {eliminateDuplicates} from './_utils.js';
+
 function getTaskId() {
     const taskId = window.location.search.split('&');
 
@@ -21,8 +23,6 @@ function getTaskHead() {
 //получить все каменты в задаче
 //работает корректно после запуска commentsDesign
 function getAllCamments() {
-    //let rows = getAllCommentsRows();
-    //return rows.map(getCommentFromRow);
     return document.querySelectorAll('.b-comment');
 }
 
@@ -50,7 +50,7 @@ function getAllWorkers() {
         workers.push(rows[i].children[4].textContent);
     }
 
-    return require('./_utils').eliminateDuplicates(workers);
+    return eliminateDuplicates(workers);
 }
 
 // получение строки с времнем из таблицы с комментарими задачи

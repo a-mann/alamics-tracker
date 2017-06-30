@@ -2,26 +2,26 @@ if (NODE_ENV === 'development') {
     console.time('load modyfiComments');
 }
 
+import {getCommentFromRow,getAllCommentsRows} from './_finders.js';
+import {addjs} from './_loaders.js';
+import {commentsDesign} from './commentsDesign.js';
+
 //поиск ссылок в тексте комментариев и оборачивание их в <a>
 //сворачивание длинных комментариев, добавление кнопки Свренуть.развернуть все
 
 function modyfiComments() {
     'use strict';
 
-    let div, txt;
-    let rows = require('./_finders').getAllCommentsRows();
 
-    require('./_loaders').addjs('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js', function () {
+    let rows = getAllCommentsRows();
+
+    addjs('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js', function () {
         goMarkdown(rows);
+        commentsDesign();
     });
 
-    for (let i = 0; i < rows.length; i++) {
-        div = require('./_finders').getCommentFromRow(rows[i]);
-        txt = replaceURLWithHTMLLinks(div.innerHTML);
-        div.innerHTML = txt;
-    }
-
     //парсер markdown
+
     function goMarkdown(rows) {
 
         let md = markdownit();
@@ -31,11 +31,12 @@ function modyfiComments() {
         md.options.breaks = true;
 
         rows.map(function (row) {
-            addMarkdown(row, md)
+            addMarkdown(row, md);
         });
 
         function addMarkdown(row, md) {
-            let comment = require('./_finders').getCommentFromRow(row);
+            let comment = getCommentFromRow(row);
+
             let blocks = comment.innerHTML.split('<br><br>');
 
             blocks = blocks.map(function (item) {
@@ -61,7 +62,7 @@ function modyfiComments() {
                 return '<p>' + item + '</p>';
             });
 
-            comment.innerHTML = blocks.join('');
+            comment.innerHTML = replaceURLWithHTMLLinks(blocks.join(''));
         }
 
         function renderMdString(str, md) {
