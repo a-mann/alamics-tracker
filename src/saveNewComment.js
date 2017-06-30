@@ -1,3 +1,7 @@
+if (NODE_ENV === 'development') {
+    console.time('load saveNewComment');
+}
+
 import { getTaskId } from './_finders.js';
 
 //Сохранение комментария в localStorage
@@ -54,10 +58,10 @@ function saveNewComment() {
             button.classList.remove('none');
         }
     }
-
-    if (NODE_ENV === 'development') {
-        console.info('load saveNewComment');
-    }
 }
 
 export {saveNewComment};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load saveNewComment');
+}

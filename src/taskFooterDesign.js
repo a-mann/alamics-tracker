@@ -1,3 +1,7 @@
+if(NODE_ENV === 'development'){
+    console.time('load taskFooterDesign');
+}
+
 function taskFooterDesign() {
     'use strict';
 
@@ -261,10 +265,6 @@ function taskFooterDesign() {
     //при загрузке страницы нужно смотреть выбранный радио со статусом (в скрытой части таблицы #task-footer)
     //и ставить статус в селекте statusList
     updateStatusListOnLoad(statusList);
-
-    if(NODE_ENV === 'development'){
-        console.info('load taskFooterDesign');
-    }
 }
 
 function createFieldAndLabel(text,field) {
@@ -430,3 +430,7 @@ function bytesToSize(bytes) {
 import styles from './pcss/taskFooterDesign.pcss';
 
 export {taskFooterDesign};
+
+if(NODE_ENV === 'development'){
+    console.timeEnd('load taskFooterDesign');
+}

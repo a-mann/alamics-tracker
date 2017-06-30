@@ -3,7 +3,7 @@
 module.exports = function (grunt) {
     return {
         js: {
-            files: ['dist/dart-support.user.js'],
+            files: ['./dart-support.user.js'],
             tasks: [
                 'commands'
             ],

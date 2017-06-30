@@ -1,3 +1,7 @@
+if (NODE_ENV === 'development') {
+    console.time('load modyfiComments');
+}
+
 //поиск ссылок в тексте комментариев и оборачивание их в <a>
 //сворачивание длинных комментариев, добавление кнопки Свренуть.развернуть все
 
@@ -135,10 +139,10 @@ function modyfiComments() {
         const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return text.replace(exp, '<a href="$1" class="regular-link">$1</a>');
     }
-
-    if (NODE_ENV === 'development') {
-        console.info('load modyfiComments');
-    }
 }
 
 export {modyfiComments};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load modyfiComments');
+}

@@ -8,6 +8,16 @@ function getTaskId() {
     return id[0].split("=")[1];
 }
 
+function getTaskHead() {
+    let taskHead = document.getElementById('task-title').textContent.split(' - ');
+
+    if (Array.isArray(taskHead) && taskHead.length >= 2) {
+        return {'title': taskHead[1].trim(), 'state': taskHead[2].split(' ')[1]};
+    }
+
+    throw new Error('task head not found');
+}
+
 //получить все каменты в задаче
 //работает корректно после запуска commentsDesign
 function getAllCamments() {
@@ -59,4 +69,4 @@ function getRowTimeString(row) {
     return t;
 }
 
-export {getTaskId,getAllCamments,getCommentFromRow,getAllCommentsRows,getAllWorkers,getRowTimeString};
+export {getTaskId,getTaskHead,getAllCamments,getCommentFromRow,getAllCommentsRows,getAllWorkers,getRowTimeString};

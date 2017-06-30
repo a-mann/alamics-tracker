@@ -1,3 +1,6 @@
+if (NODE_ENV === 'development') {
+    console.time('load elemsModification');
+}
 
 import {modifySelectOptionsList,findInArray} from './_utils.js';
 import {getAllCommentsRows,getAllWorkers} from './_finders.js';
@@ -108,11 +111,11 @@ function elemsModification() {
 
     let goToField = document.getElementById('goTo');
     goToField.removeAttribute('style');
-
-    if (NODE_ENV === 'development') {
-        console.info('load elemsModification');
-    }
-
 }
 
 export {elemsModification};
+
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load elemsModification');
+}

@@ -1,3 +1,7 @@
+if (NODE_ENV === 'development') {
+    console.time('load copyPasteCommentQuote');
+}
+
 import {runOnKeys} from './_utils.js';
 import {getAllCamments} from './_finders.js';
 
@@ -54,10 +58,10 @@ function copyPasteCommentQuote () {
         "17",
         "V".charCodeAt(0)
     );
-
-    if (NODE_ENV === 'development') {
-        console.info('load copyPasteCommentQuote');
-    }
 }
 
 export {copyPasteCommentQuote};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load copyPasteCommentQuote');
+}

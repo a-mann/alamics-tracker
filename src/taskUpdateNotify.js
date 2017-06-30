@@ -1,3 +1,7 @@
+if (NODE_ENV === 'development') {
+    console.time('load updateNotify');
+}
+
 import {getTaskId} from './_finders.js';
 import {declOfNum,loadByAjax} from './_utils.js';
 
@@ -145,10 +149,10 @@ function taskUpdateNotify () {
             }
         }
     }
-
-    if (NODE_ENV === 'development') {
-        console.info('load updateNotify');
-    }
 }
 
 export {taskUpdateNotify};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load updateNotify');
+}

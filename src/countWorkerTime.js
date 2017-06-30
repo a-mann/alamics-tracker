@@ -1,18 +1,25 @@
+if (NODE_ENV === 'development') {
+    console.time('load countWorkerTime');
+}
+
+import {getAllCommentsRows,getAllWorkers,getRowTimeString} from './_finders.js';
+import {createISODate,eliminateDuplicates,dateFormatter,getRowDateString} from './_utils.js';
+
 function countWorkerTime() {
     'use strict';
     let $input_box = document.getElementById('user-toolbar');
-    let rows = require('./_finders').getAllCommentsRows();
-    let workers = require('./_finders').getAllWorkers();
+    let rows = getAllCommentsRows();
+    let workers = getAllWorkers();
     let dates_collection = [];
     let date_str;
 
     for (let i = 0; i < rows.length; i++) {
         date_str = rows[i].children[3].textContent;
         date_str = date_str.split(' ');
-        dates_collection.push(require('./_utils').createISODate(date_str[0]));
+        dates_collection.push(createISODate(date_str[0]));
     }
 
-    let dates_arr = require('./_utils').eliminateDuplicates(dates_collection);
+    let dates_arr = eliminateDuplicates(dates_collection);
 
     let createDatesList = function (input_box, dates) {
 
@@ -37,7 +44,7 @@ function countWorkerTime() {
         let option, cln_option, listdate;
 
         for (let i = 0; i < dates.length; i++) {
-            listdate = require('./_utils').dateFormatter(parseInt(dates[i], 10));
+            listdate = dateFormatter(parseInt(dates[i], 10));
             option = document.createElement('OPTION');
             option.setAttribute('value', dates[i]);
             option.innerHTML = listdate.toLocaleString('ru');
@@ -95,10 +102,6 @@ function countWorkerTime() {
     $input_box.insertBefore($timelist, $input_box.lastChild);
 
     //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
-
-    if (NODE_ENV === 'development') {
-        console.info('load countWorkerTime');
-    }
 }
 
 // создание объекта со списком сотруднков и времени каждого в задаче
@@ -111,7 +114,7 @@ function createTimeList(workers, rows) {
         tsum = 0;
 
         for (let i = 0; i < rows.length; i++) {
-            ntime = require('./_finders').getRowTimeString(rows[i]);
+            ntime = getRowTimeString(rows[i]);
 
             if (rows[i].children[4]) {
                 //до запуска cammentsDesign();
@@ -162,7 +165,7 @@ function findTimeInDatesRange(lists, workers, rows) {
     function findRowsInRange(rows, start, end) {
 
         return rows.filter(function (item) {
-            let item_date = require('./_utils').getRowDateString(item);
+            let item_date = getRowDateString(item);
 
             if (item_date >= start && item_date <= end) {
                 return item;
@@ -206,8 +209,8 @@ function countSelectedWorkersTime(list, event) {
     let $total = document.getElementById('workers-time-total');
     let total = parseInt($total.dataset.totaltime);
 
-    while (target != list) {
-        if (target.tagName == 'P') {
+    while (target !== list) {
+        if (target.tagName === 'P') {
             recountTotal(target, $total, total);
             return;
         }
@@ -262,3 +265,7 @@ function insertTotalTime(timelist, data, addmarker) {
 }
 
 export {countWorkerTime};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load countWorkerTime');
+}

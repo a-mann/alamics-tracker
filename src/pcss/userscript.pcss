@@ -1,5 +1,14 @@
 @import "_vars.pcss";
 
+#main-content{
+    /*убираю лишние отступы и br чтобы уменьшить дыру под полями камента*/
+    margin-bottom: 0;
+
+    & br:last-child{
+        display: none;
+    }
+}
+
 .onoff-opt {
     margin: 0 6px 0 10px
 }

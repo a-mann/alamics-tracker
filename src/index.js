@@ -1,5 +1,7 @@
 'use strict';
-
+if(NODE_ENV === 'development') {
+    console.time('total');
+}
 import {getURLAction} from './_utils.js';
 
 import {addPageElems} from './_addCSSSelectors.js';
@@ -27,6 +29,8 @@ import {taskUpdateNotify} from './taskUpdateNotify.js';
 import {anchorLink} from './anchorLink.js';
 
 import {userSettings} from './userSettings.js';
+
+import {taskHeaderDesign} from './taskHeaderDesign.js'
 
 const action_page = getURLAction();
 
@@ -56,6 +60,7 @@ switch (action_page) {
         taskUpdateNotify();
         goToTaskDatalist();
         anchorLink();
+        taskHeaderDesign();
         break;
     case 'user_page':
         addPageElems();
@@ -65,4 +70,5 @@ switch (action_page) {
 
 if(NODE_ENV === 'development'){
     console.log('hello');
+    console.timeEnd('total');
 }

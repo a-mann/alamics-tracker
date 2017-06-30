@@ -1,19 +1,25 @@
+if (NODE_ENV === 'development') {
+    console.time('load goToTaskDatalist');
+}
+
+import {getTaskId,getTaskHead} from './_finders.js';
+
 function goToTaskDatalist() {
     'use strict';
 
-    let taskId = require('./_finders').getTaskId();
+    let taskId = getTaskId();
 
-    let taskTitle = document.getElementById('task-title').textContent.split(' - ');
+    let taskTitle = getTaskHead().title;
 
     let data = JSON.parse(localStorage.getItem('datalist')) || [];
     data = appendId(data);
 
     //если на странице есть заголовок задачи
     // - проверить есть ли она в списке
-    if (Array.isArray(taskTitle) && taskTitle.length >= 2) {
-        taskTitle = taskTitle[1].trim();
+    if (taskTitle) {
 
         let newdata = {"id": taskId, "title": taskTitle + ' ' + taskId};
+
         data = appendId(data, newdata);
 
         localStorage.setItem('datalist', JSON.stringify(data));
@@ -53,10 +59,10 @@ function goToTaskDatalist() {
 
         return arr;
     }
-
-    if (NODE_ENV === 'development') {
-        console.info('load goToTaskDatalist');
-    }
 }
 
 export {goToTaskDatalist};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load goToTaskDatalist');
+}

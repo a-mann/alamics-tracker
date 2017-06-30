@@ -1,0 +1,63 @@
+@import "_vars.pcss";
+
+#main-content{
+    display: grid;
+    grid-template-columns: 500px 1fr;
+
+    hr{
+        display: none;
+    }
+}
+
+#task-footer{
+    grid-column: 2 / 3;
+}
+
+.left-col {
+    background-color: var(--bg-aside);
+    padding: 2.5rem;
+}
+
+.task-dashboard{
+    position: sticky;
+    top: 0;
+}
+
+.txt-block{
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    display: grid;
+    grid-template-columns: 85px 1fr;
+
+    &__title{
+        color: #848e94;
+        font-size: .75rem;
+        white-space: nowrap;
+        padding-top: .333em;
+    }
+
+    &__data{
+        color: var(--sec-txt-color);
+        font-size: 1rem;
+
+        p{
+            margin: 0;
+        }
+    }
+}
+
+.prim-i{
+    color: #cfd81b;
+}
+
+.reg-i{
+    color: #fff;
+}
+
+.sec-i{
+    font-size: .875em;
+}
+
+.alert-i{
+    color: #bf4f5c;
+}

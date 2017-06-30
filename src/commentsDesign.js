@@ -1,3 +1,7 @@
+if(NODE_ENV === 'development'){
+    console.time('load commentsDesign');
+}
+
 import {getAllCommentsRows} from './_finders.js';
 
 function commentsDesign() {
@@ -36,6 +40,7 @@ function commentsDesign() {
         rows[2].appendChild(create3row(td));
 
         let files = create4row(td);
+
         if (!!files.length) {
             let pics = ['png', 'jpg', 'gif'];
 
@@ -256,10 +261,6 @@ function commentsDesign() {
 
         return fragment;
     }
-
-    if(NODE_ENV === 'development'){
-        console.info('load commentsDesign');
-    }
 }
 
 function createImgThumb(item) {
@@ -334,3 +335,7 @@ function showActionsBtn(camment) {
 import styles from './pcss/commentsDesign.pcss';
 
 export {commentsDesign};
+
+if(NODE_ENV === 'development'){
+    console.timeEnd('load commentsDesign');
+}

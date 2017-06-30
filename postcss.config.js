@@ -1,5 +1,6 @@
 module.exports = {
     plugins: [
+        require('postcss-import')({ addDependencyTo: 'webpack' }),
         require('postcss-partial-import')({
             path: 'src/pcss/',
             dirs: ['src/pcss/']
@@ -10,6 +11,7 @@ module.exports = {
             ],
             warnForDuplicates: false
         }),
+        require('postcss-apply')(),
         require('postcss-bem')({
             style: 'bem',
             bem: {

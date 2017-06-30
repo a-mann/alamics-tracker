@@ -1,3 +1,7 @@
+if (NODE_ENV === 'development') {
+    console.time('load calculateElapsedTime');
+}
+
 //калькулятор в поле ввода затраченного времени
 function calculateElapsedTime() {
     'use strict';
@@ -33,33 +37,33 @@ function calculateElapsedTime() {
                 }
             }
             this.value = cur_value;
-
-            //console.log(minToDays(cur_value));
         }
     });
-
-    console.info('load calculateElapsedTime');
 }
 
-function minToDays(timeInMinutes, dayInHours = 8) {
-    let retStr = "";
-
-    if ((timeInMinutes !== null) && (!isNaN(timeInMinutes)) && (timeInMinutes > 0)) {
-        dayInHours = dayInHours << 0;
-        if ((dayInHours === undefined) || (dayInHours === null) || (isNaN(dayInHours)) || (dayInHours < 1)) dayInHours = 24;
-        let tD, tH, tM;
-        tD = (timeInMinutes / dayInHours / 60) << 0;
-        retStr += tD > 0 ? tD + " д. " : "";
-        timeInMinutes -= tD * dayInHours * 60;
-        tH = (timeInMinutes / 60) << 0;
-        retStr += tH > 0 ? tH + " ч. " : "";
-        timeInMinutes -= tH * 60;
-        tM = timeInMinutes << 0;
-        retStr += tM + " мин." + " (" + dayInHours + "-часовой день)";
-    } else {
-        retStr += "Что-то со временем не так :(";
-    }
-    return retStr;
-}
+// function minToDays(timeInMinutes, dayInHours = 8) {
+//     let retStr = "";
+//
+//     if ((timeInMinutes !== null) && (!isNaN(timeInMinutes)) && (timeInMinutes > 0)) {
+//         dayInHours = dayInHours << 0;
+//         if ((dayInHours === undefined) || (dayInHours === null) || (isNaN(dayInHours)) || (dayInHours < 1)) dayInHours = 24;
+//         let tD, tH, tM;
+//         tD = (timeInMinutes / dayInHours / 60) << 0;
+//         retStr += tD > 0 ? tD + " д. " : "";
+//         timeInMinutes -= tD * dayInHours * 60;
+//         tH = (timeInMinutes / 60) << 0;
+//         retStr += tH > 0 ? tH + " ч. " : "";
+//         timeInMinutes -= tH * 60;
+//         tM = timeInMinutes << 0;
+//         retStr += tM + " мин." + " (" + dayInHours + "-часовой день)";
+//     } else {
+//         retStr += "Что-то со временем не так :(";
+//     }
+//     return retStr;
+// }
 
 export {calculateElapsedTime};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load calculateElapsedTime');
+}

@@ -1,6 +1,8 @@
 //сюда добаляются элементы страницы в которые вставляются созданые скриптом блоки
 //и.или они модифицируются скриптом
 
+import {getAllCommentsRows} from './_finders.js';
+
 function addPageElems() {
     let $content_cell = document.querySelector('form[name="theForm"]');
     $content_cell.setAttribute('id', 'main-content');
@@ -10,7 +12,7 @@ function addPageElems() {
     if($comments_tbl){
         $comments_tbl.setAttribute('id', 'comments-tbl');
 
-        let rows = require('./_finders').getAllCommentsRows();
+        let rows = getAllCommentsRows();
 
         rows.map(function (row) {
             row.querySelectorAll('td')[5].firstElementChild.classList.add('comment-wrap');
@@ -20,6 +22,7 @@ function addPageElems() {
     let input_div = document.querySelector('div.input_box'); //есть на странице задачи
 
     if (input_div) {
+        input_div.id = 'task-bar';
         let $user_toolbar = document.createElement('DIV');
         $user_toolbar.setAttribute('id', 'user-toolbar');
         $user_toolbar.classList.add('user-toolbar');

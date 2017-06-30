@@ -1,4 +1,6 @@
-
+if (NODE_ENV === 'development') {
+    console.time('load userSettings');
+}
 
 // добавление на страницу новой задачи блока настроек пользователя
 
@@ -179,10 +181,6 @@ function userSettings() {
 
     createTaskListHTML();
     createWorkersListHTML();
-
-    if (NODE_ENV === 'development') {
-        console.info('load userSettings');
-    }
 }
 
 //создание и добавление списка работников и проектов
@@ -242,3 +240,7 @@ function saveUserSettings(options, list_item, storage_item) {
 }
 
 export {userSettings};
+
+if (NODE_ENV === 'development') {
+    console.timeEnd('load userSettings');
+}
