@@ -1,7 +1,3 @@
-if (NODE_ENV === 'development') {
-    console.time('load userSettings');
-}
-
 // добавление на страницу новой задачи блока настроек пользователя
 
 function userSettings() {
@@ -181,6 +177,30 @@ function userSettings() {
 
     createTaskListHTML();
     createWorkersListHTML();
+
+    // добавление блока экспорта/импорта настроек
+    let EIBlock = document.createElement('div');
+    EIBlock.classList.add('user-list');
+
+    let EIBlock_title = document.createElement('h2');
+    EIBlock_title.textContent = 'Экспорт/импорт настроек';
+    EIBlock_title.classList.add('user-title');
+
+    let EIBlock_desc = document.createElement('p');
+    EIBlock_desc.textContent = 'Будут сохранены избранные проекты, работники, опции.';
+
+    EIBlock.appendChild(EIBlock_title);
+    EIBlock.appendChild(EIBlock_desc);
+
+    let EISettings = exportImportUserSettings(EIBlock);
+    EIBlock.appendChild(EISettings.link);
+    EIBlock.appendChild(EISettings.field);
+
+    $user_settings_box.appendChild(EIBlock);
+
+    if (NODE_ENV === 'development') {
+        console.info('load userSettings');
+    }
 }
 
 //создание и добавление списка работников и проектов
@@ -239,8 +259,64 @@ function saveUserSettings(options, list_item, storage_item) {
     //console.log(JSON.parse(localStorage.getItem(storage_item)));
 }
 
+//сохранение пользоваетльских настроек в файл
+//загрузка настроек из файла
+function exportImportUserSettings(block) {
+    //const keys = Object.keys(localStorage);
+    const keys = ["params_user_projects","params_user_workers","datalist","worker-time-count"];
+
+    let settings = {};
+
+    for(let i of keys){
+        settings[i] = localStorage.getItem(i);
+    }
+
+    let SaveAsBlob = new Blob([JSON.stringify(settings)], {type:"application/json"});
+    let SaveAsURL = window.URL.createObjectURL(SaveAsBlob);
+    const fileNameToSaveAs = 'tracker-user-settings';
+
+    let downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Скачать файл настроек";
+    downloadLink.href = SaveAsURL;
+    downloadLink.classList.add('row-item');
+
+    let upload = document.createElement('input');
+    upload.type = 'file';
+    upload.id = 'import-settings';
+    upload.title = 'Загрузите файл с сохраненными настройками tracker-user-settings';
+    upload.classList.add('row-item');
+
+    upload.addEventListener('change', function () {
+        loadFile(this)
+    });
+
+    function loadFile(input) {
+        let fileToLoad = input.files[0];
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = function (fileLoadedEvent) {
+            let settings = JSON.parse(fileLoadedEvent.target.result);
+
+            if(typeof settings === 'object'){
+                Object.keys(settings).forEach(function (key) {
+                    localStorage.setItem(key, settings[key]);
+                });
+            }else{
+                throw new Error('Ошибка чтения файла настроек');
+            }
+        };
+
+        fileReader.readAsText(fileToLoad, "UTF-8");
+    }
+
+
+    return {
+        link: downloadLink,
+        field: upload
+    };
+}
+
 export {userSettings};
 
-if (NODE_ENV === 'development') {
-    console.timeEnd('load userSettings');
-}
