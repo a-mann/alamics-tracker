@@ -31,7 +31,9 @@ import {anchorLink} from './anchorLink.js';
 
 import {userSettings} from './userSettings.js';
 
-import {taskHeaderDesign} from './taskHeaderDesign.js'
+//import {taskHeaderDesign} from './taskHeaderDesign.js'
+
+import {calcTimeLeft} from './calcTimeLeftInDartTask.js';
 
 const action_page = getURLAction();
 
@@ -49,6 +51,10 @@ switch (action_page) {
         }else{
             if (localStorage.getItem('worker-time-count') === 'true') {
                 countWorkerTime();
+
+                if(window.location.host === 'support.dartit.ru'){
+                    calcTimeLeft();
+                }
             }
         }
 
@@ -60,7 +66,7 @@ switch (action_page) {
         taskUpdateNotify();
         goToTaskDatalist();
         anchorLink();
-        taskHeaderDesign();
+        //taskHeaderDesign();
         break;
     case 'user_page':
         addPageElems();
