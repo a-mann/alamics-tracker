@@ -25,7 +25,7 @@ module.exports = {
             NODE_ENV: JSON.stringify(NODE_ENV)
         }),
         new webpack.BannerPlugin({
-            banner: `// ==UserScript==\n// @name DartIT tracker-tweaker revo\n// @updateURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js\n// @downloadURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js\n// @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;\n// @include https://support.dartit.ru/*\n// @include https://support.alamics.ru/*\n// @require https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js\n// @grant unsafeWindow\n// @author mann\n// @license MIT\n// @version 1.5.14\n// ==/UserScript==`,
+            banner: `// ==UserScript==\n// @name DartIT tracker-tweaker revo\n// @updateURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js\n// @downloadURL https://github.com/a-mann/alamics-tracker/raw/master/dart-support.user.js\n// @description индивидуальные настройки для support.dartit.ru, support.alamics.ru;\n// @include https://support.dartit.ru/*\n// @include https://support.alamics.ru/*\n// @require https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js\n// @grant unsafeWindow\n// @author mann\n// @license MIT\n// @version 1.5.15\n// ==/UserScript==`,
             entryOnly: true,
             raw: true
         })

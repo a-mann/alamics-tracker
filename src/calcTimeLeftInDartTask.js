@@ -45,6 +45,7 @@ function calcTimeLeft() {
     });
 
     readWriteDartPlaneTime(field, tid, 'load');
+    letDartCalc(field,result);
 
 }
 
