@@ -201,15 +201,6 @@ function userSettings() {
 
     $user_settings_box.appendChild(EIBlock);
 
-    //addDropboxSaver
-    addjs('https://www.dropbox.com/static/api/2/dropins.js', function () {
-        // id="dropboxjs" data-app-key="gertt2rb0d40ufr"
-        console.log('load');
-        addDropboxSaver(EISettings.link.href,EISettings.link.download);
-        let DBox = Dropbox;
-        console.log('loaded',DBox);
-    },{'id': 'dropboxjs', 'data-app-key': 'gertt2rb0d40ufr'});
-
     if (NODE_ENV === 'development') {
         console.info('load userSettings');
     }
@@ -327,37 +318,6 @@ function exportImportUserSettings() {
         link: downloadLink,
         field: upload
     };
-}
-
-function addDropboxSaver(url,filename) {
-    //<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="YOUR_APP_KEY"></script>
-    //Dropbox.createSaveButton(url, filename, options);
-    console.log(url, filename);
-
-    let options = {
-        files: [
-            {'url': url, 'filename': filename}
-        ],
-        success: function () {
-            // Indicate to the user that the files have been saved.
-            console.log("Success! Files saved to your Dropbox.");
-        },
-        progress: function (progress) {
-            console.log(progress * 100);
-        },
-        cancel: function () {
-            console.log('cancell');
-        },
-        error: function (errorMessage) {
-            console.log(errorMessage);
-        }
-    };
-
-    console.log(Dropbox);
-
-    let button = Dropbox.createSaveButton(options);
-
-    document.getElementById('EIBlock').appendChild(button);
 }
 
 export {userSettings};
