@@ -10,66 +10,14 @@ function countWorkerTime() {
     let $input_box = document.getElementById('user-toolbar');
     let rows = getAllCommentsRows();
     let workers = getAllWorkers();
-    let dates_collection = [];
+    let dates_collection = new Set();
     let date_str;
 
     for (let i = 0; i < rows.length; i++) {
         date_str = rows[i].children[3].textContent;
         date_str = date_str.split(' ');
-        dates_collection.push(createISODate(date_str[0]));
+        dates_collection.add(createISODate(date_str[0]));
     }
-
-    let dates_arr = eliminateDuplicates(dates_collection);
-
-    let createDatesList = function (input_box, dates) {
-
-        function createList(css_id, css_class) {
-            let list = document.createElement('SELECT');
-            list.setAttribute('id', css_id);
-            list.classList.add(css_class);
-            return list;
-        }
-
-        let box = document.createElement('DIV');
-        box.classList.add('user-toolbar__item');
-
-        let start_list = createList('date-start-list', 'dates-list');
-
-        let end_list = createList('date-end-list', 'dates-list');
-
-        let btn = document.createElement('BUTTON');
-        btn.setAttribute('type', 'button');
-        btn.textContent = 'Посчитать';
-
-        let option, cln_option, listdate;
-
-        for (let i = 0; i < dates.length; i++) {
-            listdate = dateFormatter(parseInt(dates[i], 10));
-            option = document.createElement('OPTION');
-            option.setAttribute('value', dates[i]);
-            option.innerHTML = listdate.toLocaleString('ru');
-            cln_option = option.cloneNode(true);
-            start_list.appendChild(option);
-            end_list.appendChild(cln_option);
-        }
-        box.appendChild(start_list);
-        box.appendChild(end_list);
-        box.appendChild(btn);
-
-        let title = document.createElement('H3');
-        title.textContent = 'За выбранный период';
-        title.classList.add('user-toolbar-title');
-        box.insertBefore(title, box.firstChild);
-
-        input_box.insertBefore(box, input_box.lastChild);
-
-        return {
-            'box': box,
-            'start_list': start_list,
-            'end_list': end_list,
-            'btn': btn
-        }
-    };
 
     let timelist = createTimeList(workers, rows);
 
@@ -94,7 +42,7 @@ function countWorkerTime() {
     $timelist.insertBefore($title, $timelist.firstChild);
     $timelist.classList.add('user-toolbar__item');
 
-    let date_lists = createDatesList($input_box, dates_arr);
+    let date_lists = createDatesList($input_box, dates_collection);
 
     // добавляю селекты с датами - подсчет времени за выбранный период
     findTimeInDatesRange(date_lists, workers, rows);
@@ -102,6 +50,57 @@ function countWorkerTime() {
     $input_box.insertBefore($timelist, $input_box.lastChild);
 
     //http://stackoverflow.com/questions/2558977/ajax-cross-domain-call
+}
+
+function createDatesList(input_box, dates) {
+
+    function createList(css_id, css_class) {
+        let list = document.createElement('SELECT');
+        list.setAttribute('id', css_id);
+        list.classList.add(css_class);
+        return list;
+    }
+
+    let box = document.createElement('DIV');
+    box.classList.add('user-toolbar__item');
+
+    let start_list = createList('date-start-list', 'dates-list');
+
+    let end_list = createList('date-end-list', 'dates-list');
+
+    let btn = document.createElement('BUTTON');
+    btn.setAttribute('type', 'button');
+    btn.textContent = 'Посчитать';
+
+    let option, cln_option, listdate;
+
+    for(let date of dates){
+        listdate = dateFormatter(parseInt(date, 10));
+        option = document.createElement('OPTION');
+        option.setAttribute('value', date);
+        option.innerHTML = listdate.toLocaleString('ru');
+        cln_option = option.cloneNode(true);
+        start_list.appendChild(option);
+        end_list.appendChild(cln_option);
+    }
+
+    box.appendChild(start_list);
+    box.appendChild(end_list);
+    box.appendChild(btn);
+
+    let title = document.createElement('H3');
+    title.textContent = 'За выбранный период';
+    title.classList.add('user-toolbar-title');
+    box.insertBefore(title, box.firstChild);
+
+    input_box.insertBefore(box, input_box.lastChild);
+
+    return {
+        'box': box,
+        'start_list': start_list,
+        'end_list': end_list,
+        'btn': btn
+    }
 }
 
 // создание объекта со списком сотруднков и времени каждого в задаче
