@@ -3,7 +3,7 @@ if (NODE_ENV === 'development') {
 }
 
 import {getAllCommentsRows,getAllWorkers,getRowTimeString} from './_finders.js';
-import {createISODate,eliminateDuplicates,dateFormatter,getRowDateString} from './_utils.js';
+import {createISODate,dateFormatter,getRowDateString} from './_utils.js';
 
 function countWorkerTime() {
     'use strict';
@@ -105,7 +105,6 @@ function createDatesList(input_box, dates) {
 
 // создание объекта со списком сотруднков и времени каждого в задаче
 function createTimeList(workers, rows) {
-
     let ntime, name, tsum;
     let timelist = {};
 
