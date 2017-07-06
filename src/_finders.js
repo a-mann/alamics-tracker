@@ -1,5 +1,3 @@
-import {eliminateDuplicates} from './_utils.js';
-
 function getTaskId() {
     const taskId = window.location.search.split('&');
 
@@ -44,13 +42,13 @@ function getAllCommentsRows() {
 function getAllWorkers() {
     let rows = getAllCommentsRows();
 
-    let workers = [];
+    let workers = new Set();
 
     for (let i = 0; i < rows.length; i++) {
-        workers.push(rows[i].children[4].textContent);
+        workers.add(rows[i].children[4].textContent);
     }
 
-    return eliminateDuplicates(workers);
+    return [...workers];
 }
 
 // получение строки с времнем из таблицы с комментарими задачи

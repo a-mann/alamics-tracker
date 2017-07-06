@@ -1,5 +1,7 @@
 // добавление на страницу новой задачи блока настроек пользователя
 
+import {addjs} from './_loaders.js';
+
 function userSettings() {
     'use strict';
     //добавление/удаление выбранных проектов в пользовательском списке
@@ -181,6 +183,7 @@ function userSettings() {
     // добавление блока экспорта/импорта настроек
     let EIBlock = document.createElement('div');
     EIBlock.classList.add('user-list');
+    EIBlock.id = 'EIBlock';
 
     let EIBlock_title = document.createElement('h2');
     EIBlock_title.textContent = 'Экспорт/импорт настроек';
@@ -192,7 +195,7 @@ function userSettings() {
     EIBlock.appendChild(EIBlock_title);
     EIBlock.appendChild(EIBlock_desc);
 
-    let EISettings = exportImportUserSettings(EIBlock);
+    let EISettings = exportImportUserSettings();
     EIBlock.appendChild(EISettings.link);
     EIBlock.appendChild(EISettings.field);
 
@@ -261,7 +264,7 @@ function saveUserSettings(options, list_item, storage_item) {
 
 //сохранение пользоваетльских настроек в файл
 //загрузка настроек из файла
-function exportImportUserSettings(block) {
+function exportImportUserSettings() {
     //const keys = Object.keys(localStorage);
     const keys = ["params_user_projects","params_user_workers","datalist","worker-time-count"];
 
@@ -310,7 +313,6 @@ function exportImportUserSettings(block) {
 
         fileReader.readAsText(fileToLoad, "UTF-8");
     }
-
 
     return {
         link: downloadLink,

@@ -6,18 +6,6 @@ function getURLAction() {
     return get_action[0];
 }
 
-//удаление дубликатов
-function eliminateDuplicates(arr) {
-    let obj = {};
-
-    for (let i = 0; i < arr.length; i++) {
-        let str = arr[i];
-        obj[str] = true; // запомнить строку в виде свойства объекта
-    }
-
-    return Object.keys(obj); // или собрать ключи перебором для IE8-
-}
-
 //создание даты из строки
 function createISODate(str) {
     let date_str = str.split('.');
@@ -128,4 +116,4 @@ function findInArray(arr, val) {
     return arr.indexOf(val);
 }
 
-export {getURLAction,eliminateDuplicates,createISODate,getRowDateString,dateFormatter,modifySelectOptionsList,runOnKeys,loadByAjax,declOfNum,findInArray};
+export {getURLAction,createISODate,getRowDateString,dateFormatter,modifySelectOptionsList,runOnKeys,loadByAjax,declOfNum,findInArray};
